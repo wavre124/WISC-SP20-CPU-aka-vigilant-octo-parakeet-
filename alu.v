@@ -14,7 +14,7 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
    // declare constant for size of inputs, outputs (N),
    // and operations (O)
    parameter    N = 16;
-   parameter    O = 3;
+   parameter    O = 4;
 
    input [N-1:0] InA;
    input [N-1:0] InB;
@@ -29,14 +29,23 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
 
    /* YOUR CODE HERE */
 
-   localparam rot_left = 3'b000;
-   localparam l_shift = 3'b001;
-   localparam r_sh_arith = 3'b010;
-   localparam r_shift = 3'b011;
-   localparam add_op = 3'b100;
-   localparam and_op = 3'b101;
-   localparam or_op = 3'b110;
-   localparam xor_op = 3'b111;
+   localparam rot_left = 4'b0000;
+   localparam l_shift = 4'b0001;
+   localparam r_sh_arith = 4'b0010;
+   //localparam r_shift = 4'b0011;
+   localparam add_op = 4'b0100;
+   localparam and_op = 4'b0101;
+   localparam or_op = 4'b0110;
+   localparam xor_op = 4'b0111;
+   localparam rot_right = 4'b1000;
+   localparam sub_op = 4'b1001;
+   localparam seq_op = 4'b1010;
+   localparam slt_op = 4'b1011;
+   localparam sle_op = 4'b1100;
+   localparam sco_op = 4'b1101;
+   localparam btr_op = 4'b1110;
+   localparam lbi_op = 4'b1111;
+   localparam slbi_op = 4'b0011;
 
    wire [N-1:0] alu_A, alu_B;
    wire [N-1:0] shift_out;

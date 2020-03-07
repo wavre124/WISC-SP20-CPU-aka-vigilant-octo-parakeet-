@@ -23,14 +23,14 @@ module shifter (In, Cnt, Op, Out);
 
    wire [N-1:0] l_rotate_wire;
    wire [N-1:0] l_shift_log_wire;
-   wire [N-1:0] r_shift_arith_wire;
+   wire [N-1:0] r_rotate_wire;
    wire [N-1:0] r_shift_log_wire;
 
    r_shift_log right_shift_logical(.In(In), .Cnt(Cnt), .Out(r_shift_log_wire));
-   r_shift_arith right_shift_arithmetical(.In(In), .Cnt(Cnt), .Out(r_shift_arith_wire));
+   r_rotate r_rotate_mod(.In(In), .Cnt(Cnt), .Out(r_rotate_wire));
    l_shift_log left_shift_logical(.In(In), .Cnt(Cnt), .Out(l_shift_log_wire));
    l_rotate l_rotate_mod(.In(In), .Cnt(Cnt), .Out(l_rotate_wire));
 
-   mux4_1_16b by_sixteen(.InA(l_rotate_wire), .InB(l_shift_log_wire), .InC(r_shift_arith_wire), .InD(r_shift_log_wire), .S(Op), .Out(Out));
+   mux4_1_16b by_sixteen(.InA(l_rotate_wire), .InB(l_shift_log_wire), .InC(r_rotate_wire), .InD(r_shift_log_wire), .S(Op), .Out(Out));
 
 endmodule

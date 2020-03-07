@@ -31,13 +31,13 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
 
    localparam rot_left = 4'b0000;
    localparam l_shift = 4'b0001;
-   localparam r_sh_arith = 4'b0010;
-   //localparam r_shift = 4'b0011;
+   localparam rot_right = 4'b0010;
+   localparam r_shift = 4'b0011;
    localparam add_op = 4'b0100;
    localparam and_op = 4'b0101;
    localparam or_op = 4'b0110;
    localparam xor_op = 4'b0111;
-   localparam rot_right = 4'b1000;
+   localparam slbi_op = 4'b1000;
    localparam sub_op = 4'b1001;
    localparam seq_op = 4'b1010;
    localparam slt_op = 4'b1011;
@@ -45,19 +45,29 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
    localparam sco_op = 4'b1101;
    localparam btr_op = 4'b1110;
    localparam lbi_op = 4'b1111;
-   localparam slbi_op = 4'b0011;
 
    wire [N-1:0] alu_A, alu_B;
    wire [N-1:0] shift_out;
    wire [N-1:0] adder_out;
    wire C_out;
    reg [N-1:0] alu_out;
+   wire [N-1:0] seq_result;
+   wire [N-1:0] slt_result;
+   wire [N-1:0] sle_result;
+   wire [N-1:0] sco_result;
+   wire [N-1:0] btr_result;
 
    assign alu_A = (invA) ? ~InA : InA;
    assign alu_B = (invB) ? ~InB : InB;
 
+   assign seq_result = (adder_out == 0) ? 16'b1 : 16'b0;
+   assign slt_result = (adder_out[15]) ?  16'b1 : 16'b0;
+   assign sle_result = (adder_out == 0) ? 16'b1 : (adder_out[15]) ?  16'b1 : 16'b0;
+   assign sco_result = (C_out) ? 16'b1: 16'b0;
+
    shifter shift_mod(.In(alu_A), .Cnt(alu_B[3:0]), .Op(Op[1:0]), .Out(shift_out));
    cla_16b adder(.A(alu_A), .B(alu_B), .C_in(Cin), .S(adder_out), .C_out(C_out));
+   btr btr_res(.InA(alu_A), .Out(btr_result));
 
    always @* case(Op)
 
@@ -67,7 +77,7 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
       l_shift: begin
                 alu_out = shift_out;
               end
-      r_sh_arith: begin
+      rot_right: begin
                 alu_out = shift_out;
               end
       r_shift: begin
@@ -84,6 +94,30 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
               end
       xor_op: begin
                 alu_out = alu_A ^ alu_B;
+              end
+      sub_op: begin
+                alu_out = adder_out;
+              end
+      seq_op: begin
+                alu_out = seq_result;
+              end
+      slt_op: begin
+                alu_out = slt_result;
+              end
+      sle_op: begin
+                alu_out = sle_result;
+              end
+      sco_op: begin
+                alu_out = sco_result;
+              end
+      btr_op: begin
+                alu_out = btr_result;
+              end
+      lbi_op: begin
+                alu_out = alu_A;
+              end
+      slbi_op: begin
+                alu_out = (alu_A << 8) | alu_B;
               end
       default: begin
                 // temporary, apparently this needs to assert an error?

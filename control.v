@@ -702,7 +702,7 @@ always @* case(inst[15:11])
           ALU_op = 4'b0000;
           branch_jump_op = 3'b110;
           PC_src = 2'b10;
-          Dst_reg = 2'b00;
+          Dst_reg = 2'b11;
           ALU_src = 2'b00;
           Ext_sign = 1;
           Reg_write = 1;
@@ -710,7 +710,7 @@ always @* case(inst[15:11])
           Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
-          JAL = 0;
+          JAL = 1;
           Mem_reg = 0;
           InvR1 = 0;
           InvR2 = 0;
@@ -723,7 +723,7 @@ always @* case(inst[15:11])
           ALU_op = 4'b0000;
           branch_jump_op = 3'b111;
           PC_src = 2'b10;
-          Dst_reg = 2'b00;
+          Dst_reg = 2'b11;
           ALU_src = 2'b00;
           Ext_sign = 1;
           Reg_write = 1;
@@ -731,7 +731,7 @@ always @* case(inst[15:11])
           Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
-          JAL = 0;
+          JAL = 1;
           Mem_reg = 0;
           InvR1 = 0;
           InvR2 = 0;

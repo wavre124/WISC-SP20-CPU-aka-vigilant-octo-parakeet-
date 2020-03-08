@@ -42,6 +42,40 @@ localparam JALR = 5'b00111;
 localparam ILL_OP = 5'b00010;
 localparam RTI = 5'b00011;
 
+localparam ADD = 2'b00;
+localparam SUB = 2'b01;
+localparam XOR = 2'b10;
+localparam ANDN = 2'b11;
+
+wire [3:0] b_alu_op;
+wire [3:0] s_alu_op;
+wire b_alu_invA, b_alu_invB, b_alu_Cin;
+
+assign b_alu_op = (inst[1:0] == ADD) ?  4'b0100 :
+                  (inst[1:0] == SUB) ?  4'b1001 :
+                  (inst[1:0] == XOR) ?  4'b0111 :
+                  (inst[1:0] == ANDN) ? 4'b0101 : 4'b0000;
+
+assign b_alu_invA = (inst[1:0] == ADD) ?  1'b0 :
+                    (inst[1:0] == SUB) ?  1'b1 :
+                    (inst[1:0] == XOR) ?  1'b0 :
+                    (inst[1:0] == ANDN) ? 1'b0 : 1'b0 ;
+
+assign b_alu_invB = (inst[1:0] == ADD) ? 1'b0  :
+                    (inst[1:0] == SUB) ?  1'b0 :
+                    (inst[1:0] == XOR) ?  1'b0 :
+                    (inst[1:0] == ANDN) ? 1'b1 : 1'b0;
+
+assign b_alu_Cin = (inst[1:0] == ADD) ?  1'b0 :
+                   (inst[1:0] == SUB) ?  1'b1 :
+                   (inst[1:0] == XOR) ?  1'b0 :
+                   (inst[1:0] == ANDN) ? 1'b0 : 1'b0;
+
+assign s_alu_op = (inst[1:0] == 2'b00) ? 4'b0000 :
+                  (inst[1:0] == 2'b01) ? 4'b0001 :
+                  (inst[1:0] == 2'b10) ? 4'b0010 :
+                  (inst[1:0] == 2'b11) ? 4'b0011 : 4'b0000;
+
 // PC_source works this way
 // 00 - reads old PC
 // 01 - reads incremented PC
@@ -323,9 +357,40 @@ always @* case(inst[15:11])
           Cin = 0;
           end //BTR
     B_ALU : begin
-            
+          ALU_op = b_alu_op;
+          PC_src = 2'b01;
+          Dst_reg = 2'b00;
+          ALU_src = 2'b00;
+          Ext_sign = 0;
+          Reg_write = 1;
+          Jump = 0;
+          Branch = 0;
+          Mem_read = 0;
+          Mem_write = 0;
+          JAL = 0;
+          Mem_reg = 0;
+          InvR1 = b_alu_invA;
+          InvR2 = b_alu_invB;
+          Sign = 0;
+          Cin = b_alu_Cin;
             end //ADD,SUB,XOR,ANDN implement terniary
     S_ALU : begin
+          ALU_op = s_alu_op;
+          PC_src = 2'b01;
+          Dst_reg = 2'b00;
+          ALU_src = 2'b00;
+          Ext_sign = 0;
+          Reg_write = 1;
+          Jump = 0;
+          Branch = 0;
+          Mem_read = 0;
+          Mem_write = 0;
+          JAL = 0;
+          Mem_reg = 0;
+          InvR1 = 0;
+          InvR2 = 0;
+          Sign = 0;
+          Cin = 0;
             end //ROL,SLL,ROR, SRL implement terniary
     SEQ : begin
           end //SEQ

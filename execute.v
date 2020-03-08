@@ -4,7 +4,18 @@
    Filename        : execute.v
    Description     : This is the overall module for the execute stage of the processor.
 */
-module execute (/* TODO: Add appropriate inputs/outputs for your execute stage here*/);
+module execute (data_1, data_2, signed_immediate, ALU_src, ALU_op, Cin, sign, InvR1, InvR2, data_out);
+
+  input wire [15:0] data_1, data_2, signed_immediate;
+  input wire [3:0] ALU_op;
+  input wire Cin, sign, InvR1, InvR2, ALU_src;  
+  output wire [15:0] Out;
+  wire [15:0] reg_2;
+  //00 is for RT
+  //01 is for signed immediate passed in from decode stage
+  mux2_1_N mux1 (.InA(data_2), .InB(signed_immediate), .S(ALU_src), .Out(reg_2));
+  
+  alu alu1 (.InA(data_1), .InB(reg_2), .Cin(Cin), .Op(ALU_op), .invA(InvR1), .invB(InvR2), .sign(sign), .Out(Out), .Zero(), .Ofl());
 
    // TODO: Your code here
    

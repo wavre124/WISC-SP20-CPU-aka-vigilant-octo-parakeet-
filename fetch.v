@@ -9,13 +9,15 @@ module fetch (clk, EPC_reg ,rst, b_j_pc, curr_pc, PC_src, mem_enable, excp, inst
   input wire [1:0] PC_src;
   input wire mem_enable, clk, rst, excp;
   input wire [15:0] b_j_pc, curr_pc, EPC_reg; //pcs being fed in from the branch address, jump address, and current pc for holds and normal instructions
-  wire [15:0] exception_pc, incremented_pc;
+  wire [15:0] exception_pc 
+  output wire [15:0] incremented_pc;
   wire createdump; 
   wire [15:0] pc; //will be fed into our instruction memory
   output wire [15:0]instruction; instruction received from instruction memory
   
   
-  assign incremented_pc = curr_pc + 2'b10; //incrementing pc to next instruction
+  cla_16b adder (.A(curr_pc), .B(16'b0000_0000_0000_0010), .C_in(1'b0), .S(incremented_pc), .C_out());
+
   
   //16 bit 2-1 mux for choosing 2 for exception handler or EPC after we return from the instruction
   mux2_1_N pc_mux1(.InA(EPC_reg), .InB(16'b0000_0000_0000_0010), .S(excp), .Out(exception_pc));

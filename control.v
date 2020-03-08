@@ -81,8 +81,8 @@ assign s_alu_op = (inst[1:0] == 2'b00) ? 4'b0000 :
 // PC_source works this way
 // 00 - reads old PC
 // 01 - reads incremented PC
-// 10 - reads branch address
-// 11 - reads jump address
+// 10 - reads branch address or jump addr
+// 11 - reads EPC
 
 // DST_reg works this way
 // 00 - read from Inst[4:2]

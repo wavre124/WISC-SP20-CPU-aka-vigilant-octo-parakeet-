@@ -4,12 +4,12 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, EPC_reg ,rst, b_j_pc, curr_pc, PC_src, Mem_en, excp, instruction);
+module fetch (clk, EPC_reg ,rst, b_j_pc, curr_pc, PC_src, Mem_en, excp, instruction, incremented_pc);
   // TODO: Your code here
-  input wire [1:0] PC_src;
-  input wire Mem_en, clk, rst, excp;
-  input wire [15:0] b_j_pc, curr_pc, EPC_reg; //pcs being fed in from the branch address, jump address, and current pc for holds and normal instructions
-  wire [15:0] exception_pc
+  input [1:0] PC_src;
+  input Mem_en, clk, rst, excp;
+  input [15:0] b_j_pc, curr_pc, EPC_reg; //pcs being fed in from the branch address, jump address, and current pc for holds and normal instructions
+  wire [15:0] exception_pc;
   output [15:0] incremented_pc;
 
   wire [15:0] pc; //will be fed into our instruction memory
@@ -29,6 +29,6 @@ module fetch (clk, EPC_reg ,rst, b_j_pc, curr_pc, PC_src, Mem_en, excp, instruct
   //11 is for exception or EPC
   mux4_1_16b pc_mux2(.InA(curr_pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(PC_src), .Out(pc));
 
-  memory2c instruction_memory(.data_out(instruction), data_in(16'b0000_0000_0000_0000), addr(pc), enable(Mem_en), wr(1'b0), createdump(1'b0), .clk(clk), .rst(rst));
+  memory2c instruction_memory(.data_out(instruction), .data_in(16'b0000_0000_0000_0000), .addr(pc), .enable(Mem_en), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
 endmodule

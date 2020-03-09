@@ -1,5 +1,5 @@
-module control(inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op
-               Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg
+module control(inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op,
+               Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg,
                Mem_en, Excp, ALU_src, InvR1, InvR2, Sign, Cin);
 
 input [15:0] inst;
@@ -40,7 +40,7 @@ localparam LBI = 5'b11000;
 localparam SLBI = 5'b10010;
 localparam J_DIS = 5'b00100;
 localparam JR = 5'b00101;
-localparam JAL = 5'b00110;
+localparam JAL_C = 5'b00110;
 localparam JALR = 5'b00111;
 localparam ILL_OP = 5'b00010;
 localparam RTI = 5'b00011;
@@ -727,7 +727,7 @@ always @* case(inst[15:11])
           Mem_en = 1;
           Excp = 0;
          end //JR
-    JAL : begin
+    JAL_C : begin
           ALU_op = 4'b0000;
           Ext_op = 2'b10;
           branch_jump_op = 3'b110;

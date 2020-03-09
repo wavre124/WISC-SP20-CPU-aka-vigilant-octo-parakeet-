@@ -6,7 +6,7 @@
 */
 module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op,
                Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg,
-               Mem_en, Excp, ALU_src, InvR1, InvR2, Sign, Cin, PC, wb_data, br_ju_addr);
+               Mem_en, Excp, ALU_src, InvR1, InvR2, Sign, Cin, PC, wb_data, br_ju_addr, immediate);
 
    // TODO: Your code here
 
@@ -34,7 +34,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, 
    wire [N-1:0] write_data;
    wire [N-1:0] bj_write_data;
    wire [2:0] write_sel;
-   wire [N-1:0] immediate;
+   output [N-1:0] immediate;
 
    localparam R7 = 3'b111;
 

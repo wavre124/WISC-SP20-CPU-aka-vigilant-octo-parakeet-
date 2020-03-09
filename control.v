@@ -6,9 +6,9 @@ input [15:0] inst;
 
 output reg [3:0] ALU_op;
 output reg [2:0] branch_jump_op;
-output reg [1:0] PC_src, Dst_reg, ALU_src;
+output reg [1:0] PC_src, Dst_reg;
 output reg Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
-output reg Excp;
+output reg Excp, ALU_src;
 output reg InvR1, InvR2, Sign, Cin;
 
 localparam HALT = 5'b00000;
@@ -115,7 +115,7 @@ always @* case(inst[15:11])
            branch_jump_op = 3'b000;
            PC_src = 2'b00;
            Dst_reg = 2'b00;
-           ALU_src = 2'b00;
+           ALU_src = 1'b0;
            Ext_sign = 0;
            Reg_write = 0;
            Jump = 0;
@@ -136,7 +136,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 0;
           Jump = 0;
@@ -157,7 +157,7 @@ always @* case(inst[15:11])
            branch_jump_op = 3'b000;
            PC_src = 2'b01;
            Dst_reg = 2'b01;
-           ALU_src = 2'b01;
+           ALU_src = 1'b1;
            Ext_sign = 1;
            Reg_write = 1;
            Jump = 0;
@@ -178,7 +178,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
           Jump = 0;
@@ -199,7 +199,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -220,7 +220,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -241,7 +241,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -262,7 +262,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -283,7 +283,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -304,7 +304,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -325,7 +325,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 0;
           Jump = 0;
@@ -346,7 +346,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
           Jump = 0;
@@ -367,7 +367,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
           Jump = 0;
@@ -388,7 +388,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -409,7 +409,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -430,7 +430,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -451,7 +451,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -472,7 +472,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -493,7 +493,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -514,7 +514,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
@@ -535,7 +535,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
           Jump = 0;
@@ -556,7 +556,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b001;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
           Jump = 0;
@@ -577,7 +577,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b010;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
           Jump = 0;
@@ -598,7 +598,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b011;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
           Jump = 0;
@@ -619,7 +619,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b10;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
           Jump = 0;
@@ -640,7 +640,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b10;
-          ALU_src = 2'b01;
+          ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
           Jump = 0;
@@ -661,7 +661,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b100;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
           Jump = 1;
@@ -682,7 +682,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b101;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
           Jump = 1;
@@ -703,7 +703,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b110;
           PC_src = 2'b10;
           Dst_reg = 2'b11;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 1;
           Jump = 1;
@@ -724,7 +724,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b111;
           PC_src = 2'b10;
           Dst_reg = 2'b11;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 1;
           Jump = 1;
@@ -745,7 +745,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b11;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 0;
           Jump = 0;
@@ -766,7 +766,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b11;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 0;
           Jump = 0;
@@ -787,7 +787,7 @@ always @* case(inst[15:11])
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
-          ALU_src = 2'b00;
+          ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 0;
           Jump = 0;

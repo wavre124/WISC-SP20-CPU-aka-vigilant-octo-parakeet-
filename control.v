@@ -1,12 +1,13 @@
-module control(inst, ALU_op, PC_src, Dst_reg, ALU_src
+module control(inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op
                Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg
-               InvR1, InvR2, Sign, Cin);
+               Mem_en, Excp, ALU_src, InvR1, InvR2, Sign, Cin);
 
 input [15:0] inst;
 
 output reg [3:0] ALU_op;
 output reg [2:0] branch_jump_op;
 output reg [1:0] PC_src, Dst_reg;
+output reg [1:0] Ext_op;
 output reg Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
 output reg Excp, ALU_src;
 output reg InvR1, InvR2, Sign, Cin;
@@ -112,6 +113,7 @@ assign s_alu_op = (inst[1:0] == 2'b00) ? 4'b0000 :
 always @* case(inst[15:11])
     HALT : begin
            ALU_op = 4'b0000;
+           Ext_op = 2'b00;
            branch_jump_op = 3'b000;
            PC_src = 2'b00;
            Dst_reg = 2'b00;
@@ -133,6 +135,7 @@ always @* case(inst[15:11])
            end // HALT
     NOP : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
@@ -154,6 +157,7 @@ always @* case(inst[15:11])
           end //NOP
     ADDI : begin
            ALU_op = 4'b0100;
+           Ext_op = 2'b00;
            branch_jump_op = 3'b000;
            PC_src = 2'b01;
            Dst_reg = 2'b01;
@@ -175,6 +179,7 @@ always @* case(inst[15:11])
            end // ADDI
     SUBI : begin
           ALU_op = 4'b1001;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -196,6 +201,7 @@ always @* case(inst[15:11])
            end //SUBI
     XORI : begin
           ALU_op = 4'b0111;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -217,6 +223,7 @@ always @* case(inst[15:11])
            end //XORI
     ANDNI : begin
           ALU_op = 4'b0101;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -238,6 +245,7 @@ always @* case(inst[15:11])
             end //ANDNI
     ROLI : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -259,6 +267,7 @@ always @* case(inst[15:11])
            end //ROLI
     SLLI : begin
           ALU_op = 4'b0001;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -280,6 +289,7 @@ always @* case(inst[15:11])
            end //SLLI
     RORI : begin
           ALU_op = 4'b0010;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -301,6 +311,7 @@ always @* case(inst[15:11])
            end //RORI
     SRLI : begin
           ALU_op = 4'b0011;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -322,6 +333,7 @@ always @* case(inst[15:11])
            end //SRLI
     ST : begin
           ALU_op = 4'b0100;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -343,6 +355,7 @@ always @* case(inst[15:11])
          end //ST
     LD : begin
           ALU_op = 4'b0100;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -364,6 +377,7 @@ always @* case(inst[15:11])
          end //LD
     STU : begin
           ALU_op = 4'b0100;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b01;
@@ -385,6 +399,7 @@ always @* case(inst[15:11])
           end //STU
     BTR : begin
           ALU_op = 4'b1110;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
@@ -406,6 +421,7 @@ always @* case(inst[15:11])
           end //BTR
     B_ALU : begin
           ALU_op = b_alu_op;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
@@ -427,6 +443,7 @@ always @* case(inst[15:11])
             end //ADD,SUB,XOR,ANDN implement terniary
     S_ALU : begin
           ALU_op = s_alu_op;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
@@ -448,6 +465,7 @@ always @* case(inst[15:11])
             end //ROL,SLL,ROR, SRL implement terniary
     SEQ : begin
           ALU_op = 4'b1010;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
@@ -469,6 +487,7 @@ always @* case(inst[15:11])
           end //SEQ
     SLT : begin
           ALU_op = 4'b1011;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
@@ -481,8 +500,8 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 1;
-          InvR2 = 0;
+          InvR1 = 0;
+          InvR2 = 1;
           Sign = 1;
           Cin = 1;
           Mem_en = 1;
@@ -490,6 +509,7 @@ always @* case(inst[15:11])
           end //SLT
     SLE : begin
           ALU_op = 4'b1100;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
@@ -502,8 +522,8 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 1;
-          InvR2 = 0;
+          InvR1 = 0;
+          InvR2 = 1;
           Sign = 1;
           Cin = 1;
           Mem_en = 1;
@@ -511,6 +531,7 @@ always @* case(inst[15:11])
           end //SLE
     SCO : begin
           ALU_op = 4'b1101;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;
@@ -532,6 +553,7 @@ always @* case(inst[15:11])
           end //SCO
     BEQZ : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b01;
           branch_jump_op = 3'b000;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
@@ -553,6 +575,7 @@ always @* case(inst[15:11])
            end //BEQZ
     BNEZ : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b01;
           branch_jump_op = 3'b001;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
@@ -574,6 +597,7 @@ always @* case(inst[15:11])
            end //BNEZ
     BLTZ : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b01;
           branch_jump_op = 3'b010;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
@@ -595,6 +619,7 @@ always @* case(inst[15:11])
            end //BLTZ
     BGEZ : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b01;
           branch_jump_op = 3'b011;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
@@ -616,6 +641,7 @@ always @* case(inst[15:11])
            end //BGEZ
     LBI : begin
           ALU_op = 4'b1111;
+          Ext_op = 2'b01;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b10;
@@ -637,6 +663,7 @@ always @* case(inst[15:11])
           end //LBI
     SLBI : begin
           ALU_op = 4'b1000;
+          Ext_op = 2'b01;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b10;
@@ -658,6 +685,7 @@ always @* case(inst[15:11])
            end //SLBI
     J_DIS : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b10;
           branch_jump_op = 3'b100;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
@@ -679,6 +707,7 @@ always @* case(inst[15:11])
             end //J displacement
     JR : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b01;
           branch_jump_op = 3'b101;
           PC_src = 2'b10;
           Dst_reg = 2'b00;
@@ -700,6 +729,7 @@ always @* case(inst[15:11])
          end //JR
     JAL : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b10;
           branch_jump_op = 3'b110;
           PC_src = 2'b10;
           Dst_reg = 2'b11;
@@ -721,6 +751,7 @@ always @* case(inst[15:11])
           end // JAL displacement
     JALR : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b01;
           branch_jump_op = 3'b111;
           PC_src = 2'b10;
           Dst_reg = 2'b11;
@@ -742,6 +773,7 @@ always @* case(inst[15:11])
            end // JALR
     ILL_OP : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b11;
           Dst_reg = 2'b00;
@@ -763,6 +795,7 @@ always @* case(inst[15:11])
              end //produce illegalop exception
     RTI : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b11;
           Dst_reg = 2'b00;
@@ -784,6 +817,7 @@ always @* case(inst[15:11])
           end // NOP
     default : begin
           ALU_op = 4'b0000;
+          Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
           Dst_reg = 2'b00;

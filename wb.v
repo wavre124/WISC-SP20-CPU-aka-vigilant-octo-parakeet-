@@ -4,7 +4,12 @@
    Filename        : wb.v
    Description     : This is the module for the overall Write Back stage of the processor.
 */
-module wb (/* TODO: Add appropriate inputs/outputs for your WB stage here*/);
+module wb (data_read, address, Mem_reg, data_out);
+    input wire [15:0] data_read, address;
+    input wire Mem_reg;
+    output wire [15:0] data_out;
+    
+    mux2_1 (.InA(address), .InB(data_read), .S(Mem_reg), .Out(data_out));
 
    // TODO: Your code here
    

@@ -46,10 +46,9 @@ module proc (/*AUTOARG*/
    wire [N-1:0] alu_out, wb_data, mem_read_data;
 
    // TO DO:
-   // EPC register still needs to be set for the siic instruction within fetch
    // We need to somehow handle err, I say we just set err to 1 in default case statements.. ezpz
 
-   fetch fetch_blk(.clk(clk), .EPC_reg(EPC_reg) , .rst(rst), .b_j_pc(br_ju_addr),
+   fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
                    .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .instruction(instruction), .incremented_pc(inc_PC));
 
    decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(instruction),
@@ -61,7 +60,7 @@ module proc (/*AUTOARG*/
    execute execute_blk(.data_1(data_one), .data_2(data_two), .signed_immediate(immediate),
                        .ALU_src(ALU_src), .ALU_op(ALU_op), .Cin(Cin), .sign(Sign), .InvR1(InvR1), .InvR2(InvR2), .data_out(alu_out));
 
-   memory memory_blk(.address(alu_out), .write_data(data_two), .Mem_en(Mem_en), .Mem_write(Mem_write), .clk(clk), .rst(rst), .PC_src(PC_src), .data_read(mem_read_data));
+   memory memory_blk(.address(alu_out), .write_data(data_two), .Mem_en(Mem_en), .Mem_write(Mem_write), .Mem_read(Mem_read), .clk(clk), .rst(rst), .PC_src(PC_src), .data_read(mem_read_data));
 
    wb wb_blk(.data_read(mem_read_data), .address(alu_out), .Mem_reg(Mem_reg), .data_out(wb_data));
 

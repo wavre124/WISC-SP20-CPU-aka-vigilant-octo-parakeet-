@@ -10,7 +10,7 @@ module wb (data_read, address, Mem_reg, data_out);
     input Mem_reg;
     output [15:0] data_out;
 
-    mux2_1 (.InA(address), .InB(data_read), .S(Mem_reg), .Out(data_out));
+    mux2_1 wb_mux[15:0](.InA(address), .InB(data_read), .S(Mem_reg), .Out(data_out));
 
 
 endmodule

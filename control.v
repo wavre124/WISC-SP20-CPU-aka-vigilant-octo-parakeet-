@@ -152,7 +152,7 @@ always @* case(inst[15:11])
           InvR2 = 0;
           Sign = 0;
           Cin = 0;
-          Mem_en = 0;
+          Mem_en = 1;
           Excp = 0;
           end //NOP
     ADDI : begin

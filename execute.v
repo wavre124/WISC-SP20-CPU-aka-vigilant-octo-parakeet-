@@ -16,6 +16,6 @@ module execute (data_1, data_2, signed_immediate, ALU_src, ALU_op, Cin, sign, In
   //01 is for signed immediate passed in from decode stage
   mux2_1_N mux1 (.InA(data_2), .InB(signed_immediate), .S(ALU_src), .Out(reg_2));
 
-  alu alu1 (.InA(data_1), .InB(reg_2), .Cin(Cin), .Op(ALU_op), .invA(InvR1), .invB(InvR2), .sign(sign), .Out(Out), .Zero(), .Ofl());
+  alu alu1 (.InA(data_1), .InB(reg_2), .Cin(Cin), .Op(ALU_op), .invA(InvR1), .invB(InvR2), .sign(sign), .Out(data_out), .Zero(), .Ofl());
 
 endmodule

@@ -50,7 +50,7 @@ module proc (/*AUTOARG*/
    // We need to somehow handle err, I say we just set err to 1 in default case statements.. ezpz
 
    fetch fetch_blk(.clk(clk), .EPC_reg(EPC_reg) , .rst(rst), .b_j_pc(br_ju_addr),
-                   .curr_pc(PC), .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .instruction(instruction), .incremented_pc(inc_PC));
+                   .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .instruction(instruction), .incremented_pc(inc_PC));
 
    decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(instruction),
                      .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),

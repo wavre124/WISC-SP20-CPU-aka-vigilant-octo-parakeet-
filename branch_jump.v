@@ -32,8 +32,8 @@ cla_16b adder(.A(alu_A), .B(alu_B), .C_in(1'b0), .S(added_PC_res), .C_out(C_out)
 
 wire [N-1:0] beqz_res, bnez_res, bltz_res, bgez_res;
 
-assign beqz_res = (|rs) ? added_PC_res : PC;
-assign bnez_res = (~|rs) ? added_PC_res : PC;
+assign beqz_res = !(|rs) ? added_PC_res : PC;
+assign bnez_res = (|rs) ? added_PC_res : PC;
 assign bltz_res = (rs[15]) ? added_PC_res : PC;
 assign bgez_res = ((~rs[15]) | (|rs)) ? added_PC_res : PC;
 

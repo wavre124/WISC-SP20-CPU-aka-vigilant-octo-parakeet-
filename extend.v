@@ -28,7 +28,7 @@ always@* case(ext_op)
             ext_imm = big_imm;
             end
     dis_imm: begin
-            ext_imm = dis_imm;
+            ext_imm = displacement;
              end
     default: begin
             ext_imm = small_imm;

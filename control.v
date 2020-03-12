@@ -380,7 +380,7 @@ always @* case(inst[15:11])
           Ext_op = 2'b00;
           branch_jump_op = 3'b000;
           PC_src = 2'b01;
-          Dst_reg = 2'b01;
+          Dst_reg = 2'b10;
           ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
@@ -668,7 +668,7 @@ always @* case(inst[15:11])
           PC_src = 2'b01;
           Dst_reg = 2'b10;
           ALU_src = 1'b1;
-          Ext_sign = 1;
+          Ext_sign = 0;
           Reg_write = 1;
           Jump = 0;
           Branch = 0;

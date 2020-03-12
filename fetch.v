@@ -34,6 +34,6 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, instruction, incremented_p
 
   dff pc_flops[15:0](.q(pc), .d(mux_pc), .clk(clk), .rst(rst));
 
-  memory2c instruction_memory(.data_out(instruction), .data_in(16'b0000_0000_0000_0000), .addr(pc), .enable(Mem_en), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
+  memory2c instruction_memory(.data_out(instruction), .data_in(16'b0000_0000_0000_0000), .addr(pc), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
 endmodule

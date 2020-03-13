@@ -14,12 +14,10 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, instruction, incremented_p
   wire [15:0] EPC;
   wire [15:0] pc, mux_pc; //will be fed into our instruction memory
   wire [15:0] exception_pc;
+  wire [15:0] middle_pc;
 
   output [15:0] instruction; //instruction received from instruction memory
   output [15:0] incremented_pc;
-
-  // PC + 2
-  assign EPC = incremented_pc;
 
   cla_16b adder (.A(pc), .B(16'b0000_0000_0000_0010), .C_in(1'b0), .S(incremented_pc), .C_out(), .Overflow());
 
@@ -33,6 +31,10 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, instruction, incremented_p
   mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(PC_src), .Out(mux_pc));
 
   dff pc_flops[15:0](.q(pc), .d(mux_pc), .clk(clk), .rst(rst));
+
+  mux2_1_N pc_mux3(.InA(EPC), .InB(incremented_pc), .S(excp), .Out(middle_pc));
+
+  dff epc_flops[15:0](.q(EPC), .d(middle_pc), .clk(clk), .rst(rst));
 
   memory2c instruction_memory(.data_out(instruction), .data_in(16'b0000_0000_0000_0000), .addr(pc), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 

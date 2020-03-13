@@ -6,7 +6,7 @@
 */
 module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, instruction, incremented_pc);
   // TODO: Your code here
-  
+
   input [1:0] PC_src;
   input Mem_en, clk, rst, excp;
   input [15:0] b_j_pc; //pcs being fed in from the branch address, jump address, and current pc for holds and normal instructions
@@ -21,7 +21,7 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, instruction, incremented_p
   // PC + 2
   assign EPC = incremented_pc;
 
-  cla_16b adder (.A(pc), .B(16'b0000_0000_0000_0010), .C_in(1'b0), .S(incremented_pc), .C_out());
+  cla_16b adder (.A(pc), .B(16'b0000_0000_0000_0010), .C_in(1'b0), .S(incremented_pc), .C_out(), .Overflow());
 
   //16 bit 2-1 mux for choosing 2 for exception handler or EPC after we return from the instruction
   mux2_1_N pc_mux1(.InA(EPC), .InB(16'b0000_0000_0000_0010), .S(excp), .Out(exception_pc));

@@ -28,7 +28,7 @@ wire [N-1:0] added_PC_res;
 assign alu_A = (branch_jump_op == JR) ? rs : (branch_jump_op == JALR) ? rs : PC;
 assign alu_B = (branch_jump_op == J_DIS) ? displacement : (branch_jump_op == JAL) ? displacement : imm;
 
-cla_16b adder(.A(alu_A), .B(alu_B), .C_in(1'b0), .S(added_PC_res), .C_out(C_out));
+cla_16b adder(.A(alu_A), .B(alu_B), .C_in(1'b0), .S(added_PC_res), .C_out(C_out), .Overflow());
 
 wire [N-1:0] beqz_res, bnez_res, bltz_res, bgez_res;
 

@@ -61,12 +61,12 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
    assign alu_B = (invB) ? ~InB : InB;
 
    assign seq_result = (adder_out == 0) ? 16'b1 : 16'b0;
-   assign slt_result = (adder_out[15]) ?  16'b1 : 16'b0;
-   assign sle_result = (adder_out == 0) ? 16'b1 : (adder_out[15]) ?  16'b1 : 16'b0;
+   assign slt_result = (adder_out[15] & ~Ofl) ?  16'b1 : 16'b0;
+   assign sle_result = (adder_out == 0) ? 16'b1 : (adder_out[15] & ~Ofl) ?  16'b1 : 16'b0;
    assign sco_result = (C_out) ? 16'b1 : 16'b0;
 
    shifter shift_mod(.In(alu_A), .Cnt(alu_B[3:0]), .Op(Op[1:0]), .Out(shift_out));
-   cla_16b adder(.A(alu_A), .B(alu_B), .C_in(Cin), .S(adder_out), .C_out(C_out));
+   cla_16b adder(.A(alu_A), .B(alu_B), .C_in(Cin), .S(adder_out), .C_out(C_out), .Overflow(Ofl));
    btr btr_res(.InA(alu_A), .Out(btr_result));
 
    always @* case(Op)
@@ -126,27 +126,6 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
 
    endcase
 
-   wire sign_1_wire, sign_2_wire, sign_three_wire;
-   reg overflow;
-
-   and3 sign_one(.in1(alu_A[N-1]),.in2(alu_B[N-1]), .in3(~alu_out[N-1]), .out(sign_1_wire));
-   and3 sign_two(.in1(~alu_A[N-1]),.in2(~alu_B[N-1]), .in3(alu_out[N-1]), .out(sign_2_wire));
-   or2 or_two(.in1(sign_1_wire), .in2(sign_2_wire), .out(sign_three_wire));
-
-   always @* case(sign)
-
-      1'b0: begin
-            overflow = C_out;
-            end
-      1'b1: begin
-            overflow = sign_three_wire;
-            end
-      default: begin
-            overflow = 1'b0;
-            end
-   endcase
-
-   assign Ofl = overflow;
    assign Zero = ~|alu_out;
    assign Out = alu_out;
 

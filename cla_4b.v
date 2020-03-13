@@ -4,7 +4,7 @@
 
     a 4-bit CLA module
 */
-module cla_4b(A, B, C_in, S, C_out);
+module cla_4b(A, B, C_in, S, C_out, overflow);
 
     // declare constant for size of inputs, outputs (N)
     parameter   N = 4;
@@ -15,6 +15,8 @@ module cla_4b(A, B, C_in, S, C_out);
     output         C_out;
 
     // YOUR CODE HERE
+
+    output overflow;
 
     wire genZero, genOne, genTwo, genThree;
     wire g0_inv, g1_inv, g2_inv, g3_inv;
@@ -73,9 +75,13 @@ module cla_4b(A, B, C_in, S, C_out);
     or3 c4_or3_1(.in1(genThree), .in2(c4_intm_four), .in3(c4_intm_three), .out(c4_intm_six));
     or3 c4_or3_2(.in1(c4_intm_six), .in2(c4_intm_two), .in3(c4_intm_five), .out(C_out));
 
+    wire ofl_c_out_one, ofl_c_out_two;
+
     fullAdder_1b add_zero(.A(A[0]), .B(B[0]), .C_in(C_in), .S(S[0]), .C_out());
     fullAdder_1b add_one(.A(A[1]), .B(B[1]), .C_in(carryOne), .S(S[1]), .C_out());
-    fullAdder_1b add_two(.A(A[2]), .B(B[2]), .C_in(carryTwo), .S(S[2]), .C_out());
-    fullAdder_1b add_three(.A(A[3]), .B(B[3]), .C_in(carryThree), .S(S[3]), .C_out());
+    fullAdder_1b add_two(.A(A[2]), .B(B[2]), .C_in(carryTwo), .S(S[2]), .C_out(ofl_c_out_one));
+    fullAdder_1b add_three(.A(A[3]), .B(B[3]), .C_in(carryThree), .S(S[3]), .C_out(ofl_c_out_two));
+
+    assign overflow = ofl_c_out_one ^ ofl_c_out_two;
 
 endmodule

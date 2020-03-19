@@ -9,7 +9,7 @@
     of the operation, as well as output a Zero bit and an Overflow
     (OFL) bit.
 */
-module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
+module alu (InA, InB, Op, Out, Zero, Ofl);
 
    // declare constant for size of inputs, outputs (N),
    // and operations (O)
@@ -18,16 +18,17 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
 
    input [N-1:0] InA;
    input [N-1:0] InB;
-   input         Cin;
    input [O-1:0] Op;
-   input         invA;
-   input         invB;
-   input         sign;
    output [N-1:0] Out;
    output         Ofl;
    output         Zero;
 
    /* YOUR CODE HERE */
+
+   wire         Cin;
+   wire         invA;
+   wire         invB;
+   wire         sign;
 
    localparam rot_left = 4'b0000;
    localparam l_shift = 4'b0001;
@@ -51,11 +52,20 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
    wire [N-1:0] adder_out;
    wire C_out;
    reg [N-1:0] alu_out;
+   reg Cin_reg;
+   reg invA_reg;
+   reg invB_reg;
+   reg sign_reg;
    wire [N-1:0] seq_result;
    wire [N-1:0] slt_result;
    wire [N-1:0] sle_result;
    wire [N-1:0] sco_result;
    wire [N-1:0] btr_result;
+
+   assign Cin = Cin_reg;
+   assign invA = invA_reg;
+   assign invB = invB_reg;
+   assign sign = sign_reg;
 
    assign alu_A = (invA) ? ~InA : InA;
    assign alu_B = (invB) ? ~InB : InB;
@@ -72,55 +82,118 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
    always @* case(Op)
 
       rot_left: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = shift_out;
               end
       l_shift: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = shift_out;
               end
       rot_right: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = shift_out;
               end
       r_shift: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = shift_out;
               end
       add_op: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 1;
+                Cin_reg = 0;
                 alu_out = adder_out;
               end
       and_op: begin
+                invA_reg = 0;
+                invB_reg = 1;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = alu_A & alu_B;
               end
       or_op: begin
                 alu_out = alu_A | alu_B;
               end
       xor_op: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = alu_A ^ alu_B;
               end
       sub_op: begin
+                invA_reg = 1;
+                invB_reg = 0;
+                sign_reg = 1;
+                Cin_reg = 1;
                 alu_out = adder_out;
               end
       seq_op: begin
+                invA_reg = 0;
+                invB_reg = 1;
+                sign_reg = 1;
+                Cin_reg = 1;
                 alu_out = seq_result;
               end
       slt_op: begin
+                invA_reg = 0;
+                invB_reg = 1;
+                sign_reg = 1;
+                Cin_reg = 1;
                 alu_out = slt_result;
               end
       sle_op: begin
+                invA_reg = 0;
+                invB_reg = 1;
+                sign_reg = 1;
+                Cin_reg = 1;
                 alu_out = sle_result;
               end
       sco_op: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 1;
+                Cin_reg = 0;
                 alu_out = sco_result;
               end
       btr_op: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = btr_result;
               end
       lbi_op: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = alu_B;
               end
       slbi_op: begin
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = (alu_A << 8) | alu_B;
               end
       default: begin
-                // temporary, apparently this needs to assert an error?
+                invA_reg = 0;
+                invB_reg = 0;
+                sign_reg = 0;
+                Cin_reg = 0;
                 alu_out = 16'b0;
                end
 

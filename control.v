@@ -1,6 +1,6 @@
 module control(inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op,
                Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg,
-               Mem_en, Excp, ALU_src, InvR1, InvR2, Sign, Cin);
+               Mem_en, Excp, ALU_src);
 
 input [15:0] inst;
 
@@ -10,7 +10,6 @@ output reg [1:0] PC_src, Dst_reg;
 output reg [1:0] Ext_op;
 output reg Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
 output reg Excp, ALU_src;
-output reg InvR1, InvR2, Sign, Cin;
 
 localparam HALT = 5'b00000;
 localparam NOP = 5'b00001;
@@ -52,27 +51,11 @@ localparam ANDN = 2'b11;
 
 wire [3:0] b_alu_op;
 wire [3:0] s_alu_op;
-wire b_alu_invA, b_alu_invB, b_alu_Cin;
 
 assign b_alu_op = (inst[1:0] == ADD) ?  4'b0100 :
                   (inst[1:0] == SUB) ?  4'b1001 :
                   (inst[1:0] == XOR) ?  4'b0111 :
                   (inst[1:0] == ANDN) ? 4'b0101 : 4'b0000;
-
-assign b_alu_invA = (inst[1:0] == ADD) ?  1'b0 :
-                    (inst[1:0] == SUB) ?  1'b1 :
-                    (inst[1:0] == XOR) ?  1'b0 :
-                    (inst[1:0] == ANDN) ? 1'b0 : 1'b0 ;
-
-assign b_alu_invB = (inst[1:0] == ADD) ? 1'b0  :
-                    (inst[1:0] == SUB) ?  1'b0 :
-                    (inst[1:0] == XOR) ?  1'b0 :
-                    (inst[1:0] == ANDN) ? 1'b1 : 1'b0;
-
-assign b_alu_Cin = (inst[1:0] == ADD) ?  1'b0 :
-                   (inst[1:0] == SUB) ?  1'b1 :
-                   (inst[1:0] == XOR) ?  1'b0 :
-                   (inst[1:0] == ANDN) ? 1'b0 : 1'b0;
 
 assign s_alu_op = (inst[1:0] == 2'b00) ? 4'b0000 :
                   (inst[1:0] == 2'b01) ? 4'b0001 :
@@ -126,10 +109,6 @@ always @* case(inst[15:11])
            Mem_write = 0;
            JAL = 0;
            Mem_reg = 0;
-           InvR1 = 0;
-           InvR2 = 0;
-           Sign = 0;
-           Cin = 0;
            Mem_en = 0;
            Excp = 0;
            end // HALT
@@ -148,10 +127,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
           end //NOP
@@ -170,10 +145,6 @@ always @* case(inst[15:11])
            Mem_write = 0;
            JAL = 0;
            Mem_reg = 0;
-           InvR1 = 0;
-           InvR2 = 0;
-           Sign = 1;
-           Cin = 0;
            Mem_en = 1;
            Excp = 0;
            end // ADDI
@@ -192,10 +163,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 1;
-          InvR2 = 0;
-          Sign = 1;
-          Cin = 1;
           Mem_en = 1;
           Excp = 0;
            end //SUBI
@@ -214,10 +181,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //XORI
@@ -236,10 +199,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 1;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
             end //ANDNI
@@ -258,10 +217,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //ROLI
@@ -280,10 +235,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //SLLI
@@ -302,10 +253,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //RORI
@@ -324,10 +271,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //SRLI
@@ -346,10 +289,6 @@ always @* case(inst[15:11])
           Mem_write = 1;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 1;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
          end //ST
@@ -368,10 +307,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 1;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 1;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
          end //LD
@@ -390,10 +325,6 @@ always @* case(inst[15:11])
           Mem_write = 1;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 1;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
           end //STU
@@ -412,10 +343,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
           end //BTR
@@ -434,10 +361,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = b_alu_invA;
-          InvR2 = b_alu_invB;
-          Sign = 1;
-          Cin = b_alu_Cin;
           Mem_en = 1;
           Excp = 0;
             end //ADD,SUB,XOR,ANDN implement terniary
@@ -456,10 +379,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
             end //ROL,SLL,ROR, SRL implement terniary
@@ -478,10 +397,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 1;
-          Sign = 1;
-          Cin = 1;
           Mem_en = 1;
           Excp = 0;
           end //SEQ
@@ -500,10 +415,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 1;
-          Sign = 1;
-          Cin = 1;
           Mem_en = 1;
           Excp = 0;
           end //SLT
@@ -522,10 +433,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 1;
-          Sign = 1;
-          Cin = 1;
           Mem_en = 1;
           Excp = 0;
           end //SLE
@@ -544,10 +451,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 1;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
           end //SCO
@@ -566,10 +469,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //BEQZ
@@ -588,10 +487,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //BNEZ
@@ -610,10 +505,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //BLTZ
@@ -632,10 +523,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //BGEZ
@@ -654,10 +541,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
           end //LBI
@@ -676,10 +559,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end //SLBI
@@ -698,10 +577,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
             end //J displacement
@@ -720,10 +595,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
          end //JR
@@ -742,10 +613,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 1;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
           end // JAL displacement
@@ -764,10 +631,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 1;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
            end // JALR
@@ -786,10 +649,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 1;
              end //produce illegalop exception
@@ -808,10 +667,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 1;
           Excp = 0;
           end // NOP
@@ -830,10 +685,6 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          InvR1 = 0;
-          InvR2 = 0;
-          Sign = 0;
-          Cin = 0;
           Mem_en = 0;
           Excp = 0;
               end //possibly combine with NOP

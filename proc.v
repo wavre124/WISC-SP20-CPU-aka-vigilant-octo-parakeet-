@@ -40,7 +40,6 @@ module proc (/*AUTOARG*/
    wire [1:0] Ext_op;
    wire Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
    wire Excp, ALU_src;
-   wire InvR1, InvR2, Sign, Cin;
    wire dec_err;
 
    wire [N-1:0] alu_out, wb_data, mem_read_data;
@@ -54,11 +53,11 @@ module proc (/*AUTOARG*/
    decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(instruction),
                      .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                      .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Jump(Jump), .Branch(Branch), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
-                     .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .InvR1(InvR1), .InvR2(InvR2), .Sign(Sign), .Cin(Cin), .PC(inc_PC), .wb_data(wb_data), .br_ju_addr(br_ju_addr),
+                     .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .PC(inc_PC), .wb_data(wb_data), .br_ju_addr(br_ju_addr),
                      .immediate(immediate));
 
    execute execute_blk(.data_1(data_one), .data_2(data_two), .signed_immediate(immediate),
-                       .ALU_src(ALU_src), .ALU_op(ALU_op), .Cin(Cin), .sign(Sign), .InvR1(InvR1), .InvR2(InvR2), .data_out(alu_out));
+                       .ALU_src(ALU_src), .ALU_op(ALU_op), .data_out(alu_out));
 
    memory memory_blk(.address(alu_out), .write_data(data_two), .Mem_en(Mem_en), .Mem_write(Mem_write), .Mem_read(Mem_read), .clk(clk), .rst(rst), .PC_src(PC_src), .data_read(mem_read_data));
 

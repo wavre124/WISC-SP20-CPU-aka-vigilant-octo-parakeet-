@@ -1,5 +1,5 @@
 module control(inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op,
-               Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg,
+               Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg,
                Mem_en, Excp, ALU_src);
 
 input [15:0] inst;
@@ -8,7 +8,7 @@ output reg [3:0] ALU_op;
 output reg [2:0] branch_jump_op;
 output reg [1:0] PC_src, Dst_reg;
 output reg [1:0] Ext_op;
-output reg Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
+output reg Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
 output reg Excp, ALU_src;
 
 localparam HALT = 5'b00000;
@@ -103,8 +103,6 @@ always @* case(inst[15:11])
            ALU_src = 1'b0;
            Ext_sign = 0;
            Reg_write = 0;
-           Jump = 0;
-           Branch = 0;
            Mem_read = 0;
            Mem_write = 0;
            JAL = 0;
@@ -121,8 +119,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -139,8 +135,6 @@ always @* case(inst[15:11])
            ALU_src = 1'b1;
            Ext_sign = 1;
            Reg_write = 1;
-           Jump = 0;
-           Branch = 0;
            Mem_read = 0;
            Mem_write = 0;
            JAL = 0;
@@ -157,8 +151,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -175,8 +167,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -193,8 +183,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -211,8 +199,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -229,8 +215,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -247,8 +231,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -265,8 +247,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -283,8 +263,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 1;
           JAL = 0;
@@ -301,8 +279,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 1;
           Mem_write = 0;
           JAL = 0;
@@ -319,8 +295,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 1;
           JAL = 0;
@@ -337,8 +311,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -355,8 +327,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -373,8 +343,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -391,8 +359,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -409,8 +375,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -427,8 +391,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -445,8 +407,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -463,8 +423,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 1;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -481,8 +439,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 1;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -499,8 +455,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 1;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -517,8 +471,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 1;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -535,8 +487,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 1;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -553,8 +503,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b1;
           Ext_sign = 0;
           Reg_write = 1;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -571,8 +519,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
-          Jump = 1;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -589,8 +535,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 0;
-          Jump = 1;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -607,8 +551,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 1;
-          Jump = 1;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 1;
@@ -625,8 +567,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 1;
           Reg_write = 1;
-          Jump = 1;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 1;
@@ -643,8 +583,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -661,8 +599,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;
@@ -679,8 +615,6 @@ always @* case(inst[15:11])
           ALU_src = 1'b0;
           Ext_sign = 0;
           Reg_write = 0;
-          Jump = 0;
-          Branch = 0;
           Mem_read = 0;
           Mem_write = 0;
           JAL = 0;

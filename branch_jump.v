@@ -1,4 +1,4 @@
-module branch_jump(rs, PC, imm, displacement, branch, jump, branch_jump_op, b_j_PC, reg_data);
+module branch_jump(rs, PC, imm, displacement, branch_jump_op, b_j_PC, reg_data);
 
 parameter N = 16;
 
@@ -6,7 +6,6 @@ input [N-1:0] rs;
 input [N-1:0] PC;
 input [N-1:0] imm;
 input [N-1:0] displacement;
-input branch, jump;
 input [2:0] branch_jump_op;
 
 output reg [N-1:0] b_j_PC;

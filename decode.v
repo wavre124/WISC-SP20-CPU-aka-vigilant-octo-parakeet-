@@ -5,7 +5,7 @@
    Description     : This is the module for the overall decode stage of the processor.
 */
 module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op,
-               Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg,
+               Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg,
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate);
 
    // TODO: Your code here
@@ -25,7 +25,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, 
    output [2:0] branch_jump_op;
    output [1:0] PC_src, Dst_reg;
    output [1:0] Ext_op;
-   output Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
+   output Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
    output Excp, ALU_src;
 
    output [N-1:0] br_ju_addr;
@@ -42,7 +42,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, 
    mux4_1 write_sel_mux[2:0](.InA(inst[4:2]), .InB(inst[7:5]), .InC(inst[10:8]), .InD(R7), .S(Dst_reg), .Out(write_sel));
 
    control ctrl_blk(.inst(inst), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
-                  .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Jump(Jump), .Branch(Branch), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
+                  .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                   .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src));
 
    /*
@@ -54,7 +54,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, 
 
    extend ext_blk(.inst(inst), .ext_sign(Ext_sign), .ext_op(Ext_op), .ext_imm(immediate));
 
-   branch_jump bj_blk(.rs(Data_one), .PC(PC), .imm(immediate), .displacement(immediate), .branch(Branch), .jump(Jump),
+   branch_jump bj_blk(.rs(Data_one), .PC(PC), .imm(immediate), .displacement(immediate),
                       .branch_jump_op(branch_jump_op), .b_j_PC(br_ju_addr), .reg_data(bj_write_data));
 
 endmodule

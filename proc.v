@@ -38,7 +38,7 @@ module proc (/*AUTOARG*/
    wire [2:0] branch_jump_op;
    wire [1:0] PC_src, Dst_reg;
    wire [1:0] Ext_op;
-   wire Ext_sign, Reg_write, Jump, Branch, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
+   wire Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
    wire Excp, ALU_src;
    wire dec_err;
 
@@ -52,7 +52,7 @@ module proc (/*AUTOARG*/
 
    decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(instruction),
                      .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
-                     .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Jump(Jump), .Branch(Branch), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
+                     .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                      .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .PC(inc_PC), .wb_data(wb_data), .br_ju_addr(br_ju_addr),
                      .immediate(immediate));
 

@@ -60,9 +60,9 @@ module alu (InA, InB, Cin, Op, invA, invB, sign, Out, Zero, Ofl);
    assign alu_A = (invA) ? ~InA : InA;
    assign alu_B = (invB) ? ~InB : InB;
 
-   assign seq_result = ~adder_out;
+   assign seq_result = ~|adder_out;
    assign slt_result = (adder_out[15] & ~Ofl) | (~adder_out[15] & Ofl);
-   assign sle_result = ~adder_out | ((adder_out[15] & ~Ofl) | (~adder_out[15] & Ofl));
+   assign sle_result = (~|adder_out) | ((adder_out[15] & ~Ofl) | (~adder_out[15] & Ofl));
    assign sco_result = C_out;
 
    shifter shift_mod(.In(alu_A), .Cnt(alu_B[3:0]), .Op(Op[1:0]), .Out(shift_out));

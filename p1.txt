@@ -1,0 +1,49 @@
+Created by David Waltz and Kshitij Wavre
+
+Explanation of p1-1.asm
+Timing Diagram for p1-1.asm
+insruction/cycle
+                0|1|2|3|4|5|6|7|8|9|10|11|12|13
+
+1)lbi r0, 1     f|d|x|m|w| | | | | |  |  |  |  | 
+2)nop            |f|d|x|m|w| | | | |  |  |  |  |
+3)lbi r1, 2      | |f|d|x|m|w| | | |  |  |  |  |
+4)add r2, r0, r1 | | |f|d|x|m|w| | |  |  |  |  |
+5)sub r3, r2, r0 | | | |f|d|x|m|w| |  |  |  |  | 
+6)lbi r0, 5      | | | | |f|d|x|m|w|  |  |  |  |
+7)nop            | | | | | |f|d|x|m|w |  |  |  | 
+8)nop            | | | | | | |f|d|x|m |w |  |  |
+9)rol r4, r1, r0 | | | | | | | |f|d|x |m |w |  | 
+
+Forwarding explanation:
+cycle 5:
+In cycle 5, the add instruction has two RAWs from the two lbi instructions. It will use RF bypassing for RS by writing before reading and ex-ex forwarding for RT
+ex- ex forwarding reasoning
+Ex/mem.reg RD == Id/Ex.reg RT & Ex/Mem Regwrite == 1 & Ex/mem RegRd != 0 (not sure if last part is needed because there is no actual register zero?????)
+Rf bypassing
+Id/Ex.reg Rs == Wb.reg Rd & Ex/mem RegRd != Id/Ex.reg Rs & Mem/Wb RegRd != Id/Ex.reg Rs
+
+cycle 6:
+In cycle 6, the sub instruction has a RAW from the add instruction above it. It will need ex-ex forwarding to not stall 
+Ex/mem.reg RD == Id/Ex.reg RS & Ex/Mem Regwrite == 1 & Ex/mem RegRd != 0 (not sure if last part is needed because there is no actual register zero?????)
+
+Cycle 9:
+In cylce 9, the rol instruction has a RAW from the lbi instruction above it for RT. It will need to use RF bypassing and write before it reads.
+Id/Ex.reg Rt == Wb.reg Rd & Ex/mem RegRd != Id/Ex.reg Rt & Mem/Wb RegRd != Id/Ex.reg Rs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

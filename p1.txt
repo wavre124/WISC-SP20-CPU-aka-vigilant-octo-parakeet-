@@ -1,5 +1,5 @@
 Created by David Waltz and Kshitij Wavre
-
+*note capital letters are used for stalling*
 Explanation of p1-1.asm
 Timing Diagram for p1-1.asm
 insruction/cycle
@@ -31,6 +31,29 @@ Cycle 9:
 In cylce 9, the rol instruction has a RAW from the lbi instruction above it for RT. It will need to use RF bypassing and write before it reads.
 Id/Ex.reg Rt == Wb.reg Rd & Ex/mem RegRd != Id/Ex.reg Rt & Mem/Wb RegRd != Id/Ex.reg Rs
 
+Explanation of p1-2.asm
+Timing Diagram for p1-2.asm
+insruction/cycle
+                0|1|2|3|4|5|6|7|8|9|
+1)lbi r0, 1     f|d|x|m|w| | | | | | 
+2)nop            |f|d|x|m|w| | | | |  
+3)add r2, r0, r1 | |f|d|x|m|w| | | |  
+4)ld r3, r2, 4   | | |f|d|x|m|w| | |      FIX LATER WHEN USING LABEL
+5)add r4, r2, r3 | | | |f|D|d|x|m|w|  
+
+Forwarding explanation:
+Cycle 4:
+In cycle 4, the add instruction has a RAW data hazard with the lbi instruction. It will use mem-ex forwarding on r0(RS)because of the nop instruction imbetween the two
+Mem/Wb.reg Rd == Id/Ex.reg Rs & Mem/Wb RegWrite == 1 & Ex/mem.reg Rd != Id/Ex.reg Rs & Mem/wb RegRd != 0 (not sure if last part is needed because there is no actual register zero?????)
+
+Cycle 7:
+In cycle 7, the add instruction has a RAW data hazard with the load instruction. It will use mem-ex forwarding on r3(RT) because r3 is not ready until after memory because it is a load
+Mem/Wb.reg Rd == Id/Ex.reg Rt & Mem/Wb RegWrite == 1 & Mem/wb RegRd != 0 (not sure about last part again)
+
+Stalling Explanation:
+Cycle 5:
+The add instruction stalls on cycle because it needs to wait to enter execute unitl after the ld instruction finishes the memory stage and has the value ready to be forwarded
+If/Id.reg Rt == Id/Ex.reg Rd & Id/Ex.Memread = 1 & Id/Ex.RegWrite = 1
 
 
 

@@ -8,4 +8,5 @@ sub r3, r2, r0 // r2(RS) will use ex-ex forwarding, r0 has no dependencies
 lbi r0, 5 
 nop //inserting the nops so the lbi instruction reaches write back stage
 nop
-rol r4, r1, r0 //r0(RT) will use RF bypassing and r1 has no dependencies 
+rol r4, r1, r0 //r0(RT) will use RF bypassing and r1 has no dependencies
+halt 

@@ -6,7 +6,7 @@
 */
 module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op,
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg,
-               Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate);
+               Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch);
 
    // TODO: Your code here
 
@@ -26,7 +26,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, 
    output [1:0] PC_src, Dst_reg;
    output [1:0] Ext_op;
    output Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
-   output Excp, ALU_src;
+   output Excp, ALU_src, stall_decode, flush_fetch;
 
    output [N-1:0] br_ju_addr;
 
@@ -56,5 +56,9 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, 
 
    branch_jump bj_blk(.rs(Data_one), .PC(PC), .imm(immediate), .displacement(immediate),
                       .branch_jump_op(branch_jump_op), .b_j_PC(br_ju_addr), .reg_data(bj_write_data));
+
+   hazard_det hazard_blk(rd_ID_EX, rt_ID_EX, rs_ID_EX
+                         rd_EX_MEM, EX_MEM_reg_write, rd_MEM_WB
+                         MEM_wb_reg_write, .PC_source(PC_src), .stall_decode(stall_decode), .flush_fetch(flush_fetch));
 
 endmodule

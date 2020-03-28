@@ -44,17 +44,26 @@ module proc (/*AUTOARG*/
 
    wire [N-1:0] alu_out, wb_data, mem_read_data;
 
+   // pipeline wires
+   wire flush_fetch;
+   wire stall_decode;
+   wire [N-1:0] ID_instruction;
+   wire [N-1:0] ID_incremented_pc;
+
    // TO DO:
    // We need to somehow handle err, I say we just set err to 1 in default case statements.. ezpz
 
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
-                   .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .instruction(instruction), .incremented_pc(inc_PC));
+                   .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC));
 
-   decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(instruction),
+   pipe_IF_ID pipe_one(.clk(clk), .rst(rst), .instruction(instruction), .incremented_pc(inc_PC), .flush_fetch(flush_fetch),
+                             .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc));
+
+   decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(ID_instruction),
                      .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                      .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
-                     .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .PC(inc_PC), .wb_data(wb_data), .br_ju_addr(br_ju_addr),
-                     .immediate(immediate));
+                     .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .PC(ID_incremented_pc), .wb_data(wb_data), .br_ju_addr(br_ju_addr),
+                     .immediate(immediate), .stall_decode(stall_decode), .flush_fetch(flush_fetch));
 
    execute execute_blk(.data_1(data_one), .data_2(data_two), .signed_immediate(immediate),
                        .ALU_src(ALU_src), .ALU_op(ALU_op), .data_out(alu_out));

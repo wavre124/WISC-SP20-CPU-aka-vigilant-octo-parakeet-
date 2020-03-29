@@ -1,5 +1,5 @@
 Created by David Waltz and Kshitij Wavre
-*note capital letters with an asterisk are used for stalling*
+*note capital letters are used for stalling*
 
 Explanation of p1-1.asm
 Timing Diagram for p1-1.asm
@@ -46,7 +46,7 @@ instruction/cycle
 3)nop            | |f|d|x|m|w| | | |
 4)add r2, r0, r1 | | |f|d|x|m|w| | |
 5)ld r3, r1, 0   | | | |f|d|x|m|w| |
-6)add r4, r1, r3 | | | | |f|D*|d|x|m|w
+6)add r4, r1, r3 | | | | |f|D|d|x|m|w
 
 Forwarding explanation:
 Cycle 5:
@@ -56,7 +56,7 @@ Mem/Wb.reg Rd == Id/Ex.reg Rs & Mem/Wb RegWrite == 1 & Ex/mem.reg Rd != Id/Ex.re
 
 Cycle 8:
 In cycle 8, the add instruction has a RAW data hazard with the load instruction. It will use mem-ex forwarding on r3(RT) because r3 is not ready until after memory because it is a load
-Mem/Wb.reg Rd == Id/Ex.reg Rt & Mem/Wb RegWrite == 1 & Mem/wb RegRd != 0 (not sure about last part again)
+Mem/Wb.reg Rd == Id/Ex.reg Rt & Mem/Wb RegWrite == 1
 
 Stalling Explanation:
 Cycle 6:

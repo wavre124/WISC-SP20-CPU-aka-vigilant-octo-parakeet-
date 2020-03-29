@@ -7,7 +7,7 @@ lbi r3, 15
 nop
 nop
 nop
-sub r4, r3, r2
+sub r4, r2, r3
 // these nops wait for r4 to get written to
 nop
 nop
@@ -18,5 +18,5 @@ nop
 // this add instr should never execute if predict
 // taken is implemented
 add r5, r2, r3
-.p2label
+.p2label:
 halt

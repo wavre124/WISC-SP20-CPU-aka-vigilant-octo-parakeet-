@@ -4,7 +4,7 @@
    Filename        : decode.v
    Description     : This is the module for the overall decode stage of the processor.
 */
-module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op,
+module decode (clk, rst, Data_one, Data_two, inc_pc, inc_pc_o, err, inst, ALU_op, RD, RS, opcode, branch_jump_op, PC_src, Dst_reg, Ext_op,
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg,
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch);
 
@@ -16,11 +16,14 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, 
    input [N-1:0] inst;
    input [N-1:0] PC;
    input [N-1:0] wb_data;
-
+   input [N-1:0] inc_pc;
+   output [N-1:0] inc_pc_o;
    output [N-1:0] Data_one; // Rs
    output [N-1:0] Data_two; // Rt
    output err;
-
+   output [2:0] RD;
+   output [2:0] RS;
+   output [4:0] opcode;
    output [3:0] ALU_op;
    output [2:0] branch_jump_op;
    output [1:0] PC_src, Dst_reg;
@@ -38,9 +41,11 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, branch_jump_op, 
    localparam R7 = 3'b111;
 
    assign write_data = (JAL) ? bj_write_data : wb_data;
-
+   assign RS = inst[10:8]; //added code here
+   assign opcode = inst[15:11];
+   assign inc_pc_o = inc_pc;
    mux4_1 write_sel_mux[2:0](.InA(inst[4:2]), .InB(inst[7:5]), .InC(inst[10:8]), .InD(R7), .S(Dst_reg), .Out(write_sel));
-
+   
    control ctrl_blk(.inst(inst), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                   .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src));

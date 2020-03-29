@@ -1,0 +1,10 @@
+Created by David Waltz and Kshitij Wavre
+*note capital letters with an asterisk are used for stalling*
+
+Explanation of p2-1.asm
+Timing Diagram for p2-1.asm
+
+
+
+Explanation of p2-2.asm
+Timing Diagram for p2-2.asm

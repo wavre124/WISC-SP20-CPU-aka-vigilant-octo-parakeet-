@@ -4,6 +4,16 @@ Created by David Waltz and Kshitij Wavre
 Explanation of p2-1.asm
 Timing Diagram for p2-1.asm
 
+instruction/cycle
+                0|1|2|3|4|5|6|7|8|9|
+
+1)lbi r1, 2     f|d|x|m|w| | | | | |
+2)lbi r0, 1      |f|d|x|m|w| | | | |
+3)beqz r0, .label| |f|D|d|x|m|w| | |
+4)add r1, r0, r1 | | |F|f|d|x|m|w| |
+5)label   
+           
+Using predict not taken at the Branch prediction policy, the add instruction should immediately go into the fetch stage instead of a no op which will save our proceccesor one cycle. Since r0 is 1 and beqz takes the branch if RS = 0, the branch is not taken and thus the add instruction is executed.
 
 
 Explanation of p2-2.asm

@@ -1,4 +1,4 @@
-module pipe_EX_MEM(clk, rst, data_out, data_two, Dst_reg, PC_src, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en, Excp, data_out_o, data_two_o, Dst_reg_o, PC_src_o, Reg_write_o, Mem_read_o, Mem_write_o, JAL_o, Mem_reg_o, Mem_en_o, Excp_o);
+module pipe_EX_MEM(clk, rst, data_out, data_two, Dst_reg, PC_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, Excp, data_out_o, data_two_o, Dst_reg_o, PC_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o, Excp_o);
   input clk;
   input rst;
   
@@ -13,7 +13,7 @@ module pipe_EX_MEM(clk, rst, data_out, data_two, Dst_reg, PC_src, Reg_write, Mem
   
 //inputs that are control unit signals////////////////////////////////////////////////////////////////////////// 
   input [1:0] Dst_reg, PC_src;
-  input Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en, Excp;
+  input Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, Excp;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
 //outputs that are not control unit signals//////////////////////////////////////////////////////////////////////  
@@ -26,7 +26,7 @@ module pipe_EX_MEM(clk, rst, data_out, data_two, Dst_reg, PC_src, Reg_write, Mem
   
 //outputs that are control unit signals/////////////////////////////////////////////////////////////////////////
   output [1:0] Dst_reg_o, PC_src_o;
-  output Reg_write_o, Mem_read_o, Mem_write_o, JAL_o, Mem_reg_o, Mem_en_o, Excp_o;
+  output Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o, Excp_o;
 /////////////////////////////////////////////////////////////////////////////////////////////////// 
   
   
@@ -52,7 +52,6 @@ module pipe_EX_MEM(clk, rst, data_out, data_two, Dst_reg, PC_src, Reg_write, Mem
     dff Reg_write_flop(.q(Reg_write_o), .d(Reg_write), .clk(clk), .rst(rst));
     dff Mem_read_flop(.q(Mem_read_o), .d(Mem_read), .clk(clk), .rst(rst));
     dff Mem_write_flop(.q(Mem_write_o), .d(Mem_write), .clk(clk), .rst(rst));
-    dff JAL_flop(.q(JAL_o), .d(JAL), .clk(clk), .rst(rst));
     dff Mem_reg_flop(.q(Mem_reg_o), .d(Mem_reg), .clk(clk), .rst(rst));
     dff Mem_en_flop(.q(Mem_en_o), .d(Mem_en), .clk(clk), .rst(rst));
     dff Excp_flop(.q(Excp_o), .d(Excp), .clk(clk), .rst(rst));

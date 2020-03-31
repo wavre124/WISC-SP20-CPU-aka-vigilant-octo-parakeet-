@@ -1,6 +1,6 @@
-module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, opcode, Dst_reg, PC_src,
+module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, PC_src,
                    Reg_write, Mem_reg, Mem_read, Mem_write, instruction_o,
-                   data_read_o, address_o, RD_o, RS_o, opcode_o, Dst_reg_o, PC_src_o,
+                   data_read_o, address_o, RD_o, RS_o, Dst_reg_o, PC_src_o,
                    Reg_write_o, Mem_reg_o, Mem_read_o, Mem_write_o);
 
   input clk;
@@ -12,7 +12,6 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, opcode, Ds
   input [15:0] address;
   input [2:0] RD;
   input [2:0] RS;
-  input [4:0] opcode;
   ////////////////////////////////////////////////////////////////////////////
 
   //inputs that are control unit signals////////////////////////////////////////
@@ -26,7 +25,6 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, opcode, Ds
   output [15:0] address_o;
   output [2:0] RD_o;
   output [2:0] RS_o;
-  output [4:0] opcode_o;
   ////////////////////////////////////////////////////////////////////////////
 
   //outputs that are conrol unit signals//////////////////////////////////////
@@ -40,7 +38,6 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, opcode, Ds
   dff address_flop[15:0](.q(address_o), .d(address), .clk(clk), .rst(rst));
   dff RD_flop[15:0](.q(RD_o), .d(RD), .clk(clk), .rst(rst));
   dff RS_flop[15:0](.q(RS_o), .d(RS_two), .clk(clk), .rst(rst));
-  dff opcode_flop[15:0](.q(opcode_o), .d(opcode), .clk(clk), .rst(rst));
  ////////////////////////////////////////////////////////////////////////////////
 
  //flops that are for control unit signals//////////////////////////////////////

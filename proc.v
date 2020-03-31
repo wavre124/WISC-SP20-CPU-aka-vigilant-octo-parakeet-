@@ -44,14 +44,45 @@ module proc (/*AUTOARG*/
 
    wire [N-1:0] alu_out, wb_data, mem_read_data;
 
-   // pipeline wires
+   // IF-ID pipeline wires
    wire flush_fetch;
    wire stall_decode;
    wire [N-1:0] ID_instruction;
    wire [N-1:0] ID_incremented_pc;
 
-   // TO DO:
-   // We need to somehow handle err, I say we just set err to 1 in default case statements.. ezpz
+   // ID-EX pipeline wires
+   wire [2:0] ID_RD;
+   wire [2:0] ID_RS;
+
+   wire [3:0] EX_ALU_op;
+   wire [1:0] EX_Dst_reg, EX_PC_src;
+   wire EX_ALU_src, EX_Reg_write, EX_Mem_read, EX_Mem_write, EX_Mem_reg, EX_Mem_en;
+   wire [15:0] EX_instruction;
+   wire [15:0] EX_immediate;
+   wire [15:0] EX_Data_one; // Rs data
+   wire [15:0] EX_Data_two; // Rt data
+   wire [2:0] EX_rd;
+   wire [2:0] EX_rs;
+
+   // EX-MEM pipeline wires
+   output [15:0] MEM_instruction;
+   output [15:0] MEM_data_out;
+   output [15:0] MEM_data_two;
+   output [2:0] MEM_RD;
+   output [2:0] MEM_RS;
+
+   output [1:0] MEM_Dst_reg, MEM_PC_src;
+   output MEM_Reg_write, MEM_Mem_read, MEM_Mem_write, MEM_Mem_reg, MEM_Mem_en;
+
+   // MEM-WB pipeline wires
+   output [15:0] WB_instruction;
+   output [15:0] WB_data_read;
+   output [15:0] WB_address;
+   output [2:0] WB_RD;
+   output [2:0] WB_RS;
+
+   output [1:0] WB_Dst_reg, WB_PC_src;
+   output WB_Reg_write, WB_Mem_reg, WB_Mem_read, WB_Mem_write;
 
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
                    .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC));
@@ -60,17 +91,39 @@ module proc (/*AUTOARG*/
                              .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc));
 
    decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(ID_instruction),
-                     .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
+                     .ALU_op(ALU_op), .RD(ID_RD), .RS(ID_RS), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                      .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                      .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .PC(ID_incremented_pc), .wb_data(wb_data), .br_ju_addr(br_ju_addr),
                      .immediate(immediate), .stall_decode(stall_decode), .flush_fetch(flush_fetch));
 
-   execute execute_blk(.data_1(data_one), .data_2(data_two), .signed_immediate(immediate),
-                       .ALU_src(ALU_src), .ALU_op(ALU_op), .data_out(alu_out));
+   pipe_ID_EX pipe_two(.clk(clk), .rst(rst), .ALU_op(ALU_op), .Dst_reg(Dst_reg), .PC_src(PC_src), .ALU_src(ALU_src), .Reg_write(Reg_write),
+                                       .Mem_read(Mem_read), .Mem_write(Mem_write), .Mem_reg(Mem_reg), .Mem_en(Mem_en),
+                                       .instruction(ID_instruction), .immediate(immediate), .Data_one(data_one), .Data_two(data_two),
+                                       .rd(ID_RD), .rs(ID_RS), .ALU_op_o(EX_ALU_op),
+                                       .Dst_reg_o(EX_Dst_reg), .PC_src_o(EX_PC_src), .ALU_src_o(EX_ALU_src), .Reg_write_o(EX_Reg_write),
+                                       .Mem_read_o(EX_Mem_read), .Mem_write_o(EX_Mem_write), .Mem_reg_o(EX_Mem_reg),
+                                       .Mem_en_o(EX_Mem_en), .instruction_o(EX_instruction), .immediate_o(EX_immediate),
+                                       .Data_one_o(EX_Data_one), .Data_two_o(EX_Data_two), .rd_o(EX_rd), .rs_o(EX_rs));
 
-   memory memory_blk(.address(alu_out), .write_data(data_two), .Mem_en(Mem_en), .Mem_write(Mem_write), .Mem_read(Mem_read), .clk(clk), .rst(rst), .PC_src(PC_src), .data_read(mem_read_data));
+   execute execute_blk(.data_1(EX_Data_one), .data_2(EX_Data_two), .signed_immediate(EX_immediate),
+                       .ALU_src(EX_ALU_src), .ALU_op(EX_ALU_op), .data_out(alu_out));
 
-   wb wb_blk(.data_read(mem_read_data), .address(alu_out), .Mem_reg(Mem_reg), .data_out(wb_data));
+   pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(instruction), .data_out(alu_out), .data_two(EX_Data_two), .RD(EX_rd), .RS(EX_rs),
+                                          .Dst_reg(EX_Dst_reg), .PC_src(EX_PC_src), .Reg_write(EX_Reg_write), .Mem_read(EX_Mem_read), .Mem_write(EX_Mem_write), .Mem_reg(EX_Mem_reg),
+                                          .Mem_en(EX_Mem_en), .instruction_o(MEM_instruction), .data_out_o(MEM_data_out), .data_two_o(MEM_data_two), .RD_o(MEM_RD), .RS_o(MEM_RS),
+                                          .Dst_reg_o(MEM_Dst_reg), .PC_src_o(MEM_PC_src), .Reg_write_o(MEM_Reg_write), .Mem_read_o(MEM_Mem_read),
+                                          .Mem_write_o(MEM_Mem_write), .Mem_reg_o(MEM_Mem_reg), .Mem_en_o(MEM_Mem_en));
+
+   memory memory_blk(.address(MEM_data_out), .write_data(MEM_data_two), .Mem_en(MEM_Mem_en), .Mem_write(MEM_Mem_write), .Mem_read(MEM_Mem_read),
+                     .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data));
+
+   pipe_MEM_WB pipe_four(.clk(clk), .rst(rst), .instruction(MEM_instruction), .data_read(mem_read_data), .address(MEM_data_out), .RD(MEM_RD), .RS(MEM_RS)
+                                        , .Dst_reg(MEM_Dst_reg), .PC_src(MEM_PC_src), .Reg_write(MEM_Reg_write), .Mem_reg(MEM_Mem_reg), .Mem_read(MEM_Mem_read)
+                                        , .Mem_write(MEM_Mem_write), .instruction_o(WB_instruction), .data_read_o(WB_data_read),
+                                        .address_o(WB_address), .RD_o(WB_RD), .RS_o(WB_RS), .Dst_reg_o(WB_Dst_reg), .PC_src_o(WB_PC_src),
+                                        .Reg_write_o(WB_Reg_write), .Mem_reg_o(WB_Mem_reg), .Mem_read_o(WB_Mem_read), .Mem_write_o(WB_Mem_write));
+
+   wb wb_blk(.data_read(WB_data_read), .address(WB_address), .Mem_reg(WB_Mem_reg), .data_out(wb_data));
 
 endmodule // proc
 // DUMMY LINE FOR REV CONTROL :0:

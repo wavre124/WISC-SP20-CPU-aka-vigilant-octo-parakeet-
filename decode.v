@@ -38,11 +38,12 @@ module decode (clk, rst, Data_one, Data_two, inc_pc, err, inst, ALU_op, RD, RS, 
    output [N-1:0] immediate;
 
    localparam R7 = 3'b111;
-
+   // this is the WB data from the WB stage
    assign write_data = (JAL) ? bj_write_data : wb_data;
    assign RS = inst[10:8]; //added code here
    assign RD = write_sel;
    assign opcode = inst[15:11];
+
    mux4_1 write_sel_mux[2:0](.InA(inst[4:2]), .InB(inst[7:5]), .InC(inst[10:8]), .InD(R7), .S(Dst_reg), .Out(write_sel));
 
    control ctrl_blk(.inst(inst), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
@@ -53,6 +54,7 @@ module decode (clk, rst, Data_one, Data_two, inc_pc, err, inst, ALU_op, RD, RS, 
    regFile_bypass regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
                            .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel), .writeData(write_data), .writeEn(Reg_write));
     */
+   // FIXME: we need to make sure that the write data and write sel and reg write are all from the WB phase
    regFile regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
                     .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel), .writeData(write_data), .writeEn(Reg_write));
 

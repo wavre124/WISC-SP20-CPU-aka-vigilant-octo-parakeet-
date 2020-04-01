@@ -37,14 +37,11 @@ localparam jal = 5'b00110;
 localparam jalr = 5'b00111;
 
 assign stall_decode = ((EX_MEM_reg_write) & ((rd_EX_MEM == rt_ID_EX) | (rd_EX_MEM == rs_ID_EX))) ? 1'b1 :
-                      ((MEM_WB_reg_write) & ((rd_MEM_WB == rt_ID_EX) | (rd_MEM_WB == rs_ID_EX))) ? 1'b1 : 
-			((EX_MEM_op == stu) & ((rs_EX_MEM == rt_ID_EX) | (rs_EX_MEM == rs_ID_EX))) ? 1'b1 : 
-		        ((MEM_wb_op == stu) & ((rs_MEM_WB == rt_ID_EX) | (rs_MEM_WB == rs_ID_EX))) ? 1'b1 : 1'b0;	
+                      ((MEM_WB_reg_write) & ((rd_MEM_WB == rt_ID_EX) | (rd_MEM_WB == rs_ID_EX))) ? 1'b1 :
+			                ((EX_MEM_op == stu) & ((rs_EX_MEM == rt_ID_EX) | (rs_EX_MEM == rs_ID_EX))) ? 1'b1 :
+		                  ((MEM_wb_op == stu) & ((rs_MEM_WB == rt_ID_EX) | (rs_MEM_WB == rs_ID_EX))) ? 1'b1 : 1'b0;
 
-	      
-	      
 assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
-
 
 //special instructions we need to watch out for
 //STU writes to RS so RS has a data dependency if any instruction in front of
@@ -52,7 +49,7 @@ assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
 //
 //All JAL and JALR instructions write to R7 so we need to check if any insturctions in
 //front of us have an opcode of 00110 or opcode of 00111
-//should pass in opcode from all stages 
+//should pass in opcode from all stages
 
 
 
@@ -66,14 +63,14 @@ assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
 //pipe_id_ex
 //1)added input/output/flop for opcode
 //2)added input/output/flop for RD/RS
-//3)added input/output/flop for inc_pc 
+//3)added input/output/flop for inc_pc
 //
 //
 //decode
 //1)added RD as an output which is based on kshitij logic from control unit
 //2)added RS as an output which is hardcoded to [10:8] because the only time
 //we care about RS is if it is STU and our stall decode logic is smart enough
-//to detect that 
+//to detect that
 //3)added opcode as an output
 //4)added inc_pc as an input and output
 //
@@ -88,5 +85,5 @@ assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
 //are there any wires that cross over a stage of pipeline, yes inc_pc which is
 //used in mux going into ALU, data_2 going from decode to memory
 //need to change decode quite a bit to use the signals that are from pipeline
-//regs and not from the current instruction in decode 
+//regs and not from the current instruction in decode
 endmodule

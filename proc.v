@@ -26,6 +26,8 @@ module proc (/*AUTOARG*/
 
    parameter N = 16;
 
+   wire halt;
+
    wire [N-1:0] instruction;
    wire [N-1:0] EPC_reg;
    wire [N-1:0] PC;
@@ -89,6 +91,10 @@ module proc (/*AUTOARG*/
 
    wire [1:0] WB_Dst_reg, WB_PC_src;
    wire WB_Reg_write, WB_Mem_reg, WB_Mem_read, WB_Mem_write, WB_Mem_en;
+
+   localparam HALT = 5'b00000;
+
+   assign halt = (WB_instruction[15:11] == HALT) & (~WB_Mem_en);
 
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
                    .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC));

@@ -78,7 +78,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
 
    control ctrl_blk(.inst(inst), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
-                  .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src));
+                  .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt));
 
    /*
    regFile_bypass regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),

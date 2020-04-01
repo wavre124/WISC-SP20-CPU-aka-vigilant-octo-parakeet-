@@ -53,6 +53,7 @@ module proc (/*AUTOARG*/
    // ID-EX pipeline wires
    wire [2:0] ID_RD;
    wire [2:0] ID_RS;
+   wire [2:0] ID_RT;
 
    wire [3:0] EX_ALU_op;
    wire [1:0] EX_Dst_reg, EX_PC_src;
@@ -63,6 +64,7 @@ module proc (/*AUTOARG*/
    wire [15:0] EX_Data_two; // Rt data
    wire [2:0] EX_rd;
    wire [2:0] EX_rs;
+   wire [2:0] EX_rt;
 
    // EX-MEM pipeline wires
    output [15:0] MEM_instruction;
@@ -91,19 +93,21 @@ module proc (/*AUTOARG*/
                              .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc));
 
    decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(ID_instruction),
-                     .ALU_op(ALU_op), .RD(ID_RD), .RS(ID_RS), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
+                     .ALU_op(ALU_op), .RD(ID_RD), .RS(ID_RS), .RT(ID_RT), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                      .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                      .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .PC(ID_incremented_pc), .wb_data(wb_data), .br_ju_addr(br_ju_addr),
-                     .immediate(immediate), .stall_decode(stall_decode), .flush_fetch(flush_fetch));
+                     .immediate(immediate), .stall_decode(stall_decode), .flush_fetch(flush_fetch),
+                      .rd_ID_EX(EX_rd), .rt_ID_EX(EX_rt), .rs_ID_EX(EX_rs), .rd_EX_MEM(MEM_RD), .rd_MEM_WB(WB_RD),
+                      .EX_MEM_reg_write(MEM_Reg_write), .MEM_wb_reg_write(WB_Reg_write));
 
    pipe_ID_EX pipe_two(.clk(clk), .rst(rst), .ALU_op(ALU_op), .Dst_reg(Dst_reg), .PC_src(PC_src), .ALU_src(ALU_src), .Reg_write(Reg_write),
                                        .Mem_read(Mem_read), .Mem_write(Mem_write), .Mem_reg(Mem_reg), .Mem_en(Mem_en),
                                        .instruction(ID_instruction), .immediate(immediate), .Data_one(data_one), .Data_two(data_two),
-                                       .rd(ID_RD), .rs(ID_RS), .ALU_op_o(EX_ALU_op),
+                                       .rd(ID_RD), .rs(ID_RS), .rt(ID_RT), .ALU_op_o(EX_ALU_op),
                                        .Dst_reg_o(EX_Dst_reg), .PC_src_o(EX_PC_src), .ALU_src_o(EX_ALU_src), .Reg_write_o(EX_Reg_write),
                                        .Mem_read_o(EX_Mem_read), .Mem_write_o(EX_Mem_write), .Mem_reg_o(EX_Mem_reg),
                                        .Mem_en_o(EX_Mem_en), .instruction_o(EX_instruction), .immediate_o(EX_immediate),
-                                       .Data_one_o(EX_Data_one), .Data_two_o(EX_Data_two), .rd_o(EX_rd), .rs_o(EX_rs));
+                                       .Data_one_o(EX_Data_one), .Data_two_o(EX_Data_two), .rd_o(EX_rd), .rs_o(EX_rs), .rt_o(EX_rt));
 
    execute execute_blk(.data_1(EX_Data_one), .data_2(EX_Data_two), .signed_immediate(EX_immediate),
                        .ALU_src(EX_ALU_src), .ALU_op(EX_ALU_op), .data_out(alu_out));

@@ -32,7 +32,7 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(PC_src), .Out(mux_pc));
 
   // this mux stalls the PC
-  mux2_1_N pc_mux1(.InA(mux_pc), .InB(pc), .S(stall_decode), .Out(flop_pc));
+  mux2_1_N pc_mux4(.InA(mux_pc), .InB(pc), .S(stall_decode), .Out(flop_pc));
 
   dff pc_flops[15:0](.q(pc), .d(flop_pc), .clk(clk), .rst(rst));
 

@@ -1,7 +1,7 @@
 module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, PC_src,
-                   Reg_write, Mem_reg, Mem_read, Mem_write, instruction_o,
+                   Reg_write, Mem_reg, Mem_read, Mem_write, write_sel, instruction_o,
                    data_read_o, address_o, RD_o, RS_o, Dst_reg_o, PC_src_o,
-                   Reg_write_o, Mem_reg_o, Mem_read_o, Mem_write_o);
+                   Reg_write_o, Mem_reg_o, Mem_read_o, Mem_write_o, write_sel_o);
 
   input clk;
   input rst;
@@ -12,6 +12,7 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, P
   input [15:0] address;
   input [2:0] RD;
   input [2:0] RS;
+  input [2:0] write_sel;
   ////////////////////////////////////////////////////////////////////////////
 
   //inputs that are control unit signals////////////////////////////////////////
@@ -25,6 +26,7 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, P
   output [15:0] address_o;
   output [2:0] RD_o;
   output [2:0] RS_o;
+  output [2:0] write_sel_o;
   ////////////////////////////////////////////////////////////////////////////
 
   //outputs that are conrol unit signals//////////////////////////////////////
@@ -36,8 +38,9 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, P
   dff instruction_flop[15:0](.q(instruction_o), .d(instruction), .clk(clk), .rst(rst));
   dff data_read_flop[15:0](.q(data_read_o), .d(data_read), .clk(clk), .rst(rst));
   dff address_flop[15:0](.q(address_o), .d(address), .clk(clk), .rst(rst));
-  dff RD_flop[15:0](.q(RD_o), .d(RD), .clk(clk), .rst(rst));
-  dff RS_flop[15:0](.q(RS_o), .d(RS_two), .clk(clk), .rst(rst));
+  dff RD_flop[2:0](.q(RD_o), .d(RD), .clk(clk), .rst(rst));
+  dff RS_flop[2:0](.q(RS_o), .d(RS_two), .clk(clk), .rst(rst));
+  dff ws_flop[2:0](.q(write_sel_o), .d(write_sel), .clk(clk), .rst(rst));
  ////////////////////////////////////////////////////////////////////////////////
 
  //flops that are for control unit signals//////////////////////////////////////

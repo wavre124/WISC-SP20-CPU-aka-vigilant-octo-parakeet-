@@ -1,7 +1,7 @@
 module pipe_ID_EX(clk, rst, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en,
-                  instruction, immediate, Data_one, Data_two, rd, rs, rt, ALU_op_o,
+                  instruction, immediate, Data_one, Data_two, rd, rs, rt, write_sel, ALU_op_o,
                   Dst_reg_o, PC_src_o, ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o,
-                  Mem_en_o, instruction_o, immediate_o, Data_one_o, Data_two_o, rd_o, rs_o, rt_o);
+                  Mem_en_o, instruction_o, immediate_o, Data_one_o, Data_two_o, rd_o, rs_o, rt_o, write_sel_o);
 
   input clk, rst;
 
@@ -19,6 +19,7 @@ module pipe_ID_EX(clk, rst, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, Mem_rea
    input [2:0] rd;//register number
    input [2:0] rs;//register number
    input [2:0] rt;//register number
+   input [2:0] write_sel;//register number
   ///////////////////////////////////////////////////////////////////////////////////////////
 
   //outputs that are CONTROL UNIT SIGNALS///////////////////////////////////////////////////
@@ -35,6 +36,7 @@ module pipe_ID_EX(clk, rst, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, Mem_rea
    output [2:0] rd_o;
    output [2:0] rs_o;
    output [2:0] rt_o;
+   output [2:0] write_sel_o;//register number
    /////////////////////////////////////////////////////////////////////////////////////////
 
    //flops for CONTROL UNIT SIGNALS//////////////////////////////////////////////////
@@ -57,6 +59,7 @@ module pipe_ID_EX(clk, rst, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, Mem_rea
     dff rd_flop [2:0] (.q(rd_o), .d(rd), .clk(clk), .rst(rst));
     dff rs_flop [2:0] (.q(rs_o), .d(rs), .clk(clk), .rst(rst));
     dff rt_flop [2:0] (.q(rt_o), .d(rt), .clk(clk), .rst(rst));
+    dff ws_flop [2:0] (.q(write_sel_o), .d(write_sel), .clk(clk), .rst(rst));
     /////////////////////////////////////////////////////////////////////////////////////////
 
 endmodule

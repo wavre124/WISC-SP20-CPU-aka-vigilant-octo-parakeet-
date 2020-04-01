@@ -43,6 +43,7 @@ module proc (/*AUTOARG*/
    wire dec_err;
 
    wire [N-1:0] alu_out, wb_data, mem_read_data;
+   wire [2:0] write_sel;
 
    // IF-ID pipeline wires
    wire flush_fetch;
@@ -65,26 +66,29 @@ module proc (/*AUTOARG*/
    wire [2:0] EX_rd;
    wire [2:0] EX_rs;
    wire [2:0] EX_rt;
+   wire [2:0] EX_write_sel;
 
    // EX-MEM pipeline wires
-   output [15:0] MEM_instruction;
-   output [15:0] MEM_data_out;
-   output [15:0] MEM_data_two;
-   output [2:0] MEM_RD;
-   output [2:0] MEM_RS;
+   wire [15:0] MEM_instruction;
+   wire [15:0] MEM_data_out;
+   wire [15:0] MEM_data_two;
+   wire [2:0] MEM_RD;
+   wire [2:0] MEM_RS;
+   wire [2:0] MEM_write_sel;
 
-   output [1:0] MEM_Dst_reg, MEM_PC_src;
-   output MEM_Reg_write, MEM_Mem_read, MEM_Mem_write, MEM_Mem_reg, MEM_Mem_en;
+   wire [1:0] MEM_Dst_reg, MEM_PC_src;
+   wire MEM_Reg_write, MEM_Mem_read, MEM_Mem_write, MEM_Mem_reg, MEM_Mem_en;
 
    // MEM-WB pipeline wires
-   output [15:0] WB_instruction;
-   output [15:0] WB_data_read;
-   output [15:0] WB_address;
-   output [2:0] WB_RD;
-   output [2:0] WB_RS;
+   wire [15:0] WB_instruction;
+   wire [15:0] WB_data_read;
+   wire [15:0] WB_address;
+   wire [2:0] WB_RD;
+   wire [2:0] WB_RS;
+   wire [2:0] WB_write_sel;
 
-   output [1:0] WB_Dst_reg, WB_PC_src;
-   output WB_Reg_write, WB_Mem_reg, WB_Mem_read, WB_Mem_write;
+   wire [1:0] WB_Dst_reg, WB_PC_src;
+   wire WB_Reg_write, WB_Mem_reg, WB_Mem_read, WB_Mem_write;
 
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
                    .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC));
@@ -98,34 +102,35 @@ module proc (/*AUTOARG*/
                      .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .PC(ID_incremented_pc), .wb_data(wb_data), .br_ju_addr(br_ju_addr),
                      .immediate(immediate), .stall_decode(stall_decode), .flush_fetch(flush_fetch),
                       .rd_ID_EX(EX_rd), .rt_ID_EX(EX_rt), .rs_ID_EX(EX_rs), .rd_EX_MEM(MEM_RD), .rd_MEM_WB(WB_RD),
-                      .EX_MEM_reg_write(MEM_Reg_write), .MEM_wb_reg_write(WB_Reg_write));
+                      .EX_MEM_reg_write(MEM_Reg_write), .MEM_wb_reg_write(WB_Reg_write), .write_sel(write_sel), .write_sel_WB(WB_write_sel),
+                      .rs_EX_MEM(MEM_RS), .EX_MEM_ins(MEM_instruction), .rs_MEM_WB(WB_RS), .MEM_wb_ins(WB_instruction));
 
    pipe_ID_EX pipe_two(.clk(clk), .rst(rst), .ALU_op(ALU_op), .Dst_reg(Dst_reg), .PC_src(PC_src), .ALU_src(ALU_src), .Reg_write(Reg_write),
                                        .Mem_read(Mem_read), .Mem_write(Mem_write), .Mem_reg(Mem_reg), .Mem_en(Mem_en),
                                        .instruction(ID_instruction), .immediate(immediate), .Data_one(data_one), .Data_two(data_two),
-                                       .rd(ID_RD), .rs(ID_RS), .rt(ID_RT), .ALU_op_o(EX_ALU_op),
+                                       .rd(ID_RD), .rs(ID_RS), .rt(ID_RT), .write_sel(write_sel), .ALU_op_o(EX_ALU_op),
                                        .Dst_reg_o(EX_Dst_reg), .PC_src_o(EX_PC_src), .ALU_src_o(EX_ALU_src), .Reg_write_o(EX_Reg_write),
                                        .Mem_read_o(EX_Mem_read), .Mem_write_o(EX_Mem_write), .Mem_reg_o(EX_Mem_reg),
                                        .Mem_en_o(EX_Mem_en), .instruction_o(EX_instruction), .immediate_o(EX_immediate),
-                                       .Data_one_o(EX_Data_one), .Data_two_o(EX_Data_two), .rd_o(EX_rd), .rs_o(EX_rs), .rt_o(EX_rt));
+                                       .Data_one_o(EX_Data_one), .Data_two_o(EX_Data_two), .rd_o(EX_rd), .rs_o(EX_rs), .rt_o(EX_rt), .write_sel_o(EX_write_sel));
 
    execute execute_blk(.data_1(EX_Data_one), .data_2(EX_Data_two), .signed_immediate(EX_immediate),
                        .ALU_src(EX_ALU_src), .ALU_op(EX_ALU_op), .data_out(alu_out));
 
    pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(instruction), .data_out(alu_out), .data_two(EX_Data_two), .RD(EX_rd), .RS(EX_rs),
                                           .Dst_reg(EX_Dst_reg), .PC_src(EX_PC_src), .Reg_write(EX_Reg_write), .Mem_read(EX_Mem_read), .Mem_write(EX_Mem_write), .Mem_reg(EX_Mem_reg),
-                                          .Mem_en(EX_Mem_en), .instruction_o(MEM_instruction), .data_out_o(MEM_data_out), .data_two_o(MEM_data_two), .RD_o(MEM_RD), .RS_o(MEM_RS),
+                                          .Mem_en(EX_Mem_en), .write_sel(EX_write_sel), .instruction_o(MEM_instruction), .data_out_o(MEM_data_out), .data_two_o(MEM_data_two), .RD_o(MEM_RD), .RS_o(MEM_RS),
                                           .Dst_reg_o(MEM_Dst_reg), .PC_src_o(MEM_PC_src), .Reg_write_o(MEM_Reg_write), .Mem_read_o(MEM_Mem_read),
-                                          .Mem_write_o(MEM_Mem_write), .Mem_reg_o(MEM_Mem_reg), .Mem_en_o(MEM_Mem_en));
+                                          .Mem_write_o(MEM_Mem_write), .Mem_reg_o(MEM_Mem_reg), .Mem_en_o(MEM_Mem_en), .write_sel_o(MEM_write_sel));
 
    memory memory_blk(.address(MEM_data_out), .write_data(MEM_data_two), .Mem_en(MEM_Mem_en), .Mem_write(MEM_Mem_write), .Mem_read(MEM_Mem_read),
                      .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data));
 
    pipe_MEM_WB pipe_four(.clk(clk), .rst(rst), .instruction(MEM_instruction), .data_read(mem_read_data), .address(MEM_data_out), .RD(MEM_RD), .RS(MEM_RS)
                                         , .Dst_reg(MEM_Dst_reg), .PC_src(MEM_PC_src), .Reg_write(MEM_Reg_write), .Mem_reg(MEM_Mem_reg), .Mem_read(MEM_Mem_read)
-                                        , .Mem_write(MEM_Mem_write), .instruction_o(WB_instruction), .data_read_o(WB_data_read),
+                                        , .Mem_write(MEM_Mem_write), .write_sel(MEM_write_sel), .instruction_o(WB_instruction), .data_read_o(WB_data_read),
                                         .address_o(WB_address), .RD_o(WB_RD), .RS_o(WB_RS), .Dst_reg_o(WB_Dst_reg), .PC_src_o(WB_PC_src),
-                                        .Reg_write_o(WB_Reg_write), .Mem_reg_o(WB_Mem_reg), .Mem_read_o(WB_Mem_read), .Mem_write_o(WB_Mem_write));
+                                        .Reg_write_o(WB_Reg_write), .Mem_reg_o(WB_Mem_reg), .Mem_read_o(WB_Mem_read), .Mem_write_o(WB_Mem_write), .write_sel_o(WB_write_sel));
 
    wb wb_blk(.data_read(WB_data_read), .address(WB_address), .Mem_reg(WB_Mem_reg), .data_out(wb_data));
 

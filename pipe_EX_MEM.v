@@ -1,6 +1,6 @@
 module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, PC_src, Reg_write, Mem_read, Mem_write, Mem_reg,
-                   Mem_en, instruction_o, data_out_o, data_two_o, RD_o, RS_o, Dst_reg_o, PC_src_o, Reg_write_o, Mem_read_o,
-                   Mem_write_o, Mem_reg_o, Mem_en_o);
+                   Mem_en, write_sel, instruction_o, data_out_o, data_two_o, RD_o, RS_o, Dst_reg_o, PC_src_o, Reg_write_o, Mem_read_o,
+                   Mem_write_o, Mem_reg_o, Mem_en_o, write_sel_o);
   input clk;
   input rst;
 
@@ -10,6 +10,7 @@ module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, P
   input [15:0] data_two;
   input [2:0] RD;
   input [2:0] RS;
+  input [2:0] write_sel;
  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //inputs that are control unit signals//////////////////////////////////////////////////////////////////////////
@@ -23,6 +24,7 @@ module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, P
   output [15:0] data_two_o;
   output [2:0] RD_o;
   output [2:0] RS_o;
+  output [2:0] write_sel_o;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //outputs that are control unit signals/////////////////////////////////////////////////////////////////////////
@@ -34,8 +36,9 @@ module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, P
   dff ins_flops[15:0](.q(instruction_o), .d(instruction), .clk(clk), .rst(rst));
   dff data_out_flop[15:0](.q(data_out_o), .d(data_out), .clk(clk), .rst(rst));
   dff data_two_flop[15:0](.q(data_two_o), .d(data_two), .clk(clk), .rst(rst));
-  dff RD_flop[15:0](.q(RD_o), .d(RD), .clk(clk), .rst(rst));
-  dff RS_flop[15:0](.q(RS_o), .d(RS_two), .clk(clk), .rst(rst));
+  dff RD_flop[2:0](.q(RD_o), .d(RD), .clk(clk), .rst(rst));
+  dff RS_flop[2:0](.q(RS_o), .d(RS_two), .clk(clk), .rst(rst));
+  dff ws_flop[2:0](.q(write_sel_o), .d(write_sel), .clk(clk), .rst(rst));
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //flops for CONTROL UNIT SIGNALS//////////////////////////////////////////////////

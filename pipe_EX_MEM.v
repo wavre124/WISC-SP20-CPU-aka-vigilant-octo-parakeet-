@@ -37,7 +37,7 @@ module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, P
   dff data_out_flop[15:0](.q(data_out_o), .d(data_out), .clk(clk), .rst(rst));
   dff data_two_flop[15:0](.q(data_two_o), .d(data_two), .clk(clk), .rst(rst));
   dff RD_flop[2:0](.q(RD_o), .d(RD), .clk(clk), .rst(rst));
-  dff RS_flop[2:0](.q(RS_o), .d(RS_two), .clk(clk), .rst(rst));
+  dff RS_flop[2:0](.q(RS_o), .d(RS), .clk(clk), .rst(rst));
   dff ws_flop[2:0](.q(write_sel_o), .d(write_sel), .clk(clk), .rst(rst));
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

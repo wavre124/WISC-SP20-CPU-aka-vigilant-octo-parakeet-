@@ -1,6 +1,6 @@
 module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, PC_src, Reg_write, Mem_read, Mem_write, Mem_reg,
                    Mem_en, write_sel, instruction_o, data_out_o, data_two_o, RD_o, RS_o, Dst_reg_o, PC_src_o, Reg_write_o, Mem_read_o,
-                   Mem_write_o, Mem_reg_o, Mem_en_o, write_sel_o);
+                   Mem_write_o, Mem_reg_o, Mem_en_o, write_sel_o, halt, halt_o);
   input clk;
   input rst;
 
@@ -15,7 +15,7 @@ module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, P
 
 //inputs that are control unit signals//////////////////////////////////////////////////////////////////////////
   input [1:0] Dst_reg, PC_src;
-  input Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en;
+  input Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, halt;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //outputs that are not control unit signals//////////////////////////////////////////////////////////////////////
@@ -29,7 +29,7 @@ module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, P
 
 //outputs that are control unit signals/////////////////////////////////////////////////////////////////////////
   output [1:0] Dst_reg_o, PC_src_o;
-  output Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o;
+  output Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o, halt_o;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //flops that are not control unit signals/////////////////////////////////////////////////////////////////////////
@@ -39,6 +39,7 @@ module pipe_EX_MEM(clk, rst, instruction, data_out, data_two, RD, RS, Dst_reg, P
   dff RD_flop[2:0](.q(RD_o), .d(RD), .clk(clk), .rst(rst));
   dff RS_flop[2:0](.q(RS_o), .d(RS), .clk(clk), .rst(rst));
   dff ws_flop[2:0](.q(write_sel_o), .d(write_sel), .clk(clk), .rst(rst));
+  dff halt_flop(.q(halt_o), .d(halt), .clk(clk), .rst(rst));
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //flops for CONTROL UNIT SIGNALS//////////////////////////////////////////////////

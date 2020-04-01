@@ -8,7 +8,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg,
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch,
                rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, rd_MEM_WB, EX_MEM_reg_write, MEM_wb_reg_write, write_sel, write_sel_WB,
-               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins);
+               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt);
 
    // TODO: Your code here
 
@@ -48,7 +48,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    output [1:0] Ext_op;
    output Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
    output Excp, ALU_src, stall_decode, flush_fetch;
-
+   output halt;
    output [N-1:0] br_ju_addr;
 
    wire [N-1:0] write_data;

@@ -1,6 +1,6 @@
 module control(inst, ALU_op, branch_jump_op, PC_src, Dst_reg, Ext_op,
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg,
-               Mem_en, Excp, ALU_src);
+               Mem_en, Excp, ALU_src, halt);
 
 input [15:0] inst;
 
@@ -10,7 +10,7 @@ output reg [1:0] PC_src, Dst_reg;
 output reg [1:0] Ext_op;
 output reg Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
 output reg Excp, ALU_src;
-
+output reg halt;
 localparam HALT = 5'b00000;
 localparam NOP = 5'b00001;
 localparam ADDI = 5'b01000;
@@ -109,6 +109,7 @@ always @* case(inst[15:11])
            Mem_reg = 0;
            Mem_en = 0;
            Excp = 0;
+           halt = 1;
            end // HALT
     NOP : begin
           ALU_op = 4'b0000;
@@ -125,6 +126,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end //NOP
     ADDI : begin
            ALU_op = 4'b0100;
@@ -141,6 +143,7 @@ always @* case(inst[15:11])
            Mem_reg = 0;
            Mem_en = 1;
            Excp = 0;
+           halt = 0;
            end // ADDI
     SUBI : begin
           ALU_op = 4'b1001;
@@ -157,6 +160,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //SUBI
     XORI : begin
           ALU_op = 4'b0111;
@@ -173,6 +177,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //XORI
     ANDNI : begin
           ALU_op = 4'b0101;
@@ -189,6 +194,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
             end //ANDNI
     ROLI : begin
           ALU_op = 4'b0000;
@@ -205,6 +211,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //ROLI
     SLLI : begin
           ALU_op = 4'b0001;
@@ -221,6 +228,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //SLLI
     RORI : begin
           ALU_op = 4'b0010;
@@ -237,6 +245,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //RORI
     SRLI : begin
           ALU_op = 4'b0011;
@@ -253,6 +262,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //SRLI
     ST : begin
           ALU_op = 4'b0100;
@@ -269,6 +279,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
          end //ST
     LD : begin
           ALU_op = 4'b0100;
@@ -285,6 +296,7 @@ always @* case(inst[15:11])
           Mem_reg = 1;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
          end //LD
     STU : begin
           ALU_op = 4'b0100;
@@ -301,6 +313,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end //STU
     BTR : begin
           ALU_op = 4'b1110;
@@ -317,6 +330,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end //BTR
     B_ALU : begin
           ALU_op = b_alu_op;
@@ -333,6 +347,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
             end //ADD,SUB,XOR,ANDN implement terniary
     S_ALU : begin
           ALU_op = s_alu_op;
@@ -349,6 +364,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
             end //ROL,SLL,ROR, SRL implement terniary
     SEQ : begin
           ALU_op = 4'b1010;
@@ -365,6 +381,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end //SEQ
     SLT : begin
           ALU_op = 4'b1011;
@@ -381,6 +398,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end //SLT
     SLE : begin
           ALU_op = 4'b1100;
@@ -397,6 +415,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end //SLE
     SCO : begin
           ALU_op = 4'b1101;
@@ -413,6 +432,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt =0;
           end //SCO
     BEQZ : begin
           ALU_op = 4'b0000;
@@ -429,6 +449,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //BEQZ
     BNEZ : begin
           ALU_op = 4'b0000;
@@ -445,6 +466,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //BNEZ
     BLTZ : begin
           ALU_op = 4'b0000;
@@ -461,6 +483,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //BLTZ
     BGEZ : begin
           ALU_op = 4'b0000;
@@ -477,6 +500,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //BGEZ
     LBI : begin
           ALU_op = 4'b1111;
@@ -493,6 +517,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end //LBI
     SLBI : begin
           ALU_op = 4'b1000;
@@ -509,6 +534,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end //SLBI
     J_DIS : begin
           ALU_op = 4'b0000;
@@ -525,6 +551,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
             end //J displacement
     JR : begin
           ALU_op = 4'b0000;
@@ -541,6 +568,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
          end //JR
     JAL_C : begin
           ALU_op = 4'b0000;
@@ -557,6 +585,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end // JAL displacement
     JALR : begin
           ALU_op = 4'b0000;
@@ -573,6 +602,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
            end // JALR
     ILL_OP : begin
           ALU_op = 4'b0000;
@@ -589,6 +619,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 1;
+          halt = 0;
              end //produce illegalop exception
     RTI : begin
           ALU_op = 4'b0000;
@@ -605,6 +636,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 1;
           Excp = 0;
+          halt = 0;
           end // NOP
     default : begin
           ALU_op = 4'b0000;
@@ -621,6 +653,7 @@ always @* case(inst[15:11])
           Mem_reg = 0;
           Mem_en = 0;
           Excp = 0;
+          halt = 0;
               end //possibly combine with NOP
 endcase
 

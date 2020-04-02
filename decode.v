@@ -18,7 +18,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    input [N-1:0] inst;
    input [N-1:0] PC;
    input [N-1:0] wb_data;
-
+   wire [15:0] inst_help;
    // pipe wires for hazard blk
    input [2:0] rd_ID_EX;
    input [2:0] rt_ID_EX;
@@ -50,14 +50,14 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    output Excp, ALU_src, stall_decode, flush_fetch;
    output halt;
    output [N-1:0] br_ju_addr;
-
+   
    wire [N-1:0] write_data;
    wire [N-1:0] bj_write_data;
    output [2:0] write_sel;
    wire [2:0] write_sel_pipe;
    wire reg_write_pipe;
    output [N-1:0] immediate;
-
+    localparam pc_help = 1'b0;
    localparam R7 = 3'b111;
 
    // this is the WB data from the WB stage, the JAL signal needs to be piped
@@ -70,13 +70,13 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    assign RS = inst[10:8]; //added code here
    assign RT = inst[7:5];
    assign RD = write_sel;
-
+   assign inst_help = (PC == pc_help) ? 16'b0000_1000_0000_0000 : inst;
    mux4_1 write_sel_mux[2:0](.InA(inst[4:2]), .InB(inst[7:5]), .InC(inst[10:8]), .InD(R7), .S(Dst_reg), .Out(write_sel));
 
    assign write_sel_pipe = (JAL) ? write_sel : write_sel_WB;
    assign reg_write_pipe = (JAL) ? Reg_write : MEM_wb_reg_write;
 
-   control ctrl_blk(.inst(inst), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
+   control ctrl_blk(.inst(inst_help), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                   .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt));
 

@@ -80,13 +80,14 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                   .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt));
 
-   /*
+   
    regFile_bypass regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
-                           .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel), .writeData(write_data), .writeEn(Reg_write));
-    */
+                           .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel_pipe), .writeData(write_data), .writeEn(reg_write_pipe));
+    
+   /* 
    regFile regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
-                    .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel_pipe), .writeData(write_data), .writeEn(reg_write_pipe));
-
+                    .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel_pipe), .writeData(wb_data), .writeEn(reg_write_pipe));
+   */
    extend ext_blk(.inst(inst), .ext_sign(Ext_sign), .ext_op(Ext_op), .ext_imm(immediate));
 
    branch_jump bj_blk(.rs(Data_one), .PC(PC), .imm(immediate), .displacement(immediate),

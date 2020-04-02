@@ -8,7 +8,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg,
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch,
                rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, rd_MEM_WB, EX_MEM_reg_write, MEM_wb_reg_write, write_sel, write_sel_WB,
-               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt);
+               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd);
 
    // TODO: Your code here
 
@@ -25,7 +25,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    input [2:0] rs_ID_EX;
    input [2:0] rd_EX_MEM;
    input [2:0] rd_MEM_WB;
-
+   input EX_MEM_valid_rd, MEM_wb_valid_rd;
    input EX_MEM_reg_write;
    input MEM_wb_reg_write;
 
@@ -49,6 +49,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    output Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, Mem_en;
    output Excp, ALU_src, stall_decode, flush_fetch;
    output halt;
+   output valid_rd;
    output [N-1:0] br_ju_addr;
    
    wire [N-1:0] write_data;
@@ -78,7 +79,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
 
    control ctrl_blk(.inst(inst_help), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
-                  .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt));
+                  .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt), .valid_rd(valid_rd));
 
    
    regFile_bypass regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
@@ -95,6 +96,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
 
    hazard_det hazard_blk(.rd_ID_EX(rd_ID_EX), .rt_ID_EX(rt_ID_EX), .rs_ID_EX(rs_ID_EX),
                          .rd_EX_MEM(rd_EX_MEM), .rs_EX_MEM(rs_EX_MEM), .EX_MEM_reg_write(EX_MEM_reg_write), .EX_MEM_ins(EX_MEM_ins), .rd_MEM_WB(rd_MEM_WB), .rs_MEM_WB(rs_MEM_WB),
-                         .MEM_wb_reg_write(MEM_wb_reg_write), .MEM_wb_ins(MEM_wb_ins), .PC_source(PC_src), .stall_decode(stall_decode), .flush_fetch(flush_fetch));
+                         .MEM_wb_reg_write(MEM_wb_reg_write), .MEM_wb_ins(MEM_wb_ins), .PC_source(PC_src), .stall_decode(stall_decode), 
+                         .flush_fetch(flush_fetch), .EX_MEM_valid_rd(EX_MEM_valid_rd), .MEM_wb_valid_rd(MEM_wb_valid_rd));
 
 endmodule

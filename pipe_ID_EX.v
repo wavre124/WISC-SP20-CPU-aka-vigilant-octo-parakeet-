@@ -1,14 +1,14 @@
-module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en,
+module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, valid_rd,
                   instruction, immediate, Data_one, Data_two, rd, rs, rt, write_sel, halt_o, ALU_op_o,
                   Dst_reg_o, PC_src_o, ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o,
-                  Mem_en_o, instruction_o, immediate_o, Data_one_o, Data_two_o, rd_o, rs_o, rt_o, write_sel_o);
+                  Mem_en_o, instruction_o, immediate_o, Data_one_o, Data_two_o, rd_o, rs_o, rt_o, write_sel_o, valid_rd_o);
 
   input clk, rst;
 
   //inputs that are CONTROL UNIT SIGNALS//////////////////////////////////////////////////
   input [3:0] ALU_op;
   input [1:0] Dst_reg, PC_src;
-  input ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, halt;
+  input ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, halt, valid_rd;
   /////////////////////////////////////////////////////////////////////////////////////////
 
   //inputs that are NOT CONTROL UNIT SIGNALS/////////////////////////////////////////////////
@@ -25,7 +25,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
   //outputs that are CONTROL UNIT SIGNALS///////////////////////////////////////////////////
   output [3:0] ALU_op_o;
   output [1:0] Dst_reg_o, PC_src_o;
-  output ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o, halt_o;
+  output ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o, halt_o, valid_rd_o;
   ///////////////////////////////////////////////////////////////////////////////////
 
   //outputs that are NOT CONTROL UNIT SIGNALS///////////////////////////////////////////////
@@ -50,6 +50,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
     dff Mem_reg_flop(.q(Mem_reg_o), .d(Mem_reg), .clk(clk), .rst(rst));
     dff Mem_en_flop(.q(Mem_en_o), .d(Mem_en), .clk(clk), .rst(rst));
     dff halt_flop(.q(halt_o), .d(halt), .clk(clk), .rst(rst));
+    dff valid_rd_flop(.q(valid_rd_o), .d(valid_rd), .clk(clk), .rst(rst));
     ////////////////////////////////////////////////////////////////////////////////////////
 
     //flops for NOT CONTROL UNIT SIGNALS//////////////////////////////////////////////////////

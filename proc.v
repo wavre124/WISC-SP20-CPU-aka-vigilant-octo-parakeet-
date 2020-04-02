@@ -118,16 +118,16 @@ module proc (/*AUTOARG*/
                                        .Mem_read_o(EX_Mem_read), .Mem_write_o(EX_Mem_write), .Mem_reg_o(EX_Mem_reg),
                                        .Mem_en_o(EX_Mem_en), .instruction_o(EX_instruction), .immediate_o(EX_immediate),
                                        .Data_one_o(EX_Data_one), .Data_two_o(EX_Data_two), .rd_o(EX_rd), .rs_o(EX_rs), .rt_o(EX_rt), .write_sel_o(EX_write_sel), .halt(halt),
-                                       .halt_o(EX_Mem_halt), .valid_rd(valid_rd), .valid_rd_o(EX_valid_rd));
+                                       .halt_o(EX_Mem_halt), .valid_rd(valid_rd), .valid_rd_o(EX_valid_rd), .stall_decode(stall_decode));
 
    execute execute_blk(.data_1(EX_Data_one), .data_2(EX_Data_two), .signed_immediate(EX_immediate),
                        .ALU_src(EX_ALU_src), .ALU_op(EX_ALU_op), .data_out(alu_out));
 
    pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(instruction), .data_out(alu_out), .data_two(EX_Data_two), .RD(EX_rd), .RS(EX_rs),
                                           .Dst_reg(EX_Dst_reg), .PC_src(EX_PC_src), .Reg_write(EX_Reg_write), .Mem_read(EX_Mem_read), .Mem_write(EX_Mem_write), .Mem_reg(EX_Mem_reg),
-                                          .Mem_en(EX_Mem_en), .write_sel(EX_write_sel), .instruction_o(MEM_instruction), .data_out_o(MEM_data_out), .data_two_o(MEM_data_two), .RD_o(MEM_RD), .RS_o(MEM_RS),
+                                          .Mem_en(EX_Mem_en), .write_sel(EX_write_sel), .instruction_o(MEM_instruction), .data_out_o(MEM_data_out), .data_two_o(MEM_data_two),                                                  .RD_o(MEM_RD), .RS_o(MEM_RS),
                                           .Dst_reg_o(MEM_Dst_reg), .PC_src_o(MEM_PC_src), .Reg_write_o(MEM_Reg_write), .Mem_read_o(MEM_Mem_read),
-                                          .Mem_write_o(MEM_Mem_write), .Mem_reg_o(MEM_Mem_reg), .Mem_en_o(MEM_Mem_en), .write_sel_o(MEM_write_sel), .halt(EX_Mem_halt), .halt_o(MEM_halt), .valid_rd(EX_valid_rd), .valid_rd_o(MEM_valid_rd));
+                                          .Mem_write_o(MEM_Mem_write), .Mem_reg_o(MEM_Mem_reg), .Mem_en_o(MEM_Mem_en), .write_sel_o(MEM_write_sel), .halt(EX_Mem_halt),                                                         .halt_o(MEM_halt), .valid_rd(EX_valid_rd), .valid_rd_o(MEM_valid_rd));
 
    memory memory_blk(.address(MEM_data_out), .write_data(MEM_data_two), .Mem_en(MEM_Mem_en), .Mem_write(MEM_Mem_write), .Mem_read(MEM_Mem_read),
                      .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data), .halt(MEM_halt));

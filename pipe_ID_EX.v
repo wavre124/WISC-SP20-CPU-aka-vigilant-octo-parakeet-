@@ -1,7 +1,8 @@
 module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, valid_rd,
                   instruction, immediate, Data_one, Data_two, rd, rs, rt, write_sel, halt_o, ALU_op_o,
                   Dst_reg_o, PC_src_o, ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o,
-                  Mem_en_o, instruction_o, immediate_o, Data_one_o, Data_two_o, rd_o, rs_o, rt_o, write_sel_o, valid_rd_o, stall_decode);
+                  Mem_en_o, instruction_o, immediate_o, Data_one_o, Data_two_o, rd_o, rs_o, rt_o, write_sel_o, valid_rd_o, stall_decode, JAL, JAL_o,
+                  bj_write_data, bj_write_data_o);
 
   input clk, rst;
 
@@ -16,17 +17,19 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
    input [15:0] immediate;
    input [15:0] Data_one; // Rs data
    input [15:0] Data_two; // Rt data
+   input [15:0] bj_write_data;
    input [2:0] rd;//register number
    input [2:0] rs;//register number
    input [2:0] rt;//register number
    input [2:0] write_sel;//register number
    input stall_decode;
+   input JAL;
   ///////////////////////////////////////////////////////////////////////////////////////////
 
   //outputs that are CONTROL UNIT SIGNALS///////////////////////////////////////////////////
   output [3:0] ALU_op_o;
   output [1:0] Dst_reg_o, PC_src_o;
-  output ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o, halt_o, valid_rd_o;
+  output ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o, halt_o, valid_rd_o, JAL_o;
   ///////////////////////////////////////////////////////////////////////////////////
 
   //outputs that are NOT CONTROL UNIT SIGNALS///////////////////////////////////////////////
@@ -34,12 +37,13 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
    output [15:0] immediate_o;
    output [15:0] Data_one_o; // Rs data
    output [15:0] Data_two_o; // Rt data
+   output [15:0] bj_write_data_o;
    output [2:0] rd_o;
    output [2:0] rs_o;
    output [2:0] rt_o;
    output [2:0] write_sel_o;//register number
    /////////////////////////////////////////////////////////////////////////////////////////
-   
+
    //check for stall_decode to turn into a nop
    wire [15:0] instruction_s;
    wire Reg_write_s;
@@ -48,19 +52,11 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
    //mem_reg does not matter
    wire Mem_write_s;
    //i think these are the only important signals
-   
+
    assign instruction_s = (stall_decode) ? 16'h0000 : instruction;
    assign Reg_write_s = (stall_decode) ? 1'b0 : Reg_write; //honestly not sure if we need this but oh well
    assign Mem_read_s = (stall_decode) ? 1'b0 : Mem_read;
-   assign Mem_write_s = (stall_decode) ? 1'b0 : Mem_write; 
-   
-   
-   
-   
-   
-   
-   
-   
+   assign Mem_write_s = (stall_decode) ? 1'b0 : Mem_write;
 
    //flops for CONTROL UNIT SIGNALS//////////////////////////////////////////////////
     dff alu_op_flop[3:0](.q(ALU_op_o), .d(ALU_op), .clk(clk), .rst(rst));
@@ -74,6 +70,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
     dff Mem_en_flop(.q(Mem_en_o), .d(Mem_en), .clk(clk), .rst(rst));
     dff halt_flop(.q(halt_o), .d(halt), .clk(clk), .rst(rst));
     dff valid_rd_flop(.q(valid_rd_o), .d(valid_rd), .clk(clk), .rst(rst));
+    dff JAL_flop(.q(JAL_o), .d(JAL), .clk(clk), .rst(rst));
     ////////////////////////////////////////////////////////////////////////////////////////
 
     //flops for NOT CONTROL UNIT SIGNALS//////////////////////////////////////////////////////
@@ -81,6 +78,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
     dff imm_flop[15:0](.q(immediate_o), .d(immediate), .clk(clk), .rst(rst));
     dff Data_one_flop[15:0](.q(Data_one_o), .d(Data_one), .clk(clk), .rst(rst));
     dff Data_two_flop[15:0](.q(Data_two_o), .d(Data_two), .clk(clk), .rst(rst));
+    dff bj_flop[15:0](.q(bj_write_data_o), .d(bj_write_data), .clk(clk), .rst(rst));
     dff rd_flop [2:0] (.q(rd_o), .d(rd), .clk(clk), .rst(rst));
     dff rs_flop [2:0] (.q(rs_o), .d(rs), .clk(clk), .rst(rst));
     dff rt_flop [2:0] (.q(rt_o), .d(rt), .clk(clk), .rst(rst));

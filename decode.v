@@ -8,7 +8,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, //6
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch, //9
                rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, ,EX_MEM_reg_write, MEM_wb_reg_write, wb_reg_write ,write_sel, write_sel_WB, //9
-               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd); //8
+               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd, WB_JAL, bj_write_data, WB_bj_write_data); //8
 
    // TODO: Your code here
 
@@ -24,6 +24,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    input [2:0] rt_ID_EX;
    input [2:0] rs_ID_EX;
    input [2:0] rd_EX_MEM;
+   input [15:0] WB_bj_write_data;
    input EX_MEM_valid_rd, MEM_wb_valid_rd;
    input EX_MEM_reg_write;
    input MEM_wb_reg_write;
@@ -33,6 +34,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    input [2:0] rs_MEM_WB;
    input [15:0] MEM_wb_ins;
    input [2:0] write_sel_WB;
+   input WB_JAL;
 
    output [N-1:0] Data_one; // Rs
    output [N-1:0] Data_two; // Rt
@@ -49,9 +51,9 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    output halt;
    output valid_rd;
    output [N-1:0] br_ju_addr;
-   
+
    wire [N-1:0] write_data;
-   wire [N-1:0] bj_write_data;
+   output [N-1:0] bj_write_data;
    output [2:0] write_sel;
    wire [2:0] write_sel_pipe;
    wire reg_write_pipe;
@@ -65,25 +67,25 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    // stage in decode at the same time, this will result in incorrect data
    // being written..
    // FIXME: potential fix is to stall... I think in hazard detect
-   assign write_data = (JAL) ? bj_write_data : wb_data;
+   assign write_data = (WB_JAL) ? WB_bj_write_data : wb_data;
    assign RS = inst[10:8]; //added code here
    assign RT = inst[7:5];
    assign RD = write_sel;
    assign inst_help = (PC == pc_help) ? 16'b0000_1000_0000_0000 : inst;
    mux4_1 write_sel_mux[2:0](.InA(inst[4:2]), .InB(inst[7:5]), .InC(inst[10:8]), .InD(R7), .S(Dst_reg), .Out(write_sel));
 
-   assign write_sel_pipe = (JAL) ? write_sel : write_sel_WB;
-   assign reg_write_pipe = (JAL) ? Reg_write : wb_reg_write;
+   assign write_sel_pipe = write_sel_WB;
+   assign reg_write_pipe = wb_reg_write;
 
    control ctrl_blk(.inst(inst_help), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                   .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt), .valid_rd(valid_rd));
 
-   
+
    regFile_bypass regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
                            .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel_pipe), .writeData(write_data), .writeEn(reg_write_pipe));
-    
-   /* 
+
+   /*
    regFile regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
                     .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel_pipe), .writeData(wb_data), .writeEn(reg_write_pipe));
    */
@@ -94,7 +96,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
 
    hazard_det hazard_blk(.rd_ID_EX(rd_ID_EX), .rt(RT), .rs(RS),
                          .rd_EX_MEM(rd_EX_MEM), .rs_ID_EX(rs_ID_EX), .EX_MEM_reg_write(EX_MEM_reg_write), .EX_MEM_ins(EX_MEM_ins), .rs_EX_MEM(rs_EX_MEM),
-                         .MEM_wb_reg_write(MEM_wb_reg_write), .MEM_wb_ins(MEM_wb_ins), .PC_source(PC_src), .stall_decode(stall_decode), 
+                         .MEM_wb_reg_write(MEM_wb_reg_write), .MEM_wb_ins(MEM_wb_ins), .PC_source(PC_src), .stall_decode(stall_decode),
                          .flush_fetch(flush_fetch), .EX_MEM_valid_rd(EX_MEM_valid_rd), .MEM_wb_valid_rd(MEM_wb_valid_rd), .curr_ins(inst));
 
 endmodule

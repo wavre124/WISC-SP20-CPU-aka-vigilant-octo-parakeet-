@@ -34,6 +34,7 @@ localparam jalr = 5'b00111;
 localparam lbi = 5'b11000;
 localparam store = 5'b10000; 
 localparam slbi = 5'b10010; 
+localparam R7 = 3'b111;
 wire [4:0] EX_MEM_op;
 wire [4:0] MEM_wb_op;
 
@@ -62,10 +63,21 @@ assign rs_reg_ex_mem =  (rs_ID_EX == RD);
 wire rs_reg_mem_wb;
 assign rs_reg_mem_wb = (rs_EX_MEM == RD);
 
+wire jal_jalr1;
+assign jal_jalr1 = ((EX_MEM_op == jal) | (EX_MEM_op == jalr));
+wire jal_jalr2; 
+assign jal_jalr2 = ((MEM_wb_op == jal) | (MEM_wb_op == jalr)); 
+
+wire st_stu;
+assign st_stu = (opcode == store) | (opcode == stu);
+
+
 
 assign stall_decode = (ex_mem_reg_valid_rd & rs_rt_1) ? 1'b1 :
                       (mem_reg_valid_rd & rs_rt_2) ? 1'b1 :
-			                ((opcode == store | opcode == stu) & (((ex_mem_reg_valid_rd & rs_rt_d) | (mem_reg_valid_rd & rs_rt_d2)) | (write_rs_ex_mem & rs_reg_ex_mem) | (write_rs_mem_wb &                        rs_reg_mem_wb))) ? 1'b1 :
+			                ((st_stu) & (((ex_mem_reg_valid_rd & rs_rt_d) | (mem_reg_valid_rd & rs_rt_d2)) | (write_rs_ex_mem & rs_reg_ex_mem) | (write_rs_mem_wb &                                                rs_reg_mem_wb))) ? 1'b1 :
+                      ((jal_jalr1) & ((st_stu & (RD == R7)) | (rs_rt_1))) ? 1'b1 :
+                      ((jal_jalr2) & ((st_stu & (RD == R7)) | (rs_rt_2))) ? 1'b1 :
                       ((write_rs_ex_mem) & ((rs_ID_EX == rt) | (rs_ID_EX == rs))) ? 1'b1 :
 	                  	((write_rs_mem_wb) & ((rs_EX_MEM == rt) | (rs_EX_MEM == rs))) ? 1'b1 : 1'b0;
 

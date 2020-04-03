@@ -93,8 +93,8 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
                       .branch_jump_op(branch_jump_op), .b_j_PC(br_ju_addr), .reg_data(bj_write_data));
 
    hazard_det hazard_blk(.rd_ID_EX(rd_ID_EX), .rt(RT), .rs(RS),
-                         .rd_EX_MEM(rd_EX_MEM), .rs_EX_MEM(rs_EX_MEM), .EX_MEM_reg_write(EX_MEM_reg_write), .EX_MEM_ins(EX_MEM_ins), .rs_MEM_WB(rs_MEM_WB),
+                         .rd_EX_MEM(rd_EX_MEM), .rs_ID_EX(rs_ID_EX), .EX_MEM_reg_write(EX_MEM_reg_write), .EX_MEM_ins(EX_MEM_ins), .rs_EX_MEM(rs_EX_MEM),
                          .MEM_wb_reg_write(MEM_wb_reg_write), .MEM_wb_ins(MEM_wb_ins), .PC_source(PC_src), .stall_decode(stall_decode), 
-                         .flush_fetch(flush_fetch), .EX_MEM_valid_rd(EX_MEM_valid_rd), .MEM_wb_valid_rd(MEM_wb_valid_rd));
+                         .flush_fetch(flush_fetch), .EX_MEM_valid_rd(EX_MEM_valid_rd), .MEM_wb_valid_rd(MEM_wb_valid_rd), .curr_ins(inst));
 
 endmodule

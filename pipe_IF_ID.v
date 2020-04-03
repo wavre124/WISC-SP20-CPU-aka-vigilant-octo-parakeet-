@@ -1,10 +1,11 @@
-module pipe_IF_ID(clk, rst, instruction, incremented_pc, flush_fetch, stall_decode, ID_instruction, ID_incremented_pc);
+module pipe_IF_ID(clk, rst, instruction, incremented_pc, flush_fetch, stall_decode, ID_instruction, ID_incremented_pc, halt);
 
 input clk, rst;
 input [15:0] instruction; //instruction received from instruction memory
 input [15:0] incremented_pc;
 input flush_fetch;
 input stall_decode;
+input halt;
 
 output [15:0] ID_instruction;
 output [15:0] ID_incremented_pc;
@@ -14,7 +15,7 @@ wire [15:0] mux_pc;
 
 wire nop_stall;
 
-assign nop_stall = flush_fetch;
+assign nop_stall = flush_fetch | halt;
 
 localparam nop  = 16'b0000_1000_0000_0000;
 

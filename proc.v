@@ -107,8 +107,8 @@ module proc (/*AUTOARG*/
                      .immediate(immediate), .stall_decode(stall_decode), .flush_fetch(flush_fetch), //3
                       .rd_ID_EX(EX_rd), .rt_ID_EX(EX_rt), .rs_ID_EX(EX_rs), .rd_EX_MEM(MEM_RD), //4
                       .EX_MEM_reg_write(EX_Reg_write), .MEM_wb_reg_write(MEM_Reg_write), .wb_reg_write(WB_Reg_write) ,.write_sel(write_sel), .write_sel_WB(WB_write_sel), //5
-                      .rs_EX_MEM(MEM_RS), .EX_MEM_ins(MEM_instruction), .rs_MEM_WB(WB_RS), .MEM_wb_ins(WB_instruction), .halt(halt), .valid_rd(valid_rd), //6
-                      .EX_MEM_valid_rd(MEM_valid_rd), .MEM_wb_valid_rd(WB_valid_rd)); //2
+                      .rs_EX_MEM(MEM_RS), .EX_MEM_ins(EX_instruction), .rs_MEM_WB(WB_RS), .MEM_wb_ins(MEM_instruction), .halt(halt), .valid_rd(valid_rd), //6
+                      .EX_MEM_valid_rd(EX_valid_rd), .MEM_wb_valid_rd(MEM_valid_rd)); //2
 
 
    
@@ -125,7 +125,7 @@ module proc (/*AUTOARG*/
    execute execute_blk(.data_1(EX_Data_one), .data_2(EX_Data_two), .signed_immediate(EX_immediate),
                        .ALU_src(EX_ALU_src), .ALU_op(EX_ALU_op), .data_out(alu_out));
 
-   pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(instruction), .data_out(alu_out), .data_two(EX_Data_two), .RD(EX_rd), .RS(EX_rs),
+   pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(EX_instruction), .data_out(alu_out), .data_two(EX_Data_two), .RD(EX_rd), .RS(EX_rs),
                                           .Dst_reg(EX_Dst_reg), .PC_src(EX_PC_src), .Reg_write(EX_Reg_write), .Mem_read(EX_Mem_read), .Mem_write(EX_Mem_write), .Mem_reg(EX_Mem_reg),
                                           .Mem_en(EX_Mem_en), .write_sel(EX_write_sel), .instruction_o(MEM_instruction), .data_out_o(MEM_data_out), .data_two_o(MEM_data_two),                                                  .RD_o(MEM_RD), .RS_o(MEM_RS),
                                           .Dst_reg_o(MEM_Dst_reg), .PC_src_o(MEM_PC_src), .Reg_write_o(MEM_Reg_write), .Mem_read_o(MEM_Mem_read),

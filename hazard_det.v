@@ -42,10 +42,10 @@ wire [4:0] MEM_wb_op;
 assign EX_MEM_op = EX_MEM_ins[15:11];
 assign MEM_wb_op = MEM_wb_ins[15:11];
 
-assign stall_decode = ((EX_MEM_reg_write) & ((rd_ID_EX == rt) | (rd_ID_EX == rs))) ? 1'b1 :
-                      ((MEM_wb_reg_write) & ((rd_EX_MEM == rt) | (rd_EX_MEM == rs))) ? 1'b1 :
-			                //((EX_MEM_op == lbi) & ((rs_EX_MEM == rt) | (rs_EX_MEM == rs))) ? 1'b1 :
-                      //((MEM_wb_op == lbi) & ((rs_MEM_WB == rt) | (rs_MEM_WB == rs))) ? 1'b1 :
+assign stall_decode = ((EX_MEM_reg_write) & (EX_MEM_valid_rd) & ((rd_ID_EX == rt)  | (rd_ID_EX == rs))) ? 1'b1 :
+                      ((MEM_wb_reg_write) & (EX_MEM_valid_rd) & ((rd_EX_MEM == rt) | (rd_EX_MEM == rs))) ? 1'b1 :
+			                ((EX_MEM_op == lbi) & ((rs_EX_MEM == rt) | (rs_EX_MEM == rs))) ? 1'b1 :
+                      ((MEM_wb_op == lbi) & ((rs_MEM_WB == rt) | (rs_MEM_WB == rs))) ? 1'b1 :
                       ((EX_MEM_op == stu) & ((rs_EX_MEM == rt) | (rs_EX_MEM == rs))) ? 1'b1 :
 	                  	((MEM_wb_op == stu) & ((rs_MEM_WB == rt) | (rs_MEM_WB == rs))) ? 1'b1 : 1'b0;
 

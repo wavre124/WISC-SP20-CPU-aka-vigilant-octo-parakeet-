@@ -4,11 +4,11 @@
    Filename        : decode.v
    Description     : This is the module for the overall decode stage of the processor.
 */
-module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, branch_jump_op, PC_src, Dst_reg, Ext_op,
-               Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg,
-               Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch,
-               rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, rd_MEM_WB, EX_MEM_reg_write, MEM_wb_reg_write, write_sel, write_sel_WB,
-               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd);
+module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, branch_jump_op, PC_src, Dst_reg, Ext_op, //14
+               Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, //6
+               Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch, //9
+               rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, ,EX_MEM_reg_write, MEM_wb_reg_write, wb_reg_write ,write_sel, write_sel_WB, //9
+               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd); //8
 
    // TODO: Your code here
 
@@ -24,16 +24,14 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    input [2:0] rt_ID_EX;
    input [2:0] rs_ID_EX;
    input [2:0] rd_EX_MEM;
-   input [2:0] rd_MEM_WB;
    input EX_MEM_valid_rd, MEM_wb_valid_rd;
    input EX_MEM_reg_write;
    input MEM_wb_reg_write;
-
+   input wb_reg_write;
    input [2:0] rs_EX_MEM;
    input [15:0] EX_MEM_ins;
    input [2:0] rs_MEM_WB;
    input [15:0] MEM_wb_ins;
-
    input [2:0] write_sel_WB;
 
    output [N-1:0] Data_one; // Rs
@@ -75,7 +73,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    mux4_1 write_sel_mux[2:0](.InA(inst[4:2]), .InB(inst[7:5]), .InC(inst[10:8]), .InD(R7), .S(Dst_reg), .Out(write_sel));
 
    assign write_sel_pipe = (JAL) ? write_sel : write_sel_WB;
-   assign reg_write_pipe = (JAL) ? Reg_write : MEM_wb_reg_write;
+   assign reg_write_pipe = (JAL) ? Reg_write : wb_reg_write;
 
    control ctrl_blk(.inst(inst_help), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
@@ -94,8 +92,8 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    branch_jump bj_blk(.rs(Data_one), .PC(PC), .imm(immediate), .displacement(immediate),
                       .branch_jump_op(branch_jump_op), .b_j_PC(br_ju_addr), .reg_data(bj_write_data));
 
-   hazard_det hazard_blk(.rd_ID_EX(rd_ID_EX), .rt_ID_EX(rt_ID_EX), .rs_ID_EX(rs_ID_EX),
-                         .rd_EX_MEM(rd_EX_MEM), .rs_EX_MEM(rs_EX_MEM), .EX_MEM_reg_write(EX_MEM_reg_write), .EX_MEM_ins(EX_MEM_ins), .rd_MEM_WB(rd_MEM_WB), .rs_MEM_WB(rs_MEM_WB),
+   hazard_det hazard_blk(.rd_ID_EX(rd_ID_EX), .rt(RT), .rs(RS),
+                         .rd_EX_MEM(rd_EX_MEM), .rs_EX_MEM(rs_EX_MEM), .EX_MEM_reg_write(EX_MEM_reg_write), .EX_MEM_ins(EX_MEM_ins), .rs_MEM_WB(rs_MEM_WB),
                          .MEM_wb_reg_write(MEM_wb_reg_write), .MEM_wb_ins(MEM_wb_ins), .PC_source(PC_src), .stall_decode(stall_decode), 
                          .flush_fetch(flush_fetch), .EX_MEM_valid_rd(EX_MEM_valid_rd), .MEM_wb_valid_rd(MEM_wb_valid_rd));
 

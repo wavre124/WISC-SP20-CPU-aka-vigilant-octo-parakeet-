@@ -110,14 +110,10 @@ assign stall_decode = (((valD_regW_1 & equal_rs_rt) | (r7_write &  rs_rt_r7) | (
                       //R7 equals RS
 
                       ((st_stu) & (~lbi_stall) & (((valD_regW_1 & equals_RD_1) | (valD_regW_2 & equals_RD_2)) | (write_Rs_1 & rs_equal_rd_1) | (write_Rs_2 &
-                        rs_equal_rd_2) | (r7_write & (RD == R7)) | (r7_write_2 & (RD == R7) ))) ? 1'b1 :
+                        rs_equal_rd_2) | (r7_write & (RD == R7)) | (r7_write_2 & (RD == R7) ))) ? 1'b1 : 1'b0;
                       //checking if it is instruction that needs Rd in decode state and then checking if instruction in front of us writes to Rd and that Rd is equal to Rd in decode
                       //stage and checking if the instruciton in front of us is writing to Rs and that Rs equals Rd then checking to see if instruction in front of us is writing to                       //R7 and RD = R7
 
-
-
-
-                      ((write_Rs_2) & (~lbi_stall) & ((rs_EX_MEM == rt) | (rs_EX_MEM == rs))) ? 1'b1 : 1'b0;
 
 assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
 

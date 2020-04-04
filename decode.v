@@ -7,7 +7,7 @@
 module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, branch_jump_op, PC_src, Dst_reg, Ext_op, //14
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, //6
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch, //9
-               rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, ,EX_MEM_reg_write, MEM_wb_reg_write, wb_reg_write ,write_sel, write_sel_WB, //9
+               rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, EX_MEM_reg_write, MEM_wb_reg_write, wb_reg_write ,write_sel, write_sel_WB, //9
                rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd, WB_JAL, bj_write_data, WB_bj_write_data); //8
 
    // TODO: Your code here

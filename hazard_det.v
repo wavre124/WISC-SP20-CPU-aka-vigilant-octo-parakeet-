@@ -24,7 +24,7 @@ assign opcode = curr_ins[15:11];
 output stall_decode;
 output flush_fetch;
 
-// assume branch taken for all branch/control hazards
+
 
 assign RD = curr_ins[7:5];
 
@@ -115,18 +115,10 @@ assign stall_decode = (((valD_regW_1 & equal_rs_rt) | (r7_write &  rs_rt_r7) | (
                       //stage and checking if the instruciton in front of us is writing to Rs and that Rs equals Rd then checking to see if instruction in front of us is writing to                       //R7 and RD = R7
 
 
+
 assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
 
-//special instructions we need to watch out for
-//STU writes to RS so RS has a data dependency if any instruction in front of
-//us in pipeline has OP code of 10011
-//
-//All JAL and JALR instructions write to R7 so we need to check if any insturctions in
-//front of us have an opcode of 00110 or opcode of 00111
-//should pass in opcode from all stages
 
-
-//things i changed, changed input to hazard detect to RS/RT instead of one from pipe as well as the module instantiation names and changed it our stall logic
 
 
 

@@ -8,7 +8,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, //6
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch, //9
                rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, EX_MEM_reg_write, MEM_wb_reg_write, wb_reg_write ,write_sel, write_sel_WB, //9
-               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd, WB_JAL, bj_write_data, WB_bj_write_data); //8
+               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd, WB_JAL, bj_write_data, WB_bj_write_data); //11
 
    // TODO: Your code here
 
@@ -77,9 +77,11 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    assign write_sel_pipe = write_sel_WB;
    assign reg_write_pipe = wb_reg_write;
 
+   wire valid_rt;
+
    control ctrl_blk(.inst(inst_help), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
-                  .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt), .valid_rd(valid_rd));
+                  .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt), .valid_rd(valid_rd), .valid_rt(valid_rt));
 
 
    regFile_bypass regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
@@ -97,6 +99,6 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    hazard_det hazard_blk(.rd_ID_EX(rd_ID_EX), .rt(RT), .rs(RS),
                          .rd_EX_MEM(rd_EX_MEM), .rs_ID_EX(rs_ID_EX), .EX_MEM_reg_write(EX_MEM_reg_write), .EX_MEM_ins(EX_MEM_ins), .rs_EX_MEM(rs_EX_MEM),
                          .MEM_wb_reg_write(MEM_wb_reg_write), .MEM_wb_ins(MEM_wb_ins), .PC_source(PC_src), .stall_decode(stall_decode),
-                         .flush_fetch(flush_fetch), .EX_MEM_valid_rd(EX_MEM_valid_rd), .MEM_wb_valid_rd(MEM_wb_valid_rd), .curr_ins(inst));
+                         .flush_fetch(flush_fetch), .EX_MEM_valid_rd(EX_MEM_valid_rd), .MEM_wb_valid_rd(MEM_wb_valid_rd), .curr_ins(inst), .valid_rt(valid_rt));
 
 endmodule

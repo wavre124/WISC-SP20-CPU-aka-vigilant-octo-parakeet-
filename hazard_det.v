@@ -1,7 +1,7 @@
 module hazard_det(rd_ID_EX, rt, rs,
                   rd_EX_MEM, rs_ID_EX, EX_MEM_reg_write, EX_MEM_ins, rs_EX_MEM,
-                  MEM_wb_reg_write, MEM_wb_ins, PC_source, stall_decode, flush_fetch, EX_MEM_valid_rd, MEM_wb_valid_rd, curr_ins);
-
+                  MEM_wb_reg_write, MEM_wb_ins, PC_source, stall_decode, flush_fetch, EX_MEM_valid_rd, MEM_wb_valid_rd, curr_ins, valid_rt);
+input valid_rt;
 input [2:0] rd_ID_EX;
 input [2:0] rt;
 input [2:0] rs;
@@ -36,6 +36,7 @@ localparam lbi = 5'b11000;
 localparam store = 5'b10000;
 localparam slbi = 5'b10010;
 localparam R7 = 3'b111;
+localparam load = 5'b10001;
 wire [4:0] EX_MEM_op;
 wire [4:0] MEM_wb_op;
 
@@ -91,17 +92,19 @@ wire st_stu; //these instructions need RD in decode so waiting for that
 assign st_stu = (opcode == store) | (opcode == stu);
 
 wire jalr_jr; //these instructions need RS in decode so checking if one of those
-assign jalr_jr = (opcode == jalr) | (opcode == jr);
+assign jalr_jr = (opcode == jalr) | (opcode == jr) | (opcode == load);
 
 wire lbi_stall; //never stall on lbi so checking for that
 assign lbi_stall = (opcode == lbi);
 
-assign stall_decode = (((valD_regW_1 & equal_rs_rt) | (r7_write &  rs_rt_r7) | (write_Rs_1 & rs_equal_rs_rt)) & (~lbi_stall)) ? 1'b1 :
+assign stall_decode = (((valD_regW_1 & equal_rs_rt & valid_rt)| (valD_regW_1 &  (rd_ID_EX == rs)) | (r7_write &  rs_rt_r7) |
+                      (write_Rs_1 & rs_equal_rs_rt)) & (~lbi_stall)) ? 1'b1 :
                       //checking first pipe register to see if it is writing to RD and that RD equals Rs/Rt
                       //and it is not lbi because lbi never stalls and also checking if instruction in front us is writing
                       //to R7 and that R7 is equal to Rs/Rt, also checking if isntruction in front us is writing to rs and that rs equals rs/rt ..... maybe include valid Rt signal???
 
-                      (((valD_regW_2 & equal_rs_rt2) | (r7_write_2 &  rs_rt_r7) | (write_Rs_2 & rs_equal_rs_rt2)) & (~lbi_stall)) ? 1'b1 ://same logic as comment above
+                      (((valD_regW_2 & equal_rs_rt2 & valid_rt)| (valD_regW_2 & (rd_EX_MEM == rs))  | (r7_write_2 &  rs_rt_r7) |
+                      (write_Rs_2 & rs_equal_rs_rt2)) & (~lbi_stall)) ? 1'b1 ://same logic as comment above
 
                       ((jalr_jr) & ((valD_regW_1 & (rd_ID_EX == rs)) | (valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) |
                       (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write & (rs == R7)) | (r7_write_2 & (rs == R7)))) ? 1'b1 :
@@ -114,8 +117,8 @@ assign stall_decode = (((valD_regW_1 & equal_rs_rt) | (r7_write &  rs_rt_r7) | (
                       //checking if it is instruction that needs Rd in decode state and then checking if instruction in front of us writes to Rd and that Rd is equal to Rd in decode
                       //stage and checking if the instruciton in front of us is writing to Rs and that Rs equals Rd then checking to see if instruction in front of us is writing to                       //R7 and RD = R7
 
-
-
+//| (valD_regW_1 &  (rs_ID_EX == rs))
+//| (valD_regW_2 &  (rs_EX_MEM == rs))
 assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
 
 

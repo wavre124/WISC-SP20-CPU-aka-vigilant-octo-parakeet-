@@ -15,7 +15,7 @@ input [2:0] rs_EX_MEM;
 input MEM_wb_reg_write;
 input [15:0] MEM_wb_ins;
 input [1:0] PC_source;
-wire [5:0] opcode;
+wire [4:0] opcode;
 wire [2:0] RD;
 // stalling the pipe_ID_EX
 //output stall_execute;
@@ -71,15 +71,16 @@ assign jal_jalr2 = ((MEM_wb_op == jal) | (MEM_wb_op == jalr));
 wire st_stu;
 assign st_stu = (opcode == store) | (opcode == stu);
 
+wire lbi_stall;
+assign lbi_stall = (opcode == lbi);
 
-
-assign stall_decode = (ex_mem_reg_valid_rd & rs_rt_1) ? 1'b1 :
-                      (mem_reg_valid_rd & rs_rt_2) ? 1'b1 :
-			                ((st_stu) & (((ex_mem_reg_valid_rd & rs_rt_d) | (mem_reg_valid_rd & rs_rt_d2)) | (write_rs_ex_mem & rs_reg_ex_mem) | (write_rs_mem_wb &                                                rs_reg_mem_wb))) ? 1'b1 :
+assign stall_decode = (ex_mem_reg_valid_rd & rs_rt_1 & (~lbi_stall)) ? 1'b1 :
+                      (mem_reg_valid_rd & rs_rt_2 & (~lbi_stall)) ? 1'b1 :
+			                ((st_stu) & (~lbi_stall) & (((ex_mem_reg_valid_rd & rs_rt_d) | (mem_reg_valid_rd & rs_rt_d2)) | (write_rs_ex_mem & rs_reg_ex_mem) | (write_rs_mem_wb &                                rs_reg_mem_wb))) ? 1'b1 :
                       ((jal_jalr1) & ((st_stu & (RD == R7)) | (rs_rt_1))) ? 1'b1 :
                       ((jal_jalr2) & ((st_stu & (RD == R7)) | (rs_rt_2))) ? 1'b1 :
-                      ((write_rs_ex_mem) & ((rs_ID_EX == rt) | (rs_ID_EX == rs))) ? 1'b1 :
-	                  	((write_rs_mem_wb) & ((rs_EX_MEM == rt) | (rs_EX_MEM == rs))) ? 1'b1 : 1'b0;
+                      ((write_rs_ex_mem) & (~lbi_stall) & ((rs_ID_EX == rt) | (rs_ID_EX == rs))) ? 1'b1 :
+	                  	((write_rs_mem_wb) & (~lbi_stall) & ((rs_EX_MEM == rt) | (rs_EX_MEM == rs))) ? 1'b1 : 1'b0;
 
 assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
 

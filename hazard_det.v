@@ -97,14 +97,14 @@ assign jalr_jr = (opcode == jalr) | (opcode == jr) | (opcode == load);
 wire lbi_stall; //never stall on lbi so checking for that
 assign lbi_stall = (opcode == lbi);
 
-assign stall_decode = (((valD_regW_1 & equal_rs_rt & valid_rt)| (valD_regW_1 &  (rd_ID_EX == rs)) | (r7_write &  rs_rt_r7) |
-                      (write_Rs_1 & rs_equal_rs_rt)) & (~lbi_stall)) ? 1'b1 :
+assign stall_decode = (((valD_regW_1 & equal_rs_rt & valid_rt)| (valD_regW_1 &  (rd_ID_EX == rs)) | (r7_write &  rs_rt_r7 & valid_rt) |
+                      (write_Rs_1 & rs_equal_rs_rt & valid_rt) | (write_Rs_1 & (rs_ID_EX == rs)) | (r7_write & (R7 == rs))) & (~lbi_stall)) ? 1'b1 :
                       //checking first pipe register to see if it is writing to RD and that RD equals Rs/Rt
                       //and it is not lbi because lbi never stalls and also checking if instruction in front us is writing
                       //to R7 and that R7 is equal to Rs/Rt, also checking if isntruction in front us is writing to rs and that rs equals rs/rt ..... maybe include valid Rt signal???
 
-                      (((valD_regW_2 & equal_rs_rt2 & valid_rt)| (valD_regW_2 & (rd_EX_MEM == rs))  | (r7_write_2 &  rs_rt_r7) |
-                      (write_Rs_2 & rs_equal_rs_rt2)) & (~lbi_stall)) ? 1'b1 ://same logic as comment above
+                      (((valD_regW_2 & equal_rs_rt2 & valid_rt)| (valD_regW_2 & (rd_EX_MEM == rs))  | (r7_write_2 &  rs_rt_r7 & valid_rt) |
+                      (write_Rs_2 & rs_equal_rs_rt2 & valid_rt)  | (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write_2 & (R7 == rs))) & (~lbi_stall)) ? 1'b1 ://same logic as comment above
 
                       ((jalr_jr) & ((valD_regW_1 & (rd_ID_EX == rs)) | (valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) |
                       (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write & (rs == R7)) | (r7_write_2 & (rs == R7)))) ? 1'b1 :

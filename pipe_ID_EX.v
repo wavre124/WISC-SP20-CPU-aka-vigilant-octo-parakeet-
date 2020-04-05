@@ -2,7 +2,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
                   instruction, immediate, Data_one, Data_two, rd, rs, rt, write_sel, halt_o, ALU_op_o,
                   Dst_reg_o, PC_src_o, ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o,
                   Mem_en_o, instruction_o, immediate_o, Data_one_o, Data_two_o, rd_o, rs_o, rt_o, write_sel_o, valid_rd_o, stall_decode, JAL, JAL_o,
-                  bj_write_data, bj_write_data_o);
+                  bj_write_data, bj_write_data_o, instruction_ex);
 
   input clk, rst;
 
@@ -13,7 +13,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
   /////////////////////////////////////////////////////////////////////////////////////////
 
   //inputs that are NOT CONTROL UNIT SIGNALS/////////////////////////////////////////////////
-   input [15:0] instruction;
+   input [15:0] instruction, instruction_ex;
    input [15:0] immediate;
    input [15:0] Data_one; // Rs data
    input [15:0] Data_two; // Rt data
@@ -51,13 +51,17 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
    wire Mem_read_s;
    //mem_reg does not matter
    wire Mem_write_s;
+   wire halt_s;
    //i think these are the only important signals
-
-   assign instruction_s = (stall_decode) ? 16'h0000 : instruction;
-   assign Reg_write_s = (stall_decode) ? 1'b0 : Reg_write; //honestly not sure if we need this but oh well
-   assign Mem_read_s = (stall_decode) ? 1'b0 : Mem_read;
-   assign Mem_write_s = (stall_decode) ? 1'b0 : Mem_write;
-
+   wire [4:0] opcode;
+   localparam siic = 5'b00010;
+   localparam rti = 5'b00011;
+   assign opcode = instruction_ex[15:11];
+   assign instruction_s = ((stall_decode) | (opcode == siic) | (opcode == rti) ) ? 16'h0800 : instruction;
+   assign Reg_write_s = ((stall_decode) | (opcode == siic) | (opcode == rti) )? 1'b0 : Reg_write; //honestly not sure if we need this but oh well
+   assign Mem_read_s = ((stall_decode) | (opcode == siic) | (opcode == rti) ) ? 1'b0 : Mem_read;
+   assign Mem_write_s = ((stall_decode) | (opcode == siic) | (opcode == rti) ) ? 1'b0 : Mem_write;
+   assign halt_s = ( (opcode == siic) | (opcode == rti) ) ? 1'b0 : halt;
    //flops for CONTROL UNIT SIGNALS//////////////////////////////////////////////////
     dff alu_op_flop[3:0](.q(ALU_op_o), .d(ALU_op), .clk(clk), .rst(rst));
     dff dst_flop[1:0](.q(Dst_reg_o), .d(Dst_reg), .clk(clk), .rst(rst));
@@ -68,7 +72,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
     dff Mem_write_flop(.q(Mem_write_o), .d(Mem_write_s), .clk(clk), .rst(rst));
     dff Mem_reg_flop(.q(Mem_reg_o), .d(Mem_reg), .clk(clk), .rst(rst));
     dff Mem_en_flop(.q(Mem_en_o), .d(Mem_en), .clk(clk), .rst(rst));
-    dff halt_flop(.q(halt_o), .d(halt), .clk(clk), .rst(rst));
+    dff halt_flop(.q(halt_o), .d(halt_s), .clk(clk), .rst(rst));
     dff valid_rd_flop(.q(valid_rd_o), .d(valid_rd), .clk(clk), .rst(rst));
     dff JAL_flop(.q(JAL_o), .d(JAL), .clk(clk), .rst(rst));
     ////////////////////////////////////////////////////////////////////////////////////////

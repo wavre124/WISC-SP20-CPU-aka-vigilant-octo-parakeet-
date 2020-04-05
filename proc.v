@@ -102,10 +102,10 @@ module proc (/*AUTOARG*/
 
 
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
-                   .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC));
+                   .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC), .EX_instruction(EX_instruction));
 
    pipe_IF_ID pipe_one(.clk(clk), .rst(rst), .instruction(instruction), .incremented_pc(inc_PC), .flush_fetch(flush_fetch),
-                             .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc), .halt(halt));
+                             .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc), .halt(halt), .EX_instruction(EX_instruction));
 
    decode decode_blk(.clk(clk), .rst(rst), .Data_one(data_one), .Data_two(data_two), .err(dec_err), .inst(ID_instruction), //6
                      .ALU_op(ALU_op), .RD(ID_RD), .RS(ID_RS), .RT(ID_RT), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op), //8
@@ -128,7 +128,7 @@ module proc (/*AUTOARG*/
                                        .Mem_en_o(EX_Mem_en), .instruction_o(EX_instruction), .immediate_o(EX_immediate),
                                        .Data_one_o(EX_Data_one), .Data_two_o(EX_Data_two), .rd_o(EX_rd), .rs_o(EX_rs), .rt_o(EX_rt), .write_sel_o(EX_write_sel), .halt(halt),
                                        .halt_o(EX_Mem_halt), .valid_rd(valid_rd), .valid_rd_o(EX_valid_rd), .stall_decode(stall_decode), .JAL(JAL), .JAL_o(EX_JAL),
-                                       .bj_write_data(bj_write_data), .bj_write_data_o(EX_bj_write_data));
+                                       .bj_write_data(bj_write_data), .bj_write_data_o(EX_bj_write_data), .instruction_ex(EX_instruction));
 
    execute execute_blk(.data_1(EX_Data_one), .data_2(EX_Data_two), .signed_immediate(EX_immediate),
                        .ALU_src(EX_ALU_src), .ALU_op(EX_ALU_op), .data_out(alu_out));

@@ -1,0 +1,8 @@
+6c6
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/perf-test-dep-zero.asm SUCCESS CPI:6.4 CYCLES:32 ICOUNT:5 IHITRATE: 0 DHITRATE: 0
+---
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/perf-test-dep-zero.asm SUCCESS CPI:5.2 CYCLES:26 ICOUNT:5 IHITRATE: 0 DHITRATE: 0
+8c8
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/stallTest.asm SUCCESS CPI:2.7 CYCLES:206 ICOUNT:77 IHITRATE: 0 DHITRATE: 0
+---
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/stallTest.asm SUCCESS CPI:2.4 CYCLES:184 ICOUNT:77 IHITRATE: 0 DHITRATE: 0

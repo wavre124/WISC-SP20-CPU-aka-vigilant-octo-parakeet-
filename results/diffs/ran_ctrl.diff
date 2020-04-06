@@ -1,0 +1,18 @@
+1,8c1,8
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_1_ctrl.asm SUCCESS CPI:1.9 CYCLES:1026 ICOUNT:551 IHITRATE: 0 DHITRATE: 0
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_2_ctrl.asm SUCCESS CPI:1.8 CYCLES:1083 ICOUNT:594 IHITRATE: 0 DHITRATE: 0
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_3_ctrl.asm SUCCESS CPI:1.8 CYCLES:1135 ICOUNT:616 IHITRATE: 0 DHITRATE: 0
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_4_ctrl.asm SUCCESS CPI:2.0 CYCLES:948 ICOUNT:473 IHITRATE: 0 DHITRATE: 0
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_5_ctrl.asm SUCCESS CPI:1.8 CYCLES:1023 ICOUNT:566 IHITRATE: 0 DHITRATE: 0
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_6_ctrl.asm SUCCESS CPI:1.9 CYCLES:1101 ICOUNT:593 IHITRATE: 0 DHITRATE: 0
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_7_ctrl.asm SUCCESS CPI:1.8 CYCLES:1112 ICOUNT:608 IHITRATE: 0 DHITRATE: 0
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_8_ctrl.asm SUCCESS CPI:2.0 CYCLES:936 ICOUNT:472 IHITRATE: 0 DHITRATE: 0
+---
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_1_ctrl.asm SUCCESS CPI:1.8 CYCLES:975 ICOUNT:551 IHITRATE: 0 DHITRATE: 0
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_2_ctrl.asm SUCCESS CPI:1.7 CYCLES:1006 ICOUNT:594 IHITRATE: 0 DHITRATE: 0
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_3_ctrl.asm SUCCESS CPI:1.8 CYCLES:1090 ICOUNT:616 IHITRATE: 0 DHITRATE: 0
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_4_ctrl.asm SUCCESS CPI:1.9 CYCLES:902 ICOUNT:473 IHITRATE: 0 DHITRATE: 0
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_5_ctrl.asm SUCCESS CPI:1.8 CYCLES:993 ICOUNT:566 IHITRATE: 0 DHITRATE: 0
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_6_ctrl.asm SUCCESS CPI:1.8 CYCLES:1038 ICOUNT:593 IHITRATE: 0 DHITRATE: 0
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_7_ctrl.asm SUCCESS CPI:1.7 CYCLES:1051 ICOUNT:608 IHITRATE: 0 DHITRATE: 0
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_ctrl/t_8_ctrl.asm SUCCESS CPI:1.9 CYCLES:897 ICOUNT:472 IHITRATE: 0 DHITRATE: 0

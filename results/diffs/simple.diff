@@ -1,0 +1,14 @@
+81,82c81,82
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_27.asm SUCCESS CPI:2.8 CYCLES:25 ICOUNT:9 IHITRATE: 0 DHITRATE: 0
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_28.asm SUCCESS CPI:3.4 CYCLES:17 ICOUNT:5 IHITRATE: 0 DHITRATE: 0
+---
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_27.asm SUCCESS CPI:2.7 CYCLES:24 ICOUNT:9 IHITRATE: 0 DHITRATE: 0
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_28.asm SUCCESS CPI:3.2 CYCLES:16 ICOUNT:5 IHITRATE: 0 DHITRATE: 0
+119c119
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_0.asm SUCCESS CPI:2.3 CYCLES:160 ICOUNT:70 IHITRATE: 0 DHITRATE: 0
+---
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_0.asm SUCCESS CPI:2.2 CYCLES:156 ICOUNT:70 IHITRATE: 0 DHITRATE: 0
+129c129
+< /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/siic_0.asm FAILED
+---
+> /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/siic_0.asm SUCCESS CPI:3.6 CYCLES:18 ICOUNT:5 IHITRATE: 0 DHITRATE: 0

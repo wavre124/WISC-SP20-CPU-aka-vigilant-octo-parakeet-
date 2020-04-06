@@ -1,0 +1,52 @@
+Created by David Waltz and Kshitij Wavre
+*note capital letters are used for stalling*
+
+Explanation of p2-1.asm
+Timing Diagram for p2-1.asm
+
+instruction/cycle
+                0|1|2|3|4|5|6|7|8|9|
+
+1)lbi r1, 2     f|d|x|m|w| | | | | |
+2)lbi r0, 1      |f|d|x|m|w| | | | |
+3)beqz r0, .label| |f|D|d|x|m|w| | |
+4)add r1, r0, r1 | | |F|f|d|x|m|w| |
+
+Using predict not taken at the Branch prediction policy, the add instruction should immediately go into the fetch stage instead of a no op which will save our processor one cycle.
+Since r0 is 1 and beqz takes the branch if RS = 0, the branch is not taken and thus the add instruction is executed. The beqz after the lbi assumes that forwarding takes place to
+the branch in ID. So that EX->ID forwarding takes place so the branch has the correct reg value.
+
+
+Explanation of p2-2.asm
+Timing Diagram for p2-2.asm
+
+instruction/cycle                       |1|1|1|1|1|
+                     0|1|2|3|4|5|6|7|8|9|0|1|2|3|4|
+
+1) lbi r2, 25        f|d|x|m|w| | | | | |
+2) lbi r3, 15         |f|d|x|m|w| | | | |
+3) nop                | |f|d|x|m|w| | | |
+4) nop                | | |f|d|x|m|w| | |
+5) nop                | | | |f|d|x|m|w| |
+6) sub r4, r3, r2     | | | | |f|d|x|m|w|
+7) nop                | | | | | |f|d|x|m|w|
+8) nop                | | | | | | |f|d|x|m|w|
+9) nop                | | | | | | | |f|d|x|m|w|
+10) bltz r4, .p2label | | | | | | | | |f|d|x|m|w|
+11) nop               | | | | | | | | | |f|d|x|m|w|
+
+Using predict taken, the nop would be the instruction immediately afterwards the branch (assuming it was taken) and the instruction after the nop
+would not be executed in this sequence of assembly language. Branch prediction helps because you load in a nop in the pipeline instead of an
+instruction that you need to flush because you are already predicting that the branch will be taken and nothing important should get loaded
+into the pipeline in the fetch stage.
+
+Answer to question: Will branch prediction always take only 1 cycle in our 5 stage pipeline?
+
+Branch prediction will not always take 1 cycle because if we have a predict not taken policy
+and we do not take the branch, we essentially spend 0 cycles on predicting the branch which
+means we waste no instructions and require no flushing of instructions in the pipeline.
+
+Whereas with branch taken, regardless of if we take the branch or not, we have a nop inserted
+after it which takes 1 cycle. Also, if branch predict not taken failed us, we would spend X
+number of cycles depending on where you resolve branches to flush the fetch and/or decode
+stages.

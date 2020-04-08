@@ -21,6 +21,6 @@ module memory (address, write_data, Mem_en, Mem_write, Mem_read, clk, rst, PC_sr
 
     //memory2c data_memory (.data_out(data_read), .data_in(write_data), .addr(address), .enable(Mem_en), .wr(Mem_write), .createdump(createdump), .clk(clk), .rst(rst));
 
-    memory2c_align data_memory(.data_out(data_read), .data_in(write_data), .addr(address), .enable(Mem_en), .wr(Mem_write), .createdump(createdump), .clk(clk), .rst(rst), .err(misalign_mem))
+    memory2c_align data_memory(.data_out(data_read), .data_in(write_data), .addr(address), .enable(Mem_en), .wr(Mem_write), .createdump(createdump), .clk(clk), .rst(rst), .err(misalign_mem));
 
 endmodule

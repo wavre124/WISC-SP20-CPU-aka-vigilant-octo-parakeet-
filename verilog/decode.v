@@ -77,7 +77,7 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    assign write_sel_pipe = write_sel_WB;
    assign reg_write_pipe = wb_reg_write;
 
-   wire valid_rt;
+   output valid_rt;
 
    control ctrl_blk(.inst(inst_help), .ALU_op(ALU_op), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op),
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),

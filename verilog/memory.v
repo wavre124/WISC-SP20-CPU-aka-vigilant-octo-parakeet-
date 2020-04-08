@@ -15,12 +15,16 @@ module memory (address, write_data, Mem_en, Mem_write, Mem_read, clk, rst, PC_sr
     output [15:0] data_read;
     output misalign_mem;
     wire createdump;
+    wire [15:0] aligned_address;
+    wire align_check;
 
+    assign align_check = (address[0]) ? 1'b0 : address[0];
+    assign aligned_address = {address[15:1], align_check};
 
     assign createdump = (PC_src == 0) ? 1'b1 : 1'b0; //createdump should be a 1 when it is halt instruction PC_src = 00 when halt instruction
 
     //memory2c data_memory (.data_out(data_read), .data_in(write_data), .addr(address), .enable(Mem_en), .wr(Mem_write), .createdump(createdump), .clk(clk), .rst(rst));
 
-    memory2c_align data_memory(.data_out(data_read), .data_in(write_data), .addr(address), .enable(Mem_en), .wr(Mem_write), .createdump(createdump), .clk(clk), .rst(rst), .err(misalign_mem));
+    memory2c_align data_memory(.data_out(data_read), .data_in(write_data), .addr(aligned_address), .enable(Mem_en), .wr(Mem_write), .createdump(createdump), .clk(clk), .rst(rst), .err(misalign_mem));
 
 endmodule

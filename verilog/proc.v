@@ -100,9 +100,16 @@ module proc (/*AUTOARG*/
    wire WB_Reg_write, WB_Mem_reg, WB_Mem_read, WB_Mem_write, WB_Mem_en, WB_halt, WB_valid_rd;
    wire WB_JAL;
 
+   // memory misalignment wires
+   // this wire is if a misalignment occurs in the instruction (fetch) blk
+   wire inst_mis_align;
+   // this wire is if a misalignment occurs in the memory blk
+   wire mem_mis_align;
+
 
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
-                   .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC), .EX_instruction(EX_instruction));
+                   .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC), .EX_instruction(EX_instruction),
+                   .misalign_mem(inst_mis_align));
 
    pipe_IF_ID pipe_one(.clk(clk), .rst(rst), .instruction(instruction), .incremented_pc(inc_PC), .flush_fetch(flush_fetch),
                              .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc), .halt(halt), .EX_instruction(EX_instruction));
@@ -143,7 +150,7 @@ module proc (/*AUTOARG*/
                                           .bj_write_data(EX_bj_write_data), .bj_write_data_o(MEM_bj_write_data));
 
    memory memory_blk(.address(MEM_data_out), .write_data(MEM_data_two), .Mem_en(MEM_Mem_en), .Mem_write(MEM_Mem_write), .Mem_read(MEM_Mem_read),
-                     .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data), .halt(MEM_halt));
+                     .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data), .halt(MEM_halt), .misalign_mem(mem_mis_align));
 
    pipe_MEM_WB pipe_four(.clk(clk), .rst(rst), .instruction(MEM_instruction), .data_read(mem_read_data), .address(MEM_data_out), .RD(MEM_RD), .RS(MEM_RS)
                                         , .Dst_reg(MEM_Dst_reg), .PC_src(MEM_PC_src), .Reg_write(MEM_Reg_write), .Mem_reg(MEM_Mem_reg), .Mem_read(MEM_Mem_read)
@@ -151,7 +158,7 @@ module proc (/*AUTOARG*/
                                         .address_o(WB_address), .RD_o(WB_RD), .RS_o(WB_RS), .Dst_reg_o(WB_Dst_reg), .PC_src_o(WB_PC_src),
                                         .Reg_write_o(WB_Reg_write), .Mem_reg_o(WB_Mem_reg), .Mem_read_o(WB_Mem_read), .Mem_write_o(WB_Mem_write), .write_sel_o(WB_write_sel),
                                         .Mem_en_o(WB_Mem_en), .halt(MEM_halt), .halt_o(WB_halt), .valid_rd(MEM_valid_rd), .valid_rd_o(WB_valid_rd), .JAL(MEM_JAL), .JAL_o(WB_JAL),
-                                        .bj_write_data(MEM_bj_write_data), .bj_write_data_o(WB_bj_write_data));
+                                        .bj_write_data(MEM_bj_write_data), .bj_write_data_o(WB_bj_write_data), .inst_misalign(inst_mis_align), .mem_misalign(mem_mis_align));
 
    wb wb_blk(.data_read(WB_data_read), .address(WB_address), .Mem_reg(WB_Mem_reg), .data_out(wb_data));
 

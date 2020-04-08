@@ -4,7 +4,7 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction);
+module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem);
   // TODO: Your code here
 
   input [1:0] PC_src;
@@ -19,11 +19,15 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
 
   output [15:0] instruction; //instruction received from instruction memory
   output [15:0] incremented_pc;
+  output misalign_mem;
 
-  cla_16b adder (.A(pc), .B(16'b0000_0000_0000_0010), .C_in(1'b0), .S(incremented_pc), .C_out(), .Overflow());
+  localparam start_PC_addr = 16'b0000_0000_0000_0000;
+  localparam EPC_addr = 16'b0000_0000_0000_0010;
+
+  cla_16b adder (.A(pc), .B(EPC_addr), .C_in(1'b0), .S(incremented_pc), .C_out(), .Overflow());
 
   //16 bit 2-1 mux for choosing 2 for exception handler or EPC after we return from the instruction
-  mux2_1_N pc_mux1(.InA(EPC), .InB(16'b0000_0000_0000_0010), .S(excp), .Out(exception_pc));
+  mux2_1_N pc_mux1(.InA(EPC), .InB(EPC_addr), .S(excp), .Out(exception_pc));
 
   //00 is for current pc i.e. HALT
   //01 is for incremented PC for a normal non jumping non branching instruction
@@ -46,6 +50,8 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
 
   dff epc_flops[15:0](.q(EPC), .d(middle_pc), .clk(clk), .rst(rst));
 
-  memory2c instruction_memory(.data_out(instruction), .data_in(16'b0000_0000_0000_0000), .addr(pc), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
+  //memory2c instruction_memory(.data_out(instruction), .data_in(16'b0000_0000_0000_0000), .addr(pc), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
+
+  memory2c_align instruction_memory(.data_out(instruction), .data_in(start_PC_addr), .addr(pc), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst), .err(misalign_mem));
 
 endmodule

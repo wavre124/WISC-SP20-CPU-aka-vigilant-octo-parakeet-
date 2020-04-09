@@ -106,7 +106,7 @@ module proc (/*AUTOARG*/
    // this wire is if a misalignment occurs in the memory blk
    wire mem_mis_align;
    wire valid_rt;
-   wire valid_rt_ex
+   wire valid_rt_ex;
 
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
                    .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC), .EX_instruction(EX_instruction),
@@ -144,7 +144,9 @@ module proc (/*AUTOARG*/
                        .ALU_src(EX_ALU_src), .ALU_op(EX_ALU_op), .data_out(alu_out), .rd_d(EX_rd), .rs_d(EX_rs), .rt_d(EX_rt), .rd_e(MEM_RD),
                        .rs_e(MEM_RS), .rd_m(WB_RD), .rs_m(WB_RS), .execute_data(MEM_data_out),
                        .memory_read_data(WB_data_read), .mem_address(WB_address), .reg_write_ex(MEM_Reg_write),
-                       .reg_write_mem(WB_Reg_write), .mem_read_ex(MEM_Mem_read), .mem_read_mem(WB_Mem_read), valid_rt(valid_rt_ex));
+                       .reg_write_mem(WB_Reg_write), .mem_read_ex(MEM_Mem_read), .mem_read_mem(WB_Mem_read),
+                       .valid_rt(valid_rt_ex), .instruction_d(EX_instruction), .instruction_e(MEM_instruction), .instruction_m(WB_instruction), .valid_rd_e(EX_valid_rd),
+                       .valid_rd_m(MEM_valid_rd));
 
    pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(EX_instruction), .data_out(alu_out), .data_two(EX_Data_two), .RD(EX_rd), .RS(EX_rs),
                                           .Dst_reg(EX_Dst_reg), .PC_src(EX_PC_src), .Reg_write(EX_Reg_write), .Mem_read(EX_Mem_read), .Mem_write(EX_Mem_write), .Mem_reg(EX_Mem_reg),

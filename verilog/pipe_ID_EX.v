@@ -9,7 +9,8 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
   //inputs that are CONTROL UNIT SIGNALS//////////////////////////////////////////////////
   input [3:0] ALU_op;
   input [1:0] Dst_reg, PC_src;
-  input ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, halt, valid_rd, valid_rt_o;
+  input ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, halt, valid_rd;
+  input valid_rt;
   /////////////////////////////////////////////////////////////////////////////////////////
 
   //inputs that are NOT CONTROL UNIT SIGNALS/////////////////////////////////////////////////
@@ -30,6 +31,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
   output [3:0] ALU_op_o;
   output [1:0] Dst_reg_o, PC_src_o;
   output ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o, Mem_en_o, halt_o, valid_rd_o, JAL_o;
+  output valid_rt_o;
   ///////////////////////////////////////////////////////////////////////////////////
 
   //outputs that are NOT CONTROL UNIT SIGNALS///////////////////////////////////////////////

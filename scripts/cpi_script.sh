@@ -1,14 +1,18 @@
+OPATH=/u/k/s/kshitij/private/cs552/project/phase3/vigilant-octo-parakeet/results/old_results
+NPATH=/u/k/s/kshitij/private/cs552/project/phase3/vigilant-octo-parakeet/results/new_results
+CPATH=/u/k/s/kshitij/private/cs552/project/phase3/vigilant-octo-parakeet/results/diffs
+
 echo "SIMPLE DIFFs"
-diff /u/k/s/kshitij/private/cs552/project/phase2_3/old_pipe/instTests.summary.log /u/k/s/kshitij/private/cs552/project/phase2_3/improved_pipe/instTests.summary.log > simple.diff
+diff $OPATH/instTests.summary.log $NPATH/instTests.summary.log > $CPATH/simple.diff
 echo "COMPLEX DIFFs"
-diff /u/k/s/kshitij/private/cs552/project/phase2_3/old_pipe/complex.summary.log /u/k/s/kshitij/private/cs552/project/phase2_3/improved_pipe/complex.summary.log > complex.diff
+diff $OPATH/complex.summary.log $NPATH/complex.summary.log > $CPATH/complex.diff
 echo "RAN SIMPLE DIFFs"
-diff /u/k/s/kshitij/private/cs552/project/phase2_3/old_pipe/rand_simple.summary.log /u/k/s/kshitij/private/cs552/project/phase2_3/improved_pipe/rand_simple.summary.log > ran_simple.diff
+diff $OPATH/rand_simple.summary.log $NPATH/rand_simple.summary.log > $CPATH/ran_simple.diff
 echo "RAN COMPLEX DIFFs"
-diff /u/k/s/kshitij/private/cs552/project/phase2_3/old_pipe/rand_complex.summary.log /u/k/s/kshitij/private/cs552/project/phase2_3/improved_pipe/rand_complex.summary.log > ran_complex.diff
+diff $OPATH/rand_complex.summary.log $NPATH/rand_complex.summary.log > $CPATH/ran_complex.diff
 echo "RAN CTRL DIFFs"
-diff /u/k/s/kshitij/private/cs552/project/phase2_3/old_pipe/rand_ctrl.summary.log /u/k/s/kshitij/private/cs552/project/phase2_3/improved_pipe/rand_ctrl.summary.log > ran_ctrl.diff
+diff $OPATH/rand_ctrl.summary.log $NPATH/rand_ctrl.summary.log > $CPATH/ran_ctrl.diff
 echo "RAN MEM DIFFs"
-diff /u/k/s/kshitij/private/cs552/project/phase2_3/old_pipe/rand_mem.summary.log /u/k/s/kshitij/private/cs552/project/phase2_3/improved_pipe/rand_mem.summary.log > ran_mem.diff
+diff $OPATH/rand_mem.summary.log $NPATH/rand_mem.summary.log > $CPATH/ran_mem.diff
 echo "DEMO TWO DIFFs"
-diff /u/k/s/kshitij/private/cs552/project/phase2_3/old_pipe/complex_demo2.summary.log /u/k/s/kshitij/private/cs552/project/phase2_3/improved_pipe/complex_demo2.summary.log > demo2.diff
+diff $OPATH/complex_demo2.summary.log $NPATH/complex_demo2.summary.log > $CPATH/demo2.diff

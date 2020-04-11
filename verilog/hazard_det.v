@@ -96,31 +96,53 @@ wire st_stu; //these instructions need RD in decode so waiting for that
 assign st_stu = (opcode == store) | (opcode == stu);
 
 wire jalr_jr; //these instructions need RS in decode so checking if one of those
-assign jalr_jr = (opcode == jalr) | (opcode == jr) | (opcode == load);
+assign jalr_jr = (opcode == jalr) | (opcode == jr);
 
 wire no_stall; //never stall on lbi so checking for that
 assign no_stall = (opcode == lbi) | (opcode == nop ) | (opcode == rti) | (opcode == siic) | (opcode == haltop);
 
-assign stall_decode = (((valD_regW_1 & equal_rs_rt & valid_rt)| (valD_regW_1 &  (rd_ID_EX == rs)) | (r7_write &  rs_rt_r7 & valid_rt) |
-                      (write_Rs_1 & rs_equal_rs_rt & valid_rt) | (write_Rs_1 & (rs_ID_EX == rs)) | (r7_write & (R7 == rs))) & (~no_stall)) ? 1'b1 :
+
+localparam beqz = 5'b01100;
+localparam bnez = 5'b01101;
+localparam bltz = 5'b01110;
+localparam bgez = 5'b01111;
+wire branch;
+assign branch =  (beqz == opcode) | (bnez == opcode ) | (bltz == opcode) | (bgez == opcode);
+
+assign stall_decode =  (( (valD_regW_1 &  (rd_ID_EX == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) | (r7_write & (R7 == rs))) & (~no_stall) & branch ) ? 1'b1 :
+        //checking first pipe register to see if it is writing to RD and that RD equals Rs/Rt
+        //and it is not lbi because lbi never stalls and also checking if instruction in front us is writing
+        //to R7 and that R7 is equal to Rs/Rt, also checking if isntruction in front us is writing to rs and that rs equals rs/rt
+
+                  (((valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write_2 & (R7 == rs))) & (~no_stall) & branch ) ? 1'b1 ://same logic as comment above
+
+                  ((jalr_jr) & ((valD_regW_1 & (rd_ID_EX == rs)) | (valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) |
+                  (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write & (rs == R7)) | (r7_write_2 & (rs == R7)))) ? 1'b1 : 1'b0;
+          //checking to see if it is jal/jalr which need RS, and then checking if instructions in front us in pipeline are writing to an RD that equals RS, also checking
+          //then checking if instructions in front of us write to RS and that RS equals Rs for jal/jalr. or checking if instruction in front of us is writing to R7 and
+          //R7 equals RS
+
+
+              //assign stall_decode   =    //(((valD_regW_1 & equal_rs_rt & valid_rt)| (valD_regW_1 &  (rd_ID_EX == rs)) | (r7_write &  rs_rt_r7 & valid_rt) |
+                    //  (write_Rs_1 & rs_equal_rs_rt & valid_rt) | (write_Rs_1 & (rs_ID_EX == rs)) | (r7_write & (R7 == rs))) & (~no_stall)) ? 1'b1 :
                       //checking first pipe register to see if it is writing to RD and that RD equals Rs/Rt
                       //and it is not lbi because lbi never stalls and also checking if instruction in front us is writing
                       //to R7 and that R7 is equal to Rs/Rt, also checking if isntruction in front us is writing to rs and that rs equals rs/rt ..... maybe include valid Rt signal???
 
-                      (((valD_regW_2 & equal_rs_rt2 & valid_rt)| (valD_regW_2 & (rd_EX_MEM == rs))  | (r7_write_2 &  rs_rt_r7 & valid_rt) |
-                      (write_Rs_2 & rs_equal_rs_rt2 & valid_rt)  | (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write_2 & (R7 == rs))) & (~no_stall)) ? 1'b1 ://same logic as comment above
+                    //  (((valD_regW_2 & equal_rs_rt2 & valid_rt)| (valD_regW_2 & (rd_EX_MEM == rs))  | (r7_write_2 &  rs_rt_r7 & valid_rt) |
+                    //  (write_Rs_2 & rs_equal_rs_rt2 & valid_rt)  | (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write_2 & (R7 == rs))) & (~no_stall)) ? 1'b1 ://same logic as comment above
 
-                      ((jalr_jr) & ((valD_regW_1 & (rd_ID_EX == rs)) | (valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) |
-                      (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write & (rs == R7)) | (r7_write_2 & (rs == R7)))) ? 1'b1 :
+                    //  ((jalr_jr) & ((valD_regW_1 & (rd_ID_EX == rs)) | (valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) |
+                    //  (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write & (rs == R7)) | (r7_write_2 & (rs == R7)))) ? 1'b1 :
 			                //checking to see if it is jal/jalr which need RS, and then checking if instructions in front us in pipeline are writing to an RD that equals RS, also checking
                       //then checking if instructions in front of us write to RS and that RS equals Rs for jal/jalr. or checking if instruction in front of us is writing to R7 and
                       //R7 equals RS
 
-                      ((st_stu) & (~no_stall) & (((valD_regW_1 & equals_RD_1) | (valD_regW_2 & equals_RD_2)) | (write_Rs_1 & rs_equal_rd_1) | (write_Rs_2 &
-                        rs_equal_rd_2) | (r7_write & (RD == R7)) | (r7_write_2 & (RD == R7) ))) ? 1'b1 : 1'b0;
+                  //    ((st_stu) & (~no_stall) & (((valD_regW_1 & equals_RD_1) | (valD_regW_2 & equals_RD_2)) | (write_Rs_1 & rs_equal_rd_1) | (write_Rs_2 &
+                  //      rs_equal_rd_2) | (r7_write & (RD == R7)) | (r7_write_2 & (RD == R7) ))) ? 1'b1 : 1'b0;
                       //checking if it is instruction that needs Rd in decode state and then checking if instruction in front of us writes to Rd and that Rd is equal to Rd in decode
                       //stage and checking if the instruciton in front of us is writing to Rs and that Rs equals Rd then checking to see if instruction in front of us is writing to                       //R7 and RD = R7
-
+//new stalling with forwarding....only stall if its a branch
 //| (valD_regW_1 &  (rs_ID_EX == rs))
 //| (valD_regW_2 &  (rs_EX_MEM == rs))
 assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;

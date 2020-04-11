@@ -80,7 +80,7 @@ module proc (/*AUTOARG*/
    wire [2:0] MEM_RD;
    wire [2:0] MEM_RS;
    wire [2:0] MEM_write_sel;
-
+   wire [15:0] data_rd;
 
    wire [1:0] MEM_Dst_reg, MEM_PC_src;
    wire MEM_Reg_write, MEM_Mem_read, MEM_Mem_write, MEM_Mem_reg, MEM_Mem_en, MEM_valid_rd;
@@ -145,10 +145,10 @@ module proc (/*AUTOARG*/
                        .rs_e(MEM_RS), .rd_m(WB_RD), .rs_m(WB_RS), .execute_data(MEM_data_out),
                        .memory_read_data(WB_data_read), .mem_address(WB_address), .reg_write_ex(MEM_Reg_write),
                        .reg_write_mem(WB_Reg_write), .mem_read_ex(MEM_Mem_read), .mem_read_mem(WB_Mem_read),
-                       .valid_rt(valid_rt_ex), .instruction_d(EX_instruction), .instruction_e(MEM_instruction), .instruction_m(WB_instruction), .valid_rd_e(EX_valid_rd),
-                       .valid_rd_m(MEM_valid_rd));
+                       .valid_rt(valid_rt_ex), .instruction_d(EX_instruction), .instruction_e(MEM_instruction), .instruction_m(WB_instruction), .valid_rd_e(MEM_valid_rd),
+                       .valid_rd_m(WB_valid_rd), .data_rd(data_rd), .bj_write_data(WB_bj_write_data));
 
-   pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(EX_instruction), .data_out(alu_out), .data_two(EX_Data_two), .RD(EX_rd), .RS(EX_rs),
+   pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(EX_instruction), .data_out(alu_out), .data_two(data_rd), .RD(EX_rd), .RS(EX_rs),
                                           .Dst_reg(EX_Dst_reg), .PC_src(EX_PC_src), .Reg_write(EX_Reg_write), .Mem_read(EX_Mem_read), .Mem_write(EX_Mem_write), .Mem_reg(EX_Mem_reg),
                                           .Mem_en(EX_Mem_en), .write_sel(EX_write_sel), .instruction_o(MEM_instruction), .data_out_o(MEM_data_out), .data_two_o(MEM_data_two),
                                           .RD_o(MEM_RD), .RS_o(MEM_RS),

@@ -67,13 +67,16 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    // stage in decode at the same time, this will result in incorrect data
    // being written..
    // FIXME: potential fix is to stall... I think in hazard detect
+  wire [2:0] write_sel_helper;
    assign write_data = (WB_JAL) ? WB_bj_write_data : wb_data;
    assign RS = inst[10:8]; //added code here
    assign RT = inst[7:5];
-   assign RD = write_sel;
+   assign RD = write_sel_helper;
    assign inst_help = (PC == pc_help) ? 16'b0000_1000_0000_0000 : inst;
    mux4_1 write_sel_mux[2:0](.InA(inst[4:2]), .InB(inst[7:5]), .InC(inst[10:8]), .InD(R7), .S(Dst_reg), .Out(write_sel));
 
+   localparam stu = 5'b10011;
+   assign write_sel_helper = (inst[15:11] == stu) ? inst[7:5] : write_sel;
    assign write_sel_pipe = write_sel_WB;
    assign reg_write_pipe = wb_reg_write;
 

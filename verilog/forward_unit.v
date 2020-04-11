@@ -1,8 +1,8 @@
 module forward_unit(execute_data, memory_read_data, mem_address, data_one, reg_2 ,rd_d, rs_d, rt_d, rd_e, rs_e, rd_m, rs_m,
   reg_write_ex, reg_write_mem, mem_read_ex, mem_read_mem, valid_rt, instruction_d, instruction_e, instruction_m, valid_rd_e,
-  valid_rd_m, data_rs, reg_2_o);
+  valid_rd_m, data_rs, data_rt, data_rd, bj_write_data);
 
-  input [15:0] execute_data, memory_read_data, mem_address; //data from execute, data from memory
+  input [15:0] execute_data, memory_read_data, mem_address, bj_write_data; //data from execute, data from memory
   input [15:0] data_one, reg_2; //data one is RS, reg_2 is Rt or signed immediate...... only override reg_2 if valid_rt is high
   input [2:0] rd_d, rs_d, rt_d; //inputs from decode to excute that may have its value replaced
   input [2:0] rd_e, rs_e; //inputs from execute to memory for ex-ex forwarding
@@ -12,12 +12,12 @@ module forward_unit(execute_data, memory_read_data, mem_address, data_one, reg_2
   input valid_rt; //used in conjunction with reg_2
   input [15:0] instruction_d, instruction_e, instruction_m;
 
-  wire [15:0] data_rt;
+  output [15:0] data_rt;
   output [15:0] data_rs;
-  wire [15:0] data_rd;
-  output [15:0] reg_2_o;
+  output [15:0] data_rd;
+
   wire need_rd;
-  assign reg_2_o = (need_rd) ? data_rd : data_rt;
+
 
 
   wire [4:0] opcode_d;
@@ -56,7 +56,8 @@ assign ex_write_R7 = ((jalr == opcode_e) | (jal == opcode_e));
 wire mem_write_R7;
 assign mem_write_R7 = ((jalr == opcode_m) | (jal == opcode_m));
 
-
+wire [15:0] mem_address_helper;
+assign mem_address_helper = (mem_write_R7) ? bj_write_data : mem_address;
 
 //this wire is used for detecting if instruction is writing to RD in the execute/mem stage and not a memory read
 wire ex_write_rd;
@@ -64,7 +65,7 @@ assign ex_write_rd = valid_rd_e & reg_write_ex & (~mem_read_ex);
 
 //this wire is used for detecting if instruction is writing to RD mem/wb stage, will need to use mem_read to determine the proper value to update it with
 wire mem_write_rd;
-assign mem_write_rd = valid_rd_e & reg_write_mem;
+assign mem_write_rd = valid_rd_m & reg_write_mem;
 
 //dont want to use forwarding on branch even though i think this is irrelavant
 localparam beqz = 5'b01100;
@@ -114,7 +115,7 @@ wire replace_rt_mem;//used to check if RT should be replaced with mem value
 assign replace_rt_ex = (valid_rt & (((rt_d == rd_e) & ex_write_rd) | ((rt_d == rs_e) & ex_write_rs) | ((rt_d == R7) & ex_write_R7))) ? 1'b1 : 1'b0;
 assign replace_rt_mem = (valid_rt & (((rt_d == rd_m) & mem_write_rd) | ((rt_d == rs_m) & mem_write_rs) | ((rt_d == R7) & mem_write_R7))) ? 1'b1 : 1'b0;
 assign data_rt = ((~take_ex) & replace_rt_mem & mem_read_mem) ? memory_read_data :
-                  ((~take_ex) & replace_rt_mem ) ? mem_address :
+                  ((~take_ex) & replace_rt_mem ) ? mem_address_helper :
                   (replace_rt_ex) ? execute_data : reg_2;
 
 
@@ -130,10 +131,10 @@ wire no_forward_rs;
 assign no_forward_rs =  ((jalr == opcode_d) | (j == opcode_d) | (nop == opcode_d) | (lbi == opcode_d) | (halt == opcode_d) | (siic == opcode_d) | (rti== opcode_d));
 wire replace_rs_ex;
 wire replace_rs_mem;
-assign replace_rs_ex = ((~no_forward_rs) & (((rs_d == rd_e) & ex_write_rd) | ((rs_d == rs_e) & ex_write_rs) |  ((rt_d == R7) & ex_write_R7)));
-assign replace_rs_mem = ((~no_forward_rs) & (((rs_d == rd_m) & mem_write_rd) | ((rs_d == rs_m) & mem_write_rs) |  ((rt_d == R7) & mem_write_R7)));
+assign replace_rs_ex = ((~no_forward_rs) & (((rs_d == rd_e) & ex_write_rd) | ((rs_d == rs_e) & ex_write_rs) |  ((rs_d == R7) & ex_write_R7)));
+assign replace_rs_mem = ((~no_forward_rs) & (((rs_d == rd_m) & mem_write_rd) | ((rs_d == rs_m) & mem_write_rs) |  ((rs_d == R7) & mem_write_R7)));
 assign data_rs = ((~take_ex) & replace_rs_mem & mem_read_mem) ? memory_read_data :
-                  ((~take_ex) & replace_rs_mem) ? mem_address :
+                  ((~take_ex) & replace_rs_mem) ? mem_address_helper :
                   (replace_rs_ex) ? execute_data : data_one;
 
 
@@ -148,7 +149,7 @@ assign need_rd = ((opcode_d == stu) | (opcode_d == store));
 assign replace_rd_ex = ((need_rd) & (((rd_d == rd_e) & ex_write_rd) | ((rd_d == rs_e) & ex_write_rs) |  ((rd_d == R7) & ex_write_R7)));
 assign replace_rd_mem = ((need_rd) & (((rd_d == rd_m) & mem_write_rd) | ((rd_d == rs_m) & mem_write_rs) |  ((rd_d == R7) & mem_write_R7)));
 assign data_rd = ((~take_ex) & replace_rd_mem & mem_read_mem) ? memory_read_data :
-                  ((~take_ex) & replace_rd_mem) ? mem_address :
+                  ((~take_ex) & replace_rd_mem) ? mem_address_helper :
                   (replace_rd_ex) ? execute_data : reg_2;
 
 

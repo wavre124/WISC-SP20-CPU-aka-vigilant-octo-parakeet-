@@ -48,14 +48,14 @@ module mem_system(/*AUTOARG*/
 
    four_bank_mem mem(// Outputs
                      .data_out          (mem_data_out),
-                     .stall             (Stall),
+                     .stall             (mem_stall),
                      .busy              (mem_busy),
                      .err               (mem_err),
                      // Inputs
                      .clk               (clk),
                      .rst               (rst),
                      .createdump        (createdump),
-                     .addr              (Addr),
+                     .addr              (mem_addr),
                      .data_in           (mem_data_in),
                      .wr                (mem_write),
                      .rd                (mem_read));
@@ -80,19 +80,20 @@ module mem_system(/*AUTOARG*/
 
    // mem wires and IOs
    wire [15:0] mem_data_out;
+   wire [15:0] mem_addr;
    wire [3:0] mem_busy;
    wire mem_err;
    wire [15:0] mem_data_in;
    wire mem_write;
    wire mem_read;
+   wire mem_stall;
 
    // cntrl wires and IOs
    wire mem_cache_write;
+   wire cache_stall;
 
    // assign inputs to cache
-   assign offset = Addr[2:0];
    assign index = Addr[10:3];
-   assign tag = Addr[15:11];
    assign c_data_in = (mem_cache_write) ? mem_data_out : DataIn;
 
    // assign inputs to cache cntrl
@@ -102,11 +103,15 @@ module mem_system(/*AUTOARG*/
 
    cache_controller ctrl(.addr(Addr), .clk(clk), .rst(rst), .read(Rd), .write(Wr), .hit(CacheHit), .dirty(c_dirty), .valid(c_valid), .stall_mem(Stall),
                            .err(err), .busy(mem_busy), .enable(c_enable), .mem_wr(mem_write), .mem_rd(mem_read), .comp(c_comp), .c_write(c_write),
-                           .valid_in(c_valid_in), .mem_cache_wr(mem_cache_write), .done(Done));
+                           .valid_in(c_valid_in), .mem_cache_wr(mem_cache_write), .done(Done), .stall_cache(cache_stall), .mem_address(mem_addr), .cache_offset(offset),
+                           .cache_tag_out(tag), .cache_tag_in(c_tag_out));
 
    // assign outputs of mem system
    assign DataOut = (CacheHit) ? c_data_out : mem_data_out;
    assign err = c_err | mem_err;
+   // the stall signal should be high when FSM is handling a cache request and no
+   // other requests should be taken at this time
+   assign Stall = mem_stall | cache_stall;
 
 endmodule // mem_system
 

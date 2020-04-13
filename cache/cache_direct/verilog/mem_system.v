@@ -107,7 +107,7 @@ module mem_system(/*AUTOARG*/
                            .cache_tag_out(tag), .cache_tag_in(c_tag_out));
 
    // assign outputs of mem system
-   assign DataOut = (CacheHit) ? c_data_out : mem_data_out;
+   assign DataOut = c_data_out;
    assign err = c_err | mem_err;
    // the stall signal should be high when FSM is handling a cache request and no
    // other requests should be taken at this time

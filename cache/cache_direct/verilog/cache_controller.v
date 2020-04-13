@@ -9,11 +9,11 @@ input read, write;
 input hit, dirty, valid, stall_mem;
 input err;
 input [3:0] busy;
-input [7:0] cache_tag_in;
+input [4:0] cache_tag_in;
 
 output reg [15:0] mem_address;
 output reg [2:0] cache_offset;
-output reg [7:0] cache_tag;
+output reg [4:0] cache_tag_out;
 output reg enable, mem_wr, mem_rd, comp;
 output reg c_write, valid_in, mem_cache_wr, done;
 output reg stall_cache;
@@ -29,7 +29,7 @@ localparam MEM_WRITE_BACK_WORD_ZERO = 5'b00110;
 localparam MEM_WRITE_BACK_WORD_ONE = 5'b00111;
 localparam MEM_WRITE_BACK_WORD_TWO = 5'b01000;
 localparam MEM_WRITE_BACK_WORD_THREE = 5'b01001;
-localparam STALL = 5'b01010;
+localparam WB_STALL = 5'b01010;
 localparam MEM_READ_ONE = 5'b01011;
 localparam MEM_READ_TWO = 5'b01100;
 localparam MEM_READ_THREE = 5'b01101;
@@ -37,6 +37,8 @@ localparam MEM_READ_FOUR = 5'b01110;
 localparam MEM_READ_FIVE = 5'b01111;
 localparam MEM_READ_SIX = 5'b10000;
 localparam DONE_STATE = 5'b10001;
+localparam WRITE_STALL = 5'b10010;
+localparam MEM_READ_CR = 5'b10011;
 
 // wires and regs for state machine
 wire [3:0] curr_state;
@@ -50,12 +52,15 @@ wire [4:0] idle_next_state;
 wire [4:0] comp_read_next_state;
 wire [4:0] comp_write_next_state;
 wire [4:0] cache_read_next_state;
+wire [4:0] write_stall_next_state;
+wire [4:0] wb_stall_next_state;
+wire [4:0] mem_read_next_state;
 
 assign idle_next_state = write ? COMP_WRITE :
                          read  ? COMP_READ : IDLE;
 
 assign comp_read_next_state = (hit & valid) ? DONE_STATE :
-                              (~hit & ~valid) | (hit & ~valid) | (~hit & ~dirty) ? MEM_READ :
+                              (~hit & ~valid) | (hit & ~valid) | (~hit & ~dirty) ? MEM_READ_ONE :
                               (dirty & ~hit & valid) ? MEM_WRITE_BACK : COMP_READ;
 
 assign comp_write_next_state = (hit & valid) ? DONE_STATE :
@@ -64,6 +69,12 @@ assign comp_write_next_state = (hit & valid) ? DONE_STATE :
                                (~hit & ~valid) ? MEM_WRITE : COMP_WRITE;
 
 assign cache_read_next_state = (dirty) ?  : MEM_WRITE_BACK_WORD_ZERO : MEM_WRITE;
+
+assign write_stall_next_state = (~busy) ? DONE_STATE : WRITE_STALL;
+assign wb_stall_next_state = (~busy) & write ? MEM_WRITE :
+                             (~busy) & read ? MEM_READ_ONE : WB_STALL;
+
+assign mem_read_next_state = (write) ? CACHE_WRITE : MEM_READ_CR;
 
 // assign state outputs for each state
 always@* case(curr_state):
@@ -79,7 +90,7 @@ always@* case(curr_state):
                              done = 1'b0;
                              stall_cache = 1'b0;
                              cache_offset = addr[2:0];
-                             cache_tag = addr[10:3];
+                             cache_tag_out = addr[15:11];
                              mem_address = addr;
                              next_state = idle_next_state;
                              end
@@ -94,7 +105,7 @@ always@* case(curr_state):
                              done = 1'b0;
                              stall_cache = 1'b1;
                              cache_offset = addr[2:0];
-                             cache_tag = addr[10:3];
+                             cache_tag_out = addr[15:11];
                              mem_address = addr;
                              next_state = comp_read_next_state;
                              end
@@ -109,7 +120,7 @@ always@* case(curr_state):
                              done = 1'b0;
                              stall_cache = 1'b1;
                              cache_offset = addr[2:0];
-                             cache_tag = addr[10:3];
+                             cache_tag_out = addr[15:11];
                              mem_address = addr;
                              next_state = comp_write_next_state;
                              end
@@ -124,12 +135,24 @@ always@* case(curr_state):
                              done = 1'b0;
                              stall_cache = 1'b1;
                              cache_offset = addr[2:0];
-                             cache_tag = addr[10:3];
+                             cache_tag_out = addr[15:11];
                              mem_address = addr;
                              next_state = cache_read_next_state;
                              end
   CACHE_WRITE:               begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b1;
+                              valid_in = 1'b1;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr[15:0];
+                              next_state = DONE_STATE;
                              end
   MEM_WRITE:                 begin
                               enable = 1'b1;
@@ -142,54 +165,234 @@ always@* case(curr_state):
                               done = 1'b0;
                               stall_cache = 1'b1;
                               cache_offset = addr[2:0];
-                              cache_tag = addr[10:3];
+                              cache_tag_out = addr[15:11];
                               mem_address = addr;
-                              next_state = DONE_STATE;
+                              next_state = WRITE_STALL;
+                             end
+  WRITE_STALL:               begin
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr;
+                              next_state = write_stall_next_state;
                              end
   MEM_WRITE_BACK_WORD_ZERO:  begin
-
-
+                              enable = 1'b1;
+                              mem_wr = 1'b1;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = {1'b0, 1'b0, addr[0]};
+                              cache_tag_out = addr[15:11];
+                              mem_address = {cache_tag_in, addr[10:3], cache_offset};
+                              next_state = MEM_WRITE_BACK_WORD_ONE;
                              end
   MEM_WRITE_BACK_WORD_ONE:   begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b1;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = {1'b0, 1'b1, addr[0]};
+                              cache_tag_out = addr[15:11];
+                              mem_address = {cache_tag_in, addr[10:3], cache_offset};
+                              next_state = MEM_WRITE_BACK_WORD_TWO;
                              end
   MEM_WRITE_BACK_WORD_TWO:   begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b1;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = {1'b1, 1'b0, addr[0]};
+                              cache_tag_out = addr[15:11];
+                              mem_address = {cache_tag_in, addr[10:3], cache_offset};
+                              next_state = MEM_WRITE_BACK_WORD_THREE;
                              end
   MEM_WRITE_BACK_WORD_THREE: begin
-
-
+                              enable = 1'b1;
+                              mem_wr = 1'b1;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = {1'b1, 1'b1, addr[0]};
+                              cache_tag_out = addr[15:11];
+                              mem_address = {cache_tag_in, addr[10:3], cache_offset};
+                              next_state = WB_STALL;
                              end
-  STALL:                     begin
-
-
+  WB_STALL:                  begin
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr;
+                              next_state = wb_stall_next_state;
                              end
-
   MEM_READ_ONE:              begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b1;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = {addr[15:3], 1'b0, 1'b0, addr[0]};
+                              next_state = MEM_READ_TWO;
                              end
-
   MEM_READ_TWO:              begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b1;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = {addr[15:3], 1'b0, 1'b1, addr[0]};
+                              next_state = MEM_READ_THREE;
                              end
   MEM_READ_THREE:            begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b1;
+                              comp = 1'b0;
+                              c_write = 1'b1;
+                              valid_in = 1'b1;
+                              mem_cache_wr = 1'b1;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = {1'b0, 1'b0, addr[0]};
+                              cache_tag_out = addr[15:11];
+                              mem_address = {addr[15:3], 1'b1, 1'b0, addr[0]};
+                              next_state = MEM_READ_FOUR;
                              end
   MEM_READ_FOUR:             begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b1;
+                              comp = 1'b0;
+                              c_write = 1'b1;
+                              valid_in = 1'b1;
+                              mem_cache_wr = 1'b1;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = {1'b0, 1'b1, addr[0]};
+                              cache_tag_out = addr[15:11];
+                              mem_address = {addr[15:3], 1'b1, 1'b1, addr[0]};
+                              next_state = MEM_READ_FIVE;
                              end
   MEM_READ_FIVE:             begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b1;
+                              valid_in = 1'b1;
+                              mem_cache_wr = 1'b1;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = {1'b1, 1'b0, addr[0]};
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr[15:0];
+                              next_state = MEM_READ_SIX;
                              end
   MEM_READ_SIX:              begin
-
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b1;
+                              valid_in = 1'b1;
+                              mem_cache_wr = 1'b1;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = {1'b1, 1'b1, addr[0]};
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr[15:0];
+                              next_state = mem_read_next_state;
+                             end
+  MEM_READ_CR:               begin
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b1;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr[15:0];
+                              next_state = DONE_STATE;
                              end
   DONE_STATE:                begin
-                              
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b1;
+                              stall_cache = 1'b0;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr;
+                              next_state = IDLE;
                              end
   default:                   begin
-
+                              enable = 1'b0;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b0;
+                              stall_cache = 1'b0;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr;
+                              next_state = IDLE;
                              end
  endcase
-
 endmodule

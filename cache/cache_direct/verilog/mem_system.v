@@ -52,6 +52,7 @@ module mem_system(/*AUTOARG*/
       // cntrl wires and IOs
       wire mem_cache_write;
       wire cache_stall;
+      wire cache_miss;
 
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
@@ -105,7 +106,7 @@ module mem_system(/*AUTOARG*/
    cache_controller ctrl(.addr(Addr), .clk(clk), .rst(rst), .read(Rd), .write(Wr), .hit(c_hit), .dirty(c_dirty), .valid(c_valid), .stall_mem(Stall),
                            .err(err), .busy(mem_busy), .enable(c_enable), .mem_wr(mem_write), .mem_rd(mem_read), .comp(c_comp), .c_write(c_write),
                            .valid_in(c_valid_in), .mem_cache_wr(mem_cache_write), .done(Done), .stall_cache(cache_stall), .mem_address(mem_addr), .cache_offset(offset),
-                           .cache_tag_out(tag), .cache_tag_in(c_tag_out));
+                           .cache_tag_out(tag), .cache_tag_in(c_tag_out), .miss(cache_miss));
 
    // assign outputs of mem system
    assign DataOut = c_data_out;
@@ -113,7 +114,7 @@ module mem_system(/*AUTOARG*/
    // the stall signal should be high when FSM is handling a cache request and no
    // other requests should be taken at this time
    assign Stall = mem_stall | cache_stall;
-   assign CacheHit = c_hit & c_valid;
+ assign CacheHit = c_hit & c_valid & ~cache_miss;
 
 endmodule // mem_system
 

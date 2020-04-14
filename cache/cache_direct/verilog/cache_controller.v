@@ -1,7 +1,7 @@
 module cache_controller(addr, clk, rst, read, write, hit, dirty, valid, stall_mem,
                         err, busy, enable, mem_wr, mem_rd, comp, c_write,
                         valid_in, mem_cache_wr, done, stall_cache, mem_address, cache_offset,
-                        cache_tag_out, cache_tag_in);
+                        cache_tag_out, cache_tag_in, miss);
 
 input [15:0] addr;
 input clk, rst;
@@ -16,7 +16,7 @@ output reg [2:0] cache_offset;
 output reg [4:0] cache_tag_out;
 output reg enable, mem_wr, mem_rd, comp;
 output reg c_write, valid_in, mem_cache_wr, done;
-output reg stall_cache;
+output reg stall_cache, miss;
 
 // local params for all states
 localparam IDLE = 5'b00000;
@@ -37,7 +37,7 @@ localparam MEM_READ_FOUR = 5'b01110;
 localparam MEM_READ_FIVE = 5'b01111;
 localparam MEM_READ_SIX = 5'b10000;
 localparam DONE_STATE = 5'b10001;
-localparam WRITE_STALL = 5'b10010;
+localparam DONE_STATE_HIT = 5'b10010;
 localparam MEM_READ_CR = 5'b10011;
 
 // wires and regs for state machine
@@ -59,20 +59,15 @@ wire [4:0] mem_read_next_state;
 assign idle_next_state = write ? COMP_WRITE :
                          read  ? COMP_READ : IDLE;
 
-assign comp_read_next_state = (hit & valid) ? DONE_STATE :
-                              (~hit & ~valid) | (hit & ~valid) | (~hit & ~dirty) ? MEM_READ_ONE :
-                              (dirty & ~hit & valid) ? MEM_WRITE_BACK_WORD_ZERO : COMP_READ;
+assign comp_read_next_state = (hit & valid) ? DONE_STATE_HIT :
+                              (~dirty) ? MEM_READ_ONE :
+                              (dirty & valid) ? MEM_WRITE_BACK_WORD_ZERO : MEM_READ_ONE;
 
-assign comp_write_next_state = (hit & valid) ? DONE_STATE :
-                               (hit & ~valid) ? MEM_WRITE :
-                               (~hit & valid) ? CACHE_READ :
-                               (~hit & ~valid) ? MEM_WRITE : COMP_WRITE;
+assign comp_write_next_state = (hit & valid) ? DONE_STATE_HIT : CACHE_READ;
 
-assign cache_read_next_state = (dirty) ? MEM_WRITE_BACK_WORD_ZERO : MEM_WRITE;
+assign cache_read_next_state = (dirty & valid) ? MEM_WRITE_BACK_WORD_ZERO : MEM_READ_ONE;
 
-assign write_stall_next_state = (~busy) ? DONE_STATE : WRITE_STALL;
-assign wb_stall_next_state = (~busy) & write ? MEM_WRITE :
-                             (~busy) & read ? MEM_READ_ONE : WB_STALL;
+assign wb_stall_next_state = (~busy) ? MEM_READ_ONE : WB_STALL;
 
 assign mem_read_next_state = (write) ? CACHE_WRITE : MEM_READ_CR;
 
@@ -93,6 +88,7 @@ always@* case(curr_state)
                              cache_tag_out = 5'b0;
                              mem_address = 16'b0;
                              next_state = idle_next_state;
+                             miss = 1'b0;
                              end
   COMP_READ:                 begin
                              enable = 1'b1;
@@ -108,6 +104,7 @@ always@* case(curr_state)
                              cache_tag_out = addr[15:11];
                              mem_address = addr;
                              next_state = comp_read_next_state;
+                             miss = 1'b0;
                              end
   COMP_WRITE:                begin
                              enable = 1'b1;
@@ -123,6 +120,7 @@ always@* case(curr_state)
                              cache_tag_out = addr[15:11];
                              mem_address = addr;
                              next_state = comp_write_next_state;
+                             miss = 1'b0;
                              end
   CACHE_READ:                begin
                              enable = 1'b1;
@@ -138,6 +136,7 @@ always@* case(curr_state)
                              cache_tag_out = addr[15:11];
                              mem_address = addr;
                              next_state = cache_read_next_state;
+                             miss = 1'b1;
                              end
   CACHE_WRITE:               begin
                               enable = 1'b1;
@@ -153,36 +152,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = addr[15:0];
                               next_state = DONE_STATE;
-                             end
-  MEM_WRITE:                 begin
-                              enable = 1'b1;
-                              mem_wr = 1'b1;
-                              mem_rd = 1'b0;
-                              comp = 1'b0;
-                              c_write = 1'b0;
-                              valid_in = 1'b0;
-                              mem_cache_wr = 1'b0;
-                              done = 1'b0;
-                              stall_cache = 1'b1;
-                              cache_offset = addr[2:0];
-                              cache_tag_out = addr[15:11];
-                              mem_address = addr;
-                              next_state = WRITE_STALL;
-                             end
-  WRITE_STALL:               begin
-                              enable = 1'b1;
-                              mem_wr = 1'b0;
-                              mem_rd = 1'b0;
-                              comp = 1'b0;
-                              c_write = 1'b0;
-                              valid_in = 1'b0;
-                              mem_cache_wr = 1'b0;
-                              done = 1'b0;
-                              stall_cache = 1'b1;
-                              cache_offset = addr[2:0];
-                              cache_tag_out = addr[15:11];
-                              mem_address = addr;
-                              next_state = write_stall_next_state;
+                              miss = 1'b1;
                              end
   MEM_WRITE_BACK_WORD_ZERO:  begin
                               enable = 1'b1;
@@ -198,6 +168,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = {cache_tag_in, addr[10:3], cache_offset};
                               next_state = MEM_WRITE_BACK_WORD_ONE;
+                              miss = 1'b1;
                              end
   MEM_WRITE_BACK_WORD_ONE:   begin
                               enable = 1'b1;
@@ -213,6 +184,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = {cache_tag_in, addr[10:3], cache_offset};
                               next_state = MEM_WRITE_BACK_WORD_TWO;
+                              miss = 1'b1;
                              end
   MEM_WRITE_BACK_WORD_TWO:   begin
                               enable = 1'b1;
@@ -228,6 +200,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = {cache_tag_in, addr[10:3], cache_offset};
                               next_state = MEM_WRITE_BACK_WORD_THREE;
+                              miss = 1'b1;
                              end
   MEM_WRITE_BACK_WORD_THREE: begin
                               enable = 1'b1;
@@ -243,6 +216,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = {cache_tag_in, addr[10:3], cache_offset};
                               next_state = WB_STALL;
+                              miss = 1'b1;
                              end
   WB_STALL:                  begin
                               enable = 1'b1;
@@ -258,6 +232,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = addr;
                               next_state = wb_stall_next_state;
+                              miss = 1'b1;
                              end
   MEM_READ_ONE:              begin
                               enable = 1'b1;
@@ -273,6 +248,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = {addr[15:3], 1'b0, 1'b0, addr[0]};
                               next_state = MEM_READ_TWO;
+                              miss = 1'b1;
                              end
   MEM_READ_TWO:              begin
                               enable = 1'b1;
@@ -288,6 +264,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = {addr[15:3], 1'b0, 1'b1, addr[0]};
                               next_state = MEM_READ_THREE;
+                              miss = 1'b1;
                              end
   MEM_READ_THREE:            begin
                               enable = 1'b1;
@@ -303,6 +280,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = {addr[15:3], 1'b1, 1'b0, addr[0]};
                               next_state = MEM_READ_FOUR;
+                              miss = 1'b1;
                              end
   MEM_READ_FOUR:             begin
                               enable = 1'b1;
@@ -318,6 +296,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = {addr[15:3], 1'b1, 1'b1, addr[0]};
                               next_state = MEM_READ_FIVE;
+                              miss = 1'b1;
                              end
   MEM_READ_FIVE:             begin
                               enable = 1'b1;
@@ -333,6 +312,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = addr[15:0];
                               next_state = MEM_READ_SIX;
+                              miss = 1'b1;
                              end
   MEM_READ_SIX:              begin
                               enable = 1'b1;
@@ -348,6 +328,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = addr[15:0];
                               next_state = mem_read_next_state;
+                              miss = 1'b1;
                              end
   MEM_READ_CR:               begin
                               enable = 1'b1;
@@ -363,6 +344,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = addr[15:0];
                               next_state = DONE_STATE;
+                              miss = 1'b1;
                              end
   DONE_STATE:                begin
                               enable = 1'b1;
@@ -373,11 +355,28 @@ always@* case(curr_state)
                               valid_in = 1'b0;
                               mem_cache_wr = 1'b0;
                               done = 1'b1;
-                              stall_cache = 1'b0;
+                              stall_cache = 1'b1;
                               cache_offset = addr[2:0];
                               cache_tag_out = addr[15:11];
                               mem_address = addr;
                               next_state = IDLE;
+                              miss = 1'b1;
+                             end
+  DONE_STATE_HIT:            begin
+                              enable = 1'b1;
+                              mem_wr = 1'b0;
+                              mem_rd = 1'b0;
+                              comp = 1'b0;
+                              c_write = 1'b0;
+                              valid_in = 1'b0;
+                              mem_cache_wr = 1'b0;
+                              done = 1'b1;
+                              stall_cache = 1'b1;
+                              cache_offset = addr[2:0];
+                              cache_tag_out = addr[15:11];
+                              mem_address = addr;
+                              next_state = IDLE;
+                              miss = 1'b0;
                              end
   default:                   begin
                               enable = 1'b0;
@@ -393,6 +392,7 @@ always@* case(curr_state)
                               cache_tag_out = addr[15:11];
                               mem_address = addr;
                               next_state = IDLE;
+                              miss = 1'b0;
                              end
  endcase
 endmodule

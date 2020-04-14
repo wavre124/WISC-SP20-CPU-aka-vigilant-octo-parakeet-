@@ -41,11 +41,11 @@ localparam WRITE_STALL = 5'b10010;
 localparam MEM_READ_CR = 5'b10011;
 
 // wires and regs for state machine
-wire [3:0] curr_state;
-reg [3:0] next_state;
+wire [4:0] curr_state;
+reg [4:0] next_state;
 
 // state machine flop
-dff state_flop[3:0](.q(curr_state), .d(next_state), .clk(clk), .rst(rst));
+dff state_flop[4:0](.q(curr_state), .d(next_state), .clk(clk), .rst(rst));
 
 // next state logic for every state
 wire [4:0] idle_next_state;
@@ -61,14 +61,14 @@ assign idle_next_state = write ? COMP_WRITE :
 
 assign comp_read_next_state = (hit & valid) ? DONE_STATE :
                               (~hit & ~valid) | (hit & ~valid) | (~hit & ~dirty) ? MEM_READ_ONE :
-                              (dirty & ~hit & valid) ? MEM_WRITE_BACK : COMP_READ;
+                              (dirty & ~hit & valid) ? MEM_WRITE_BACK_WORD_ZERO : COMP_READ;
 
 assign comp_write_next_state = (hit & valid) ? DONE_STATE :
-                               (hit & ~valid) ? MEM_READ_ONE :
+                               (hit & ~valid) ? MEM_WRITE :
                                (~hit & valid) ? CACHE_READ :
                                (~hit & ~valid) ? MEM_WRITE : COMP_WRITE;
 
-assign cache_read_next_state = (dirty) ?  : MEM_WRITE_BACK_WORD_ZERO : MEM_WRITE;
+assign cache_read_next_state = (dirty) ? MEM_WRITE_BACK_WORD_ZERO : MEM_WRITE;
 
 assign write_stall_next_state = (~busy) ? DONE_STATE : WRITE_STALL;
 assign wb_stall_next_state = (~busy) & write ? MEM_WRITE :
@@ -77,7 +77,7 @@ assign wb_stall_next_state = (~busy) & write ? MEM_WRITE :
 assign mem_read_next_state = (write) ? CACHE_WRITE : MEM_READ_CR;
 
 // assign state outputs for each state
-always@* case(curr_state):
+always@* case(curr_state)
 
   IDLE:                      begin
                              enable = 1'b0;
@@ -89,9 +89,9 @@ always@* case(curr_state):
                              mem_cache_wr = 1'b0;
                              done = 1'b0;
                              stall_cache = 1'b0;
-                             cache_offset = addr[2:0];
-                             cache_tag_out = addr[15:11];
-                             mem_address = addr;
+                             cache_offset = 3'b0;
+                             cache_tag_out = 5'b0;
+                             mem_address = 16'b0;
                              next_state = idle_next_state;
                              end
   COMP_READ:                 begin

@@ -59,6 +59,8 @@ wire [4:0] mem_read_next_state;
 assign idle_next_state = write ? COMP_WRITE :
                          read  ? COMP_READ : IDLE;
 
+// second case in this statement might be redudant
+// stinky code written by me :(
 assign comp_read_next_state = (hit & valid) ? DONE_STATE_HIT :
                               (~dirty) ? MEM_READ_ONE :
                               (dirty & valid) ? MEM_WRITE_BACK_WORD_ZERO : MEM_READ_ONE;

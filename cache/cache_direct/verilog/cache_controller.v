@@ -1,7 +1,7 @@
 module cache_controller(addr, clk, rst, read, write, hit, dirty, valid, stall_mem,
                         err, busy, enable, mem_wr, mem_rd, comp, c_write,
                         valid_in, mem_cache_wr, done, stall_cache, mem_address, cache_offset,
-                        cache_tag_out, cache_tag_in, miss);
+                        cache_tag_out, cache_tag_in, miss, curr_state);
 
 input [15:0] addr;
 input clk, rst;
@@ -41,7 +41,7 @@ localparam DONE_STATE_HIT = 5'b10010;
 localparam MEM_READ_CR = 5'b10011;
 
 // wires and regs for state machine
-wire [4:0] curr_state;
+output [4:0] curr_state;
 reg [4:0] next_state;
 
 // state machine flop

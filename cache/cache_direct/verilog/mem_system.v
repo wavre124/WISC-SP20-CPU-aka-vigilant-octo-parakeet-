@@ -23,6 +23,7 @@ module mem_system(/*AUTOARG*/
    output CacheHit;
    output err;
 
+      localparam IDLE = 5'b00000;
       // cache wires and IOs
       wire [2:0] offset;
       wire [7:0] index;
@@ -53,6 +54,14 @@ module mem_system(/*AUTOARG*/
       wire mem_cache_write;
       wire cache_stall;
       wire cache_miss;
+      wire [4:0] curr_state;
+
+      // latches so we only use data seen at IDLE state for everything
+      wire [15:0] Addr_latch;
+      wire [15:0] DataIn_latch;
+      wire        Rd_latch;
+      wire        Wr_latch;
+      wire        createdump_latch;
 
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
@@ -68,7 +77,7 @@ module mem_system(/*AUTOARG*/
                           .enable               (c_enable),
                           .clk                  (clk),
                           .rst                  (rst),
-                          .createdump           (createdump),
+                          .createdump           (createdump_latch),
                           .tag_in               (tag),
                           .index                (index),
                           .offset               (offset),
@@ -85,7 +94,7 @@ module mem_system(/*AUTOARG*/
                      // Inputs
                      .clk               (clk),
                      .rst               (rst),
-                     .createdump        (createdump),
+                     .createdump        (createdump_latch),
                      .addr              (mem_addr),
                      .data_in           (mem_data_in),
                      .wr                (mem_write),
@@ -94,19 +103,25 @@ module mem_system(/*AUTOARG*/
 
    // your code here
 
+   assign Addr_latch = (curr_state == IDLE) ? Addr : Addr_latch;
+   assign DataIn_latch = (curr_state == IDLE) ? DataIn : DataIn_latch;
+   assign Rd_latch = (curr_state == IDLE) ? Rd : Rd_latch;
+   assign Wr_latch = (curr_state == IDLE) ? Wr : Wr_latch;
+   assign createdump_latch = (curr_state == IDLE) ? createdump : createdump_latch;
+
    // assign inputs to cache
-   assign index = Addr[10:3];
-   assign c_data_in = (mem_cache_write) ? mem_data_out : DataIn;
+   assign index = Addr_latch[10:3];
+   assign c_data_in = (mem_cache_write) ? mem_data_out : DataIn_latch;
 
    // assign inputs to cache cntrl
 
    // assign inputs to memory blk
-   assign mem_data_in = (c_dirty) ? c_data_out : DataIn;
+   assign mem_data_in = (c_dirty) ? c_data_out : DataIn_latch;
 
-   cache_controller ctrl(.addr(Addr), .clk(clk), .rst(rst), .read(Rd), .write(Wr), .hit(c_hit), .dirty(c_dirty), .valid(c_valid), .stall_mem(Stall),
+   cache_controller ctrl(.addr(Addr_latch), .clk(clk), .rst(rst), .read(Rd_latch), .write(Wr_latch), .hit(c_hit), .dirty(c_dirty), .valid(c_valid), .stall_mem(Stall),
                            .err(err), .busy(mem_busy), .enable(c_enable), .mem_wr(mem_write), .mem_rd(mem_read), .comp(c_comp), .c_write(c_write),
                            .valid_in(c_valid_in), .mem_cache_wr(mem_cache_write), .done(Done), .stall_cache(cache_stall), .mem_address(mem_addr), .cache_offset(offset),
-                           .cache_tag_out(tag), .cache_tag_in(c_tag_out), .miss(cache_miss));
+                           .cache_tag_out(tag), .cache_tag_in(c_tag_out), .miss(cache_miss), .curr_state(curr_state));
 
    // assign outputs of mem system
    assign DataOut = c_data_out;

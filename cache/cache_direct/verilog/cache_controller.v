@@ -144,7 +144,7 @@ always@* case(curr_state)
                               enable = 1'b1;
                               mem_wr = 1'b0;
                               mem_rd = 1'b0;
-                              comp = 1'b0;
+                              comp = 1'b1;
                               c_write = 1'b1;
                               valid_in = 1'b1;
                               mem_cache_wr = 1'b0;

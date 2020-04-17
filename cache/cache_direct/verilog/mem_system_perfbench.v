@@ -18,9 +18,9 @@ module mem_system_perfbench(/*AUTOARG*/);
    reg                  Rd;                     // To DUT of mem_system_hier.v
    reg                  Wr;                     // To DUT of mem_system_hier.v
    // End of automatics
-   
+
    reg [256*8:1]        addr_trace_file_name;
-   
+
    wire                 clk;
    wire                 rst;
 
@@ -28,7 +28,7 @@ module mem_system_perfbench(/*AUTOARG*/);
    assign               clk = DUT.clkgen.clk;
    assign               rst = DUT.clkgen.rst;
 
-   // Instantiate the module we want to verify   
+   // Instantiate the module we want to verify
 
    mem_system_hier DUT(/*AUTOINST*/
                        // Outputs
@@ -47,7 +47,7 @@ module mem_system_perfbench(/*AUTOARG*/);
    wire                 Done_ref;
    wire                 Stall_ref;
    wire                 CacheHit_ref;
-   
+
    mem_system_ref ref(
                       // Outputs
                       .DataOut          (DataOut_ref[15:0]),
@@ -61,18 +61,18 @@ module mem_system_perfbench(/*AUTOARG*/);
                       .Wr               (Wr),
                       .clk( DUT.clkgen.clk),
                       .rst( DUT.clkgen.rst) );
-   
+
    reg    reg_readorwrite;
    integer n_requests;
    integer n_replies;
    integer n_cache_hits;
    reg     test_success;
    integer req_cycle;
-   
+
    // variables for reading address trace
    integer fd;
    integer rval;
-   
+
    initial begin
       Rd = 1'b0;
       Wr = 1'b0;
@@ -84,7 +84,7 @@ module mem_system_perfbench(/*AUTOARG*/);
       n_cache_hits = 0;
       test_success = 1'b1;
       req_cycle = 0;
-      
+
       if (!$value$plusargs("addr_trace_file_name=%s", addr_trace_file_name) ) begin
          $display("ERROR: FAIL no input file specified. Cannot proceed. Specify input using the -addr flag to wsrun.pl");
          $stop;
@@ -92,29 +92,29 @@ module mem_system_perfbench(/*AUTOARG*/);
       $display("Using trace file %s", addr_trace_file_name );
       fd = $fopen(addr_trace_file_name, "r");
    end
-   
-   
 
 
-   
-   
+
+
+
+
    always @ (posedge clk) begin
 
       #2;
       // simulation delay
-      
+
       if (Done) begin
          n_replies = n_replies + 1;
          if (CacheHit) begin
             n_cache_hits = n_cache_hits + 1;
          end
          if (Rd) begin
-            $display("LOG: ReqNum %4d Cycle %8d ReqCycle %8d Rd Addr 0x%04x Value 0x%04x ValueRef 0x%04x HIT %1d\n",
-                     n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataOut, DataOut_ref, CacheHit);
+            $display("LOG: ReqNum %4d Cycle %8d ReqCycle %8d Rd Addr 0x%04x Value 0x%04x ValueRef 0x%04x MemDin 0x%04x HIT %1d\n",
+                     n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataOut, DataOut_ref, DUT.m0.mem_data_in, CacheHit);
          end
          if (Wr) begin
-            $display("LOG: ReQNum %4d Cycle %8d ReqCycle %8d Wr Addr 0x%04x Value 0x%04x ValueRef 0x%04x HIT %1d\n",
-                     n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn, DataIn, CacheHit);
+            $display("LOG: ReQNum %4d Cycle %8d ReqCycle %8d Wr Addr 0x%04x Value 0x%04x ValueRef 0x%04x MemDin 0x%04x HIT %1d\n",
+                     n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn, DataIn, DUT.m0.mem_data_in, CacheHit);
          end
          if (Rd | Wr) begin
             if (CacheHit) begin
@@ -128,9 +128,9 @@ module mem_system_perfbench(/*AUTOARG*/);
                   test_success = 1'b0;
                end
             end
-            
+
          end
-           
+
 	 if (Rd) begin
 	    if (DataOut != DataOut_ref) begin
                 $display("ERROR Ref: 0x%04x DUT: 0x%04x", DataOut_ref, DataOut);
@@ -151,7 +151,7 @@ module mem_system_perfbench(/*AUTOARG*/);
    task read_line;
       reg [1023:0] line;
       integer rval;
-      
+
       begin
          if (!rst && (!Stall)) begin
 	        if (n_replies != n_requests) begin
@@ -164,10 +164,10 @@ module mem_system_perfbench(/*AUTOARG*/);
 			               n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn);
                end
 	           $display("ERROR! Request dropped");
-               test_success = 1'b0;               
-	           n_replies = n_requests;	       
-	        end            
-            rval = $fscanf(fd, "%d %d %d %d", 
+               test_success = 1'b0;
+	           n_replies = n_requests;
+	        end
+            rval = $fscanf(fd, "%d %d %d %d",
                            Wr, Rd, Addr, DataIn);
             if (rval == 0) begin
                rval = $fgets(line, fd);
@@ -182,8 +182,8 @@ module mem_system_perfbench(/*AUTOARG*/);
                n_requests = n_requests + 1;
             end
          end // if (!rst && (!Stall))
-      end         
-   endtask 
+      end
+   endtask
 
    task end_simulation;
       begin
@@ -200,7 +200,7 @@ module mem_system_perfbench(/*AUTOARG*/);
          $stop;
       end
    endtask // end_simulation
-   
-   
+
+
 endmodule // mem_system_bench
 // DUMMY LINE FOR REV CONTROL :9:

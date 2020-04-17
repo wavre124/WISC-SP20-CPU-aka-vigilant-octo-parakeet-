@@ -4,18 +4,19 @@
    Filename        : decode.v
    Description     : This is the module for the overall decode stage of the processor.
 */
-module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, branch_jump_op, PC_src, Dst_reg, Ext_op, //14
+module decode (clk, rst,  data_rs_o, Data_two, err, inst, ALU_op, RD, RS, RT, branch_jump_op, PC_src, Dst_reg, Ext_op, //14
                Ext_sign, Reg_write, Mem_read, Mem_write, JAL, Mem_reg, //6
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch, //9
                rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, EX_MEM_reg_write, MEM_wb_reg_write, wb_reg_write ,write_sel, write_sel_WB, //9
-               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd, WB_JAL, bj_write_data, WB_bj_write_data, valid_rt); //11
+               rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd, WB_JAL, bj_write_data, WB_bj_write_data, valid_rt,
+               execute_data, memory_read_data, mem_address); //11
 
    // TODO: Your code here
 
    parameter N = 16;
 
    input clk, rst;
-   input [N-1:0] inst;
+   input [N-1:0] inst,  execute_data, memory_read_data, mem_address;
    input [N-1:0] PC;
    input [N-1:0] wb_data;
    wire [15:0] inst_help;
@@ -35,9 +36,10 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    input [15:0] MEM_wb_ins;
    input [2:0] write_sel_WB;
    input WB_JAL;
-
-   output [N-1:0] Data_one; // Rs
+ //change output later
+   wire [N-1:0] Data_one; // Rs
    output [N-1:0] Data_two; // Rt
+   //include a ternary statement
    output err;
    output [2:0] RD;
    output [2:0] RS;
@@ -60,14 +62,9 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
    output [N-1:0] immediate;
     localparam pc_help = 1'b0;
    localparam R7 = 3'b111;
+  output [15:0] data_rs_o ;
 
-   // this is the WB data from the WB stage, the JAL signal needs to be piped
-   // FIXME: potential edge case. Imagine an instruction which needs to write
-   // back data in the 5th stage of the pipeline and we have a JAL in the 2nd
-   // stage in decode at the same time, this will result in incorrect data
-   // being written..
-   // FIXME: potential fix is to stall... I think in hazard detect
-  wire [2:0] write_sel_helper;
+   wire [2:0] write_sel_helper;
    assign write_data = (WB_JAL) ? WB_bj_write_data : wb_data;
    assign RS = inst[10:8]; //added code here
    assign RT = inst[7:5];
@@ -86,17 +83,18 @@ module decode (clk, rst, Data_one, Data_two, err, inst, ALU_op, RD, RS, RT, bran
                   .Ext_sign(Ext_sign), .Reg_write(Reg_write), .Mem_read(Mem_read), .Mem_write(Mem_write), .JAL(JAL), .Mem_reg(Mem_reg),
                   .Mem_en(Mem_en), .Excp(Excp), .ALU_src(ALU_src), .halt(halt), .valid_rd(valid_rd), .valid_rt(valid_rt));
 
-
    regFile_bypass regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
                            .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel_pipe), .writeData(write_data), .writeEn(reg_write_pipe));
+//all wired well except top row and mem_read
+  decode_forward the_kshitij_blk(.execute_data(execute_data), .memory_read_data(memory_read_data), .mem_address(mem_address), .data_rs(Data_one),
+                            .rs_d(inst[10:8]),.rd_e(rd_ID_EX), .rs_e(rs_ID_EX),
+                             .rd_m(rd_EX_MEM), .rs_m(rs_EX_MEM), .reg_write_ex(EX_MEM_reg_write), .reg_write_mem(MEM_wb_reg_write), .valid_rd_e(EX_MEM_valid_rd),
+                           .valid_rd_m(MEM_wb_valid_rd), .instruction_d(inst), .instruction_e(EX_MEM_ins), .instruction_m(MEM_wb_ins), .data_rs_o(data_rs_o));
 
-   /*
-   regFile regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
-                    .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel_pipe), .writeData(wb_data), .writeEn(reg_write_pipe));
-   */
+
    extend ext_blk(.inst(inst), .ext_sign(Ext_sign), .ext_op(Ext_op), .ext_imm(immediate));
 
-   branch_jump bj_blk(.rs(Data_one), .PC(PC), .imm(immediate), .displacement(immediate),
+   branch_jump bj_blk(.rs(data_rs_o), .PC(PC), .imm(immediate), .displacement(immediate),
                       .branch_jump_op(branch_jump_op), .b_j_PC(br_ju_addr), .reg_data(bj_write_data));
 
    hazard_det hazard_blk(.rd_ID_EX(rd_ID_EX), .rt(RT), .rs(RS),

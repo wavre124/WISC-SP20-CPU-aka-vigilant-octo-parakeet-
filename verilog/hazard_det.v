@@ -109,14 +109,11 @@ localparam bgez = 5'b01111;
 wire branch;
 assign branch =  (beqz == opcode) | (bnez == opcode ) | (bltz == opcode) | (bgez == opcode);
 
-assign stall_decode =  (((valD_regW_1 &  (rd_ID_EX == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) | (r7_write & (R7 == rs))) & (~no_stall) & branch ) ? 1'b1 :
-                         (((valD_regW_1 &  (equal_rs_rt) & valid_rt ) | (valD_regW_1 & (rd_ID_EX == rs)) | (st_stu & (rd_ID_EX == RD )))
-                         & (~no_stall) & (EX_MEM_op == load) ) ? 1'b1 :
+assign stall_decode = (((valD_regW_1 &  (equal_rs_rt) & valid_rt ) | (valD_regW_1 & (rd_ID_EX == rs)) | (st_stu & (rd_ID_EX == RD )))
+                         & (~no_stall) & (EX_MEM_op == load) ) ? 1'b1 : //1'b0;
 
-                  (((valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write_2 & (R7 == rs))) & (~no_stall) & branch ) ? 1'b1 ://same logic as comment above
-
-                  ((jalr_jr) & ((valD_regW_1 & (rd_ID_EX == rs)) | (valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) |
-                  (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write & (rs == R7)) | (r7_write_2 & (rs == R7)))) ? 1'b1 : 1'b0;
+                 ((jalr_jr) & ((valD_regW_1 & (rd_ID_EX == rs)) | (valD_regW_2 & (rd_EX_MEM == rs)) | (write_Rs_1 & (rs_ID_EX == rs)) |
+                 (write_Rs_2 & (rs_EX_MEM == rs)) | (r7_write & (rs == R7)) | (r7_write_2 & (rs == R7)))) ? 1'b1 : 1'b0;
 
 
 

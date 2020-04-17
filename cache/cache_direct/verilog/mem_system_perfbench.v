@@ -109,12 +109,12 @@ module mem_system_perfbench(/*AUTOARG*/);
             n_cache_hits = n_cache_hits + 1;
          end
          if (Rd) begin
-            $display("LOG: ReqNum %4d Cycle %8d ReqCycle %8d Rd Addr 0x%04x Value 0x%04x ValueRef 0x%04x MemDin 0x%04x HIT %1d\n",
-                     n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataOut, DataOut_ref, DUT.m0.mem_data_in, CacheHit);
+            $display("LOG: ReqNum %4d Cycle %8d ReqCycle %8d Rd Addr 0x%04x Value 0x%04x ValueRef 0x%04x HIT %1d\n",
+                     n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataOut, DataOut_ref, CacheHit);
          end
          if (Wr) begin
-            $display("LOG: ReQNum %4d Cycle %8d ReqCycle %8d Wr Addr 0x%04x Value 0x%04x ValueRef 0x%04x MemDin 0x%04x HIT %1d\n",
-                     n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn, DataIn, DUT.m0.mem_data_in, CacheHit);
+            $display("LOG: ReQNum %4d Cycle %8d ReqCycle %8d Wr Addr 0x%04x Value 0x%04x ValueRef 0x%04x HIT %1d\n",
+                     n_replies, DUT.clkgen.cycle_count, req_cycle, Addr, DataIn, DataIn, CacheHit);
          end
          if (Rd | Wr) begin
             if (CacheHit) begin

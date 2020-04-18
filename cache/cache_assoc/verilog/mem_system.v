@@ -80,6 +80,8 @@ module mem_system(/*AUTOARG*/
    // if way = 0, cache zero is victimized
    // if way = 1, cache one is victimized
    wire way;
+   wire stall_cache, cache_miss;
+   wire [7:0] index;
 
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
@@ -140,12 +142,12 @@ module mem_system(/*AUTOARG*/
 
    cache_controller ctrl(.clk(clk), .rst(rst), .read(Rd_latch), .write(Wr_latch), .c_hit_0(cache_0_hit), .c_hit_1(cache_1_hit),
                               .c_dirty_0(cache_0_dirty), .c_dirty_1(cache_1_dirty), .c_valid_0(cache_0_valid), .c_valid_1(cache_1_valid),
-                              .c_tag_0(cache_0_tag_out), .c_tag_1(cache_1_tag_out), .busy(busy),
+                              .c_tag_0(cache_0_tag_out), .c_tag_1(cache_1_tag_out), .busy(busy), .addr(Addr_latch),
                               .c_enable_0(c_0_enable), .c_enable_1(c_1_enable), .mem_rd(mem_rd), .mem_wr(mem_wr),
                               .c_comp_0(c_0_comp), .c_comp_1(c_1_comp), .c_write_0(c_0_write), .c_write_1(c_1_write),
-                              .valid_in_0(c_0_valid_in), .valid_in_1(c_1_valid_in), .mem_cache_wr(mem_cache_wr), .done(Done),
+                              .valid_in_0(c_0_valid_in), .valid_in_1(c_1_valid_in), .mem_cache_wr(mem_cache_wr), .done(Done), .curr_state(curr_state),
                               .mem_address(mem_addr_in), .c_offset_0(c_0_offset), .c_offset_1(c_1_offset), .c_tag_out_0(c_0_tag_in), .c_tag_out_1(c_1_tag_in),
-                              .way(way));
+                              .way(way), .stall(stall_cache), .miss(cache_miss));
 
    // your code here
    // latches so signals don't change until we are in IDLE in our FSM
@@ -159,6 +161,13 @@ module mem_system(/*AUTOARG*/
    assign mem_data_in = (way) ? cache_1_data_out : cache_0_data_out;
    assign c_0_data_in = (mem_cache_wr) ? mem_data_out : DataIn_latch;
    assign c_1_data_in = (mem_cache_wr) ? mem_data_out : DataIn_latch;
+
+   assign Stall = mem_stall | stall_cache;
+   assign CacheHit = (cache_1_hit & cache_1_valid & ~cache_miss) | (cache_0_hit & cache_0_valid & ~cache_miss);
+   assign err = cache_1_err | cache_0_err | mem_err;
+   // way is the data from the cache that is either hit or a miss happened but we
+   // recovered and read from the cache line
+   assign DataOut = (way) ? cache_1_data_out : cache_0_data_out;
 
 endmodule // mem_system
 

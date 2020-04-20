@@ -75,7 +75,6 @@ wire [4:0] idle_next_state;
 wire [4:0] comp_read_next_state;
 wire [4:0] comp_write_next_state;
 wire [4:0] cache_read_next_state;
-wire [4:0] wb_stall_next_state;
 wire [4:0] mem_read_next_state;
 
 assign way_check = (curr_state == COMP_READ) | (curr_state == COMP_WRITE);
@@ -100,7 +99,6 @@ assign comp_write_next_state = (c_hit_1 & c_valid_1) ? DONE_STATE_HIT :
                                (c_hit_0 & c_valid_0) ? DONE_STATE_HIT : CACHE_READ;
 
 assign cache_read_next_state = (wb_check) ? MEM_WRITE_BACK_WORD_ZERO : MEM_READ_ONE;
-assign wb_stall_next_state = (~busy) ? MEM_READ_ONE : WB_STALL;
 assign mem_read_next_state = (write) ? CACHE_WRITE : MEM_READ_CR;
 
 // assign state outputs for each state
@@ -319,31 +317,7 @@ always@* case(curr_state)
                                 way = way_assign;
                                 stall = 1'b1;
                                 next_victim = victim;
-                                next_state = WB_STALL;
-                                miss = 1'b1;
-                               end
-    WB_STALL:                  begin
-                                c_enable_0 = ~way;
-                                c_enable_1 = way;
-                                mem_rd = 1'b0;
-                                mem_wr = 1'b0;
-                                c_comp_0 = 1'b0;
-                                c_comp_1 = 1'b0;
-                                c_write_0 = 1'b0;
-                                c_write_1 = 1'b0;
-                                valid_in_0 = 1'b0;
-                                valid_in_1 = 1'b0;
-                                mem_cache_wr = 1'b0;
-                                done = 1'b0;
-                                mem_address = addr;
-                                c_offset_0 = addr[2:0];
-                                c_offset_1 = addr[2:0];
-                                c_tag_out_0 = addr[15:11];
-                                c_tag_out_1 = addr[15:11];
-                                way = way_assign;
-                                stall = 1'b1;
-                                next_victim = victim;
-                                next_state = wb_stall_next_state;
+                                next_state = MEM_READ_ONE;
                                 miss = 1'b1;
                                end
     MEM_READ_ONE:              begin

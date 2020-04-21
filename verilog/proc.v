@@ -163,7 +163,7 @@ module proc (/*AUTOARG*/
                                           .bj_write_data(EX_bj_write_data), .bj_write_data_o(MEM_bj_write_data), .inst_mis_align(EX_inst_mis_align), .inst_mis_align_o(MEM_inst_mis_align));
 
    memory memory_blk(.address(MEM_data_out), .write_data(MEM_data_two), .Mem_en(MEM_Mem_en), .Mem_write(MEM_Mem_write), .Mem_read(MEM_Mem_read),
-                     .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data), .halt(MEM_halt), .misalign_mem(mem_mis_align));
+                     .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data), .halt(MEM_halt), .misalign_mem(mem_mis_align), .MEM_instruction(MEM_instruction));
 
    pipe_MEM_WB pipe_four(.clk(clk), .rst(rst), .instruction(MEM_instruction), .data_read(mem_read_data), .address(MEM_data_out), .RD(MEM_RD), .RS(MEM_RS)
                                         , .Dst_reg(MEM_Dst_reg), .PC_src(MEM_PC_src), .Reg_write(MEM_Reg_write), .Mem_reg(MEM_Mem_reg), .Mem_read(MEM_Mem_read)

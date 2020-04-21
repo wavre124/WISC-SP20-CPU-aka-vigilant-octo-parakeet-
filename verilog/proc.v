@@ -103,6 +103,9 @@ module proc (/*AUTOARG*/
    // memory misalignment wires
    // this wire is if a misalignment occurs in the instruction (fetch) blk
    wire inst_mis_align;
+   wire ID_inst_mis_align;
+   wire EX_inst_mis_align;
+   wire MEM_inst_mis_align;
    // this wire is if a misalignment occurs in the memory blk
    wire mem_mis_align;
    wire valid_rt;
@@ -113,7 +116,8 @@ module proc (/*AUTOARG*/
                    .misalign_mem(inst_mis_align));
 
    pipe_IF_ID pipe_one(.clk(clk), .rst(rst), .instruction(instruction), .incremented_pc(inc_PC), .flush_fetch(flush_fetch),
-                             .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc), .halt(halt), .EX_instruction(EX_instruction));
+                             .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc), .halt(halt), .EX_instruction(EX_instruction),
+                             .inst_mis_align(inst_mis_align), .ID_inst_mis_align(ID_inst_mis_align));
 
    decode decode_blk(.clk(clk), .rst(rst), .data_rs_o(data_one), .Data_two(data_two), .err(dec_err), .inst(ID_instruction), //6
                      .ALU_op(ALU_op), .RD(ID_RD), .RS(ID_RS), .RT(ID_RT), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op), //8
@@ -139,7 +143,7 @@ module proc (/*AUTOARG*/
                                        .Data_one_o(EX_Data_one), .Data_two_o(EX_Data_two), .rd_o(EX_rd), .rs_o(EX_rs), .rt_o(EX_rt), .write_sel_o(EX_write_sel), .halt(halt),
                                        .halt_o(EX_Mem_halt), .valid_rd(valid_rd), .valid_rd_o(EX_valid_rd), .stall_decode(stall_decode), .JAL(JAL), .JAL_o(EX_JAL),
                                        .bj_write_data(bj_write_data), .bj_write_data_o(EX_bj_write_data),
-                                       .instruction_ex(EX_instruction), .valid_rt(valid_rt), .valid_rt_o(valid_rt_ex));
+                                       .instruction_ex(EX_instruction), .valid_rt(valid_rt), .valid_rt_o(valid_rt_ex), .inst_mis_align(ID_inst_mis_align), .inst_mis_align_o(EX_inst_mis_align));
 
    execute execute_blk(.data_1(EX_Data_one), .data_2(EX_Data_two), .signed_immediate(EX_immediate),
                        .ALU_src(EX_ALU_src), .ALU_op(EX_ALU_op), .data_out(alu_out), .rd_d(EX_rd), .rs_d(EX_rs), .rt_d(EX_rt), .rd_e(MEM_RD),
@@ -156,7 +160,7 @@ module proc (/*AUTOARG*/
                                           .Dst_reg_o(MEM_Dst_reg), .PC_src_o(MEM_PC_src), .Reg_write_o(MEM_Reg_write), .Mem_read_o(MEM_Mem_read),
                                           .Mem_write_o(MEM_Mem_write), .Mem_reg_o(MEM_Mem_reg), .Mem_en_o(MEM_Mem_en), .write_sel_o(MEM_write_sel), .halt(EX_Mem_halt),
                                           .halt_o(MEM_halt), .valid_rd(EX_valid_rd), .valid_rd_o(MEM_valid_rd), .JAL(EX_JAL), .JAL_o(MEM_JAL),
-                                          .bj_write_data(EX_bj_write_data), .bj_write_data_o(MEM_bj_write_data));
+                                          .bj_write_data(EX_bj_write_data), .bj_write_data_o(MEM_bj_write_data), .inst_mis_align(EX_inst_mis_align), .inst_mis_align_o(MEM_inst_mis_align));
 
    memory memory_blk(.address(MEM_data_out), .write_data(MEM_data_two), .Mem_en(MEM_Mem_en), .Mem_write(MEM_Mem_write), .Mem_read(MEM_Mem_read),
                      .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data), .halt(MEM_halt), .misalign_mem(mem_mis_align));
@@ -167,7 +171,7 @@ module proc (/*AUTOARG*/
                                         .address_o(WB_address), .RD_o(WB_RD), .RS_o(WB_RS), .Dst_reg_o(WB_Dst_reg), .PC_src_o(WB_PC_src),
                                         .Reg_write_o(WB_Reg_write), .Mem_reg_o(WB_Mem_reg), .Mem_read_o(WB_Mem_read), .Mem_write_o(WB_Mem_write), .write_sel_o(WB_write_sel),
                                         .Mem_en_o(WB_Mem_en), .halt(MEM_halt), .halt_o(WB_halt), .valid_rd(MEM_valid_rd), .valid_rd_o(WB_valid_rd), .JAL(MEM_JAL), .JAL_o(WB_JAL),
-                                        .bj_write_data(MEM_bj_write_data), .bj_write_data_o(WB_bj_write_data), .inst_misalign(inst_mis_align), .mem_misalign(mem_mis_align));
+                                        .bj_write_data(MEM_bj_write_data), .bj_write_data_o(WB_bj_write_data), .inst_misalign(MEM_inst_mis_align), .mem_misalign(mem_mis_align), .err(err));
 
    wb wb_blk(.data_read(WB_data_read), .address(WB_address), .Mem_reg(WB_Mem_reg), .data_out(wb_data));
 

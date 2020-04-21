@@ -127,7 +127,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
           valid_rd = 0;
@@ -146,7 +146,7 @@ always @* case(inst[15:11])
            Mem_write = 0;
            JAL = 0;
            Mem_reg = 0;
-           Mem_en = 1;
+           Mem_en = 0;
            Excp = 0;
            halt = 0;
 	          valid_rd = 1;
@@ -165,7 +165,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
           valid_rt = 0;
@@ -184,7 +184,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	       valid_rd = 1;
@@ -203,7 +203,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 1;
@@ -222,7 +222,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	       valid_rd = 1;
@@ -241,7 +241,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 1;
@@ -260,7 +260,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 1;
@@ -279,7 +279,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 1;
@@ -355,7 +355,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 1;
@@ -374,7 +374,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 1;
@@ -393,7 +393,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	       valid_rd = 1;
@@ -412,7 +412,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 1;
@@ -431,7 +431,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	       valid_rd = 1;
@@ -450,7 +450,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 1;
@@ -469,7 +469,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt =0;
 	        valid_rd = 1;
@@ -488,7 +488,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	       valid_rd = 0;
@@ -507,7 +507,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -526,7 +526,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -545,7 +545,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -564,7 +564,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -583,7 +583,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -602,7 +602,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -621,7 +621,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -640,7 +640,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 1;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -659,7 +659,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 1;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;
@@ -678,7 +678,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 1;
           halt = 0;
 	        valid_rd = 0;
@@ -697,7 +697,7 @@ always @* case(inst[15:11])
           Mem_write = 0;
           JAL = 0;
           Mem_reg = 0;
-          Mem_en = 1;
+          Mem_en = 0;
           Excp = 0;
           halt = 0;
 	        valid_rd = 0;

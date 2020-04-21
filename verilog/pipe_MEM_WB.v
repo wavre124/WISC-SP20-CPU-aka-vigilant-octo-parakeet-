@@ -2,7 +2,7 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, P
                    Reg_write, Mem_reg, Mem_read, Mem_write, write_sel, Mem_en, instruction_o,
                    data_read_o, address_o, RD_o, RS_o, Dst_reg_o, PC_src_o,
                    Reg_write_o, Mem_reg_o, Mem_read_o, Mem_write_o, write_sel_o, Mem_en_o, halt, halt_o, valid_rd, valid_rd_o, JAL, JAL_o,
-                   bj_write_data, bj_write_data_o, inst_misalign, mem_misalign);
+                   bj_write_data, bj_write_data_o, inst_misalign, mem_misalign, err);
 
   input clk;
   input rst;
@@ -36,12 +36,12 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, P
 
   //outputs that are conrol unit signals//////////////////////////////////////
   output [1:0] Dst_reg_o, PC_src_o;
-  output Reg_write_o, Mem_reg_o, Mem_read_o, Mem_write_o, Mem_en_o, halt_o, valid_rd_o, JAL_o;
+  output Reg_write_o, Mem_reg_o, Mem_read_o, Mem_write_o, Mem_en_o, halt_o, valid_rd_o, JAL_o, err;
  /////////////////////////////////////////////////////////////////////////////
 
- wire halt_in;
+ wire err_wire;
 
- assign halt_in = (inst_misalign | mem_misalign) ? 1'b1 : halt;
+ assign err_wire = inst_misalign | mem_misalign;
 
  //flops that are not for control unit signals///////////////////////////////////
   dff instruction_flop[15:0](.q(instruction_o), .d(instruction), .clk(clk), .rst(rst));
@@ -61,9 +61,10 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, P
     dff Mem_read_flop(.q(Mem_read_o), .d(Mem_read), .clk(clk), .rst(rst));
     dff Mem_write_flop(.q(Mem_write_o), .d(Mem_write), .clk(clk), .rst(rst));
     dff Mem_en_flop(.q(Mem_en_o), .d(Mem_en), .clk(clk), .rst(rst));
-    dff halt_flop(.q(halt_o), .d(halt_in), .clk(clk), .rst(rst));
+    dff halt_flop(.q(halt_o), .d(halt), .clk(clk), .rst(rst));
     dff valid_rd_flop(.q(valid_rd_o), .d(valid_rd), .clk(clk), .rst(rst));
     dff JAL_flop(.q(JAL_o), .d(JAL), .clk(clk), .rst(rst));
+    dff err_flop(.q(err), .d(err_wire), .clk(clk), .rst(rst));
  ////////////////////////////////////////////////////////////////////////////////
 
 endmodule

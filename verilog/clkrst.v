@@ -1,6 +1,7 @@
 /* $Author: karu $ */
-/* $LastChangedDate: 2009-03-04 23:09:45 -0600 (Wed, 04 Mar 2009) $ */
-/* $Rev: 45 $ */
+/* $LastChangedDate: 2009-04-24 09:28:13 -0500 (Fri, 24 Apr 2009) $ */
+/* $Rev: 77 $ */
+
 // clock and reset generator
 // CS/ECE 552
 // Andy Phelps (TA)
@@ -35,13 +36,13 @@ module clkrst (clk, rst, err);
       end
     end
     always @(posedge clk) begin
-       cycle_count = cycle_count + 1;
-       if (cycle_count > 100000) begin
-          $display("hmm....more than 100000 cycles of simulation...error?\n");
-          $finish;
-       end
+    	cycle_count = cycle_count + 1;
+	if (cycle_count > 1000000) begin
+		$display("hmm....more than 100000 cycles of simulation...error?\n");
+		$finish;
+	end
     end
 
 
 endmodule
-// DUMMY LINE FOR REV CONTROL :0:
+// DUMMY LINE FOR REV CONTROL :9:

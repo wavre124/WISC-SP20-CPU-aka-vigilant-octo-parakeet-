@@ -83,9 +83,15 @@ module mem_system(/*AUTOARG*/
    wire stall_cache, cache_miss;
    wire [7:0] index;
 
+   wire mem_blk;
+
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
    parameter memtype = 0;
+
+   // if memtype is 1 DMem, otherwise 0 IMem
+   assign mem_blk = (memtype == 1) ? 1'b1 : 1'b0;
+
    cache #(0 + memtype) c0(// Outputs
                           .tag_out              (cache_0_tag_out),
                           .data_out             (cache_0_data_out),
@@ -147,7 +153,7 @@ module mem_system(/*AUTOARG*/
                               .c_comp_0(c_0_comp), .c_comp_1(c_1_comp), .c_write_0(c_0_write), .c_write_1(c_1_write),
                               .valid_in_0(c_0_valid_in), .valid_in_1(c_1_valid_in), .mem_cache_wr(mem_cache_wr), .done(Done), .curr_state(curr_state),
                               .mem_address(mem_addr_in), .c_offset_0(c_0_offset), .c_offset_1(c_1_offset), .c_tag_out_0(c_0_tag_in), .c_tag_out_1(c_1_tag_in),
-                              .way(way), .stall(stall_cache), .miss(cache_miss));
+                              .way(way), .stall(stall_cache), .miss(cache_miss), .mem_blk(mem_blk));
 
    // your code here
    // latches so signals don't change until we are in IDLE in our FSM

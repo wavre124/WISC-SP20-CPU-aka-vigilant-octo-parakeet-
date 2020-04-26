@@ -87,7 +87,7 @@ module mem_system(/*AUTOARG*/
 
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
-   parameter memtype = 0;
+   parameter memtype = 1;
 
    // if memtype is 1 DMem, otherwise 0 IMem
    assign mem_blk = (memtype == 1) ? 1'b1 : 1'b0;

@@ -4,11 +4,11 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem);
+module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem, d_Stall);
   // TODO: Your code here
 
   input [1:0] PC_src;
-  input Mem_en, clk, rst, excp;
+  input Mem_en, clk, rst, excp, d_Stall;
   input [15:0] b_j_pc; //pcs being fed in from the branch address, jump address, and current pc for holds and normal instructions
   input stall_decode;
   input [15:0] EX_instruction;
@@ -41,8 +41,12 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
 
   mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(pc_src_help), .Out(mux_pc));
 
+  wire stall_decode_wire;
+
+  assign stall_decode_wire = stall_decode | d_Stall;
+
   // this mux stalls the PC
-  mux2_1_N pc_mux4(.InA(mux_pc), .InB(pc), .S(stall_decode), .Out(flop_pc));
+  mux2_1_N pc_mux4(.InA(mux_pc), .InB(pc), .S(stall_decode_wire), .Out(flop_pc));
 
   dff pc_flops[15:0](.q(pc), .d(flop_pc), .clk(clk), .rst(rst));
  //changed incremented pc to pc

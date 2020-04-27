@@ -20,6 +20,7 @@ module memory(address, write_data, Mem_en, Mem_write, Mem_read, clk, rst, PC_src
     wire stall;
     wire mem_read_wire;
     wire mem_write_wire;
+    wire mem_read_write;
     output d_Stall;
     output d_done;
     output real_stall;
@@ -48,5 +49,6 @@ module memory(address, write_data, Mem_en, Mem_write, Mem_read, clk, rst, PC_src
     assign mem_read_wire = (Mem_read) & d_done;
     assign mem_write_wire = (Mem_write) & d_done;
     assign real_stall = stall;
+    assign mem_read_write = (Mem_read) | (Mem_write);
 
 endmodule

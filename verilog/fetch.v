@@ -47,6 +47,7 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   wire [15:0] b_j_pc_latch;
   wire [1:0] pc_src_latch;
   wire stall;
+  wire read_req;
 
   wire why_did_i_choose_this_major_again;
 
@@ -78,5 +79,6 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
 
   assign ins_stall = ~(stall & Done);
   assign bj_stall = (PC_src == 2) & ~(stall & Done);
+  assign read_req = ~stall;
 
 endmodule

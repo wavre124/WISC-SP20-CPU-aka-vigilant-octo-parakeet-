@@ -153,7 +153,7 @@ module mem_system_ins(/*AUTOARG*/
                               .c_comp_0(c_0_comp), .c_comp_1(c_1_comp), .c_write_0(c_0_write), .c_write_1(c_1_write),
                               .valid_in_0(c_0_valid_in), .valid_in_1(c_1_valid_in), .mem_cache_wr(mem_cache_wr), .done(Done), .curr_state(curr_state),
                               .mem_address(mem_addr_in), .c_offset_0(c_0_offset), .c_offset_1(c_1_offset), .c_tag_out_0(c_0_tag_in), .c_tag_out_1(c_1_tag_in),
-                              .way(way), .stall(stall_cache), .miss(cache_miss), .mem_blk(mem_blk));
+                              .way(way), .stall(stall_cache), .miss(cache_miss), .mem_blk(mem_blk), .stall_in(Stall));
 
    // your code here
    // latches so signals don't change until we are in IDLE in our FSM

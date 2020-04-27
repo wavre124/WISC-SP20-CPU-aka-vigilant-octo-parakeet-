@@ -4,7 +4,7 @@ module cache_controller(clk, rst, read, write, c_hit_0, c_hit_1,
                         c_enable_0, c_enable_1, mem_rd, mem_wr,
                         c_comp_0, c_comp_1, c_write_0, c_write_1,
                         valid_in_0, valid_in_1, mem_cache_wr, done, curr_state,
-                        mem_address, c_offset_0, c_offset_1, c_tag_out_0, c_tag_out_1, way, stall, miss, mem_blk);
+                        mem_address, c_offset_0, c_offset_1, c_tag_out_0, c_tag_out_1, way, stall, miss, mem_blk, stall_in);
 
 // controller inputs
 input clk, rst, mem_blk;
@@ -15,6 +15,8 @@ input c_valid_0, c_valid_1;
 input [4:0] c_tag_0, c_tag_1;
 input [3:0] busy;
 input [15:0] addr;
+
+input stall_in;
 
 // controller Outputs
 output reg c_enable_0, c_enable_1;
@@ -66,8 +68,8 @@ dff victim_flop(.q(victim), .d(next_victim), .clk(clk), .rst(rst));
 
 // victimway should not be inverted if read and write are both 0
 // mem_blk is 1 if DMem, 0 if IMem
-assign valid_vic_check = (~read & ~write & mem_blk) ? victim :  ~victim;
-  //                       () ? victim : ~victim;
+assign valid_vic_check = (~read & ~write & mem_blk) ? victim : ~victim;
+                         //(stall_in) ? victim : ~victim;
 
 wire way_assign;
 wire way_check;

@@ -2,7 +2,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
                   instruction, immediate, Data_one, Data_two, rd, rs, rt, write_sel, halt_o, ALU_op_o,
                   Dst_reg_o, PC_src_o, ALU_src_o, Reg_write_o, Mem_read_o, Mem_write_o, Mem_reg_o,
                   Mem_en_o, instruction_o, immediate_o, Data_one_o, Data_two_o, rd_o, rs_o, rt_o, write_sel_o, valid_rd_o, stall_decode, JAL, JAL_o,
-                  bj_write_data, bj_write_data_o, instruction_ex, valid_rt, valid_rt_o, inst_mis_align, inst_mis_align_o, d_Stall);
+                  bj_write_data, bj_write_data_o, instruction_ex, valid_rt, valid_rt_o, inst_mis_align, inst_mis_align_o, d_Stall, inst_stall);
 
   input clk, rst;
 
@@ -10,7 +10,7 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
   input [3:0] ALU_op;
   input [1:0] Dst_reg, PC_src;
   input ALU_src, Reg_write, Mem_read, Mem_write, Mem_reg, Mem_en, halt, valid_rd;
-  input valid_rt, inst_mis_align, d_Stall;
+  input valid_rt, inst_mis_align, d_Stall, inst_stall;
   /////////////////////////////////////////////////////////////////////////////////////////
 
   //inputs that are NOT CONTROL UNIT SIGNALS/////////////////////////////////////////////////
@@ -90,30 +90,30 @@ module pipe_ID_EX(clk, rst, halt, ALU_op, Dst_reg, PC_src, ALU_src, Reg_write, M
    wire valid_rt_wire;
    wire inst_err_wire;
 
-   assign instruction_wire = (d_Stall) ? instruction_o : instruction_s;
-   assign immediate_wire = (d_Stall) ? immediate_o : immediate;
-   assign data_one_wire = (d_Stall) ? Data_one_o : Data_one;
-   assign data_two_wire = (d_Stall) ? Data_two_o : Data_two;
-   assign bj_flop_wire = (d_Stall) ? bj_write_data_o : bj_write_data;
-   assign rd_flop_wire = (d_Stall) ? rd_o : rd;
-   assign rs_flop_wire = (d_Stall) ? rs_o : rs;
-   assign rt_flop_wire = (d_Stall) ? rt_o : rt;
-   assign ws_flop_wire = (d_Stall) ? write_sel_o : write_sel;
+   assign instruction_wire = (inst_stall | d_Stall) ? instruction_o : instruction_s;
+   assign immediate_wire = (inst_stall | d_Stall) ? immediate_o : immediate;
+   assign data_one_wire = (inst_stall | d_Stall) ? Data_one_o : Data_one;
+   assign data_two_wire = (inst_stall | d_Stall) ? Data_two_o : Data_two;
+   assign bj_flop_wire = (inst_stall | d_Stall) ? bj_write_data_o : bj_write_data;
+   assign rd_flop_wire = (inst_stall | d_Stall) ? rd_o : rd;
+   assign rs_flop_wire = (inst_stall | d_Stall) ? rs_o : rs;
+   assign rt_flop_wire = (inst_stall | d_Stall) ? rt_o : rt;
+   assign ws_flop_wire = (inst_stall | d_Stall) ? write_sel_o : write_sel;
 
-   assign ALU_op_wire = (d_Stall) ? ALU_op_o : ALU_op;
-   assign Dst_reg_wire = (d_Stall) ? Dst_reg_o : Dst_reg;
-   assign PC_src_wire = (d_Stall) ?  PC_src_o : PC_src;
-   assign ALU_src_wire = (d_Stall) ?  ALU_src_o : ALU_src;
-   assign Reg_write_wire = (d_Stall) ?  Reg_write_o : Reg_write_s;
-   assign Mem_read_wire = (d_Stall) ?  Mem_read_o : Mem_read_s;
-   assign Mem_write_wire = (d_Stall) ?  Mem_write_o : Mem_write_s;
-   assign Mem_reg_wire = (d_Stall) ?  Mem_reg_o : Mem_reg;
-   assign Mem_en_wire = (d_Stall) ?  Mem_en_o : Mem_en;
-   assign halt_wire = (d_Stall) ?  halt_o : halt_s;
-   assign valid_rd_wire = (d_Stall) ?  valid_rd_o : valid_rd;
-   assign JAL_wire = (d_Stall) ?  JAL_o : JAL;
-   assign valid_rt_wire = (d_Stall) ?  valid_rt_o : valid_rt;
-   assign inst_err_wire = (d_Stall) ?  inst_mis_align_o : inst_mis_align;
+   assign ALU_op_wire = (inst_stall | d_Stall) ? ALU_op_o : ALU_op;
+   assign Dst_reg_wire = (inst_stall | d_Stall) ? Dst_reg_o : Dst_reg;
+   assign PC_src_wire = (inst_stall | d_Stall) ?  PC_src_o : PC_src;
+   assign ALU_src_wire = (inst_stall | d_Stall) ?  ALU_src_o : ALU_src;
+   assign Reg_write_wire = (inst_stall | d_Stall) ?  Reg_write_o : Reg_write_s;
+   assign Mem_read_wire = (inst_stall | d_Stall) ?  Mem_read_o : Mem_read_s;
+   assign Mem_write_wire = (inst_stall | d_Stall) ?  Mem_write_o : Mem_write_s;
+   assign Mem_reg_wire = (inst_stall | d_Stall) ?  Mem_reg_o : Mem_reg;
+   assign Mem_en_wire = (inst_stall | d_Stall) ?  Mem_en_o : Mem_en;
+   assign halt_wire = (inst_stall | d_Stall) ?  halt_o : halt_s;
+   assign valid_rd_wire = (inst_stall | d_Stall) ?  valid_rd_o : valid_rd;
+   assign JAL_wire = (inst_stall | d_Stall) ?  JAL_o : JAL;
+   assign valid_rt_wire = (inst_stall | d_Stall) ?  valid_rt_o : valid_rt;
+   assign inst_err_wire = (inst_stall | d_Stall) ?  inst_mis_align_o : inst_mis_align;
 
    //flops for CONTROL UNIT SIGNALS//////////////////////////////////////////////////
     dff alu_op_flop[3:0](.q(ALU_op_o), .d(ALU_op_wire), .clk(clk), .rst(rst));

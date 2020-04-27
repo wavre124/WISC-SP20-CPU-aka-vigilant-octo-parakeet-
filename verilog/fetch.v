@@ -4,7 +4,7 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem, d_Stall, ins_stall);
+module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem, d_Stall, ins_stall, bj_stall);
   // TODO: Your code here
 
   input [1:0] PC_src;
@@ -26,6 +26,7 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
 
   wire Done, CacheHit;
   output ins_stall;
+  output bj_stall;
 
   cla_16b adder (.A(pc), .B(EPC_addr), .C_in(1'b0), .S(incremented_pc), .C_out(), .Overflow());
 
@@ -42,18 +43,23 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   wire [1:0] pc_src_help;
   assign pc_src_help = (opcode == rti) ? (2'b01) : PC_src;
 
+  wire [15:0] real_pc;
   wire [15:0] b_j_pc_latch;
-  wire [2:0] pc_src_latch;
+  wire [1:0] pc_src_latch;
   wire stall;
+
+  wire why_did_i_choose_this_major_again;
+
+  assign why_did_i_choose_this_major_again = ((instruction[15:13] == 3'b011) | (instruction[15:13] == 3'b001));
 
   assign b_j_pc_latch = (stall) ? b_j_pc_latch : b_j_pc;
   assign pc_src_latch = (stall) ? pc_src_latch : pc_src_help;
 
-  mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc_latch), .InD(exception_pc), .S(pc_src_latch), .Out(mux_pc));
+  mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(PC_src), .Out(mux_pc));
 
   wire stall_decode_wire;
 
-  assign stall_decode_wire = stall_decode | d_Stall | stall;
+  assign stall_decode_wire = stall_decode | d_Stall | ins_stall;
 
   // this mux stalls the PC
   mux2_1_N pc_mux4(.InA(mux_pc), .InB(pc), .S(stall_decode_wire), .Out(flop_pc));
@@ -71,5 +77,6 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   mem_system_ins ins_mem( .DataOut(instruction), .Done(Done), .Stall(stall), .CacheHit(CacheHit), .err(misalign_mem), .Addr(pc), .DataIn(start_PC_addr), .Rd(1'b1), .Wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
   assign ins_stall = ~(stall & Done);
+  assign bj_stall = (PC_src == 2) & ~(stall & Done);
 
 endmodule

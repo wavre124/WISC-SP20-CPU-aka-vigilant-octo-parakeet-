@@ -66,7 +66,8 @@ dff victim_flop(.q(victim), .d(next_victim), .clk(clk), .rst(rst));
 
 // victimway should not be inverted if read and write are both 0
 // mem_blk is 1 if DMem, 0 if IMem
-assign valid_vic_check = (~read & ~write & mem_blk) ? victim : ~victim;
+assign valid_vic_check = (~read & ~write & mem_blk) ? victim :  ~victim;
+  //                       () ? victim : ~victim;
 
 wire way_assign;
 wire way_check;

@@ -114,6 +114,7 @@ module proc (/*AUTOARG*/
    // wires for stalling data memory
    wire data_done;
    wire data_stall;
+   wire real_stall;
 
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
                    .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC), .EX_instruction(EX_instruction),
@@ -156,7 +157,7 @@ module proc (/*AUTOARG*/
                        .memory_read_data(WB_data_read), .mem_address(WB_address), .reg_write_ex(MEM_Reg_write),
                        .reg_write_mem(WB_Reg_write), .mem_read_ex(MEM_Mem_read), .mem_read_mem(WB_Mem_read),
                        .valid_rt(valid_rt_ex), .instruction_d(EX_instruction), .instruction_e(MEM_instruction), .instruction_m(WB_instruction), .valid_rd_e(MEM_valid_rd),
-                       .valid_rd_m(WB_valid_rd), .data_rd(data_rd), .bj_write_data(WB_bj_write_data));
+                       .valid_rd_m(WB_valid_rd), .data_rd(data_rd), .bj_write_data(WB_bj_write_data), .d_Stall(data_stall), .real_stall(real_stall));
 
    pipe_EX_MEM pipe_three(.clk(clk), .rst(rst), .instruction(EX_instruction), .data_out(alu_out), .data_two(data_rd), .RD(EX_rd), .RS(EX_rs),
                                           .Dst_reg(EX_Dst_reg), .PC_src(EX_PC_src), .Reg_write(EX_Reg_write), .Mem_read(EX_Mem_read), .Mem_write(EX_Mem_write), .Mem_reg(EX_Mem_reg),
@@ -170,7 +171,7 @@ module proc (/*AUTOARG*/
 
    memory memory_blk(.address(MEM_data_out), .write_data(MEM_data_two), .Mem_en(MEM_Mem_en), .Mem_write(MEM_Mem_write), .Mem_read(MEM_Mem_read),
                      .clk(clk), .rst(rst), .PC_src(MEM_PC_src), .data_read(mem_read_data), .halt(MEM_halt), .misalign_mem(mem_mis_align), .MEM_instruction(MEM_instruction),
-                     .d_Stall(data_stall), .d_done(data_done));
+                     .d_Stall(data_stall), .d_done(data_done), .real_stall(real_stall));
 
    pipe_MEM_WB pipe_four(.clk(clk), .rst(rst), .instruction(MEM_instruction), .data_read(mem_read_data), .address(MEM_data_out), .RD(MEM_RD), .RS(MEM_RS)
                                         , .Dst_reg(MEM_Dst_reg), .PC_src(MEM_PC_src), .Reg_write(MEM_Reg_write), .Mem_reg(MEM_Mem_reg), .Mem_read(MEM_Mem_read)

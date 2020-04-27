@@ -5,7 +5,7 @@
    Description     : This module contains all components in the Memory stage of the
                      processor.
 */
-module memory(address, write_data, Mem_en, Mem_write, Mem_read, clk, rst, PC_src, data_read, halt, misalign_mem, MEM_instruction, d_Stall, d_done);
+module memory(address, write_data, Mem_en, Mem_write, Mem_read, clk, rst, PC_src, data_read, halt, misalign_mem, MEM_instruction, d_Stall, d_done, real_stall);
 
     // TODO: Your code here
     input halt;
@@ -22,6 +22,7 @@ module memory(address, write_data, Mem_en, Mem_write, Mem_read, clk, rst, PC_src
     wire mem_write_wire;
     output d_Stall;
     output d_done;
+    output real_stall;
 
     assign createdump = (PC_src == 0) ? 1'b1 : 1'b0; //createdump should be a 1 when it is halt instruction PC_src = 00 when halt instruction
 
@@ -46,5 +47,6 @@ module memory(address, write_data, Mem_en, Mem_write, Mem_read, clk, rst, PC_src
 
     assign mem_read_wire = (Mem_read) & d_done;
     assign mem_write_wire = (Mem_write) & d_done;
+    assign real_stall = stall;
 
 endmodule

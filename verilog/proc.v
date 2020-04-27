@@ -116,13 +116,16 @@ module proc (/*AUTOARG*/
    wire data_stall;
    wire real_stall;
 
+   // wires for stalling ins memory
+   wire inst_stall;
+
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
                    .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC), .EX_instruction(EX_instruction),
-                   .misalign_mem(inst_mis_align), .d_Stall(data_stall));
+                   .misalign_mem(inst_mis_align), .d_Stall(data_stall), .ins_stall(inst_stall));
 
    pipe_IF_ID pipe_one(.clk(clk), .rst(rst), .instruction(instruction), .incremented_pc(inc_PC), .flush_fetch(flush_fetch),
                              .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc), .halt(halt), .EX_instruction(EX_instruction),
-                             .inst_mis_align(inst_mis_align), .ID_inst_mis_align(ID_inst_mis_align), .d_Stall(data_stall));
+                             .inst_mis_align(inst_mis_align), .ID_inst_mis_align(ID_inst_mis_align), .d_Stall(data_stall), .inst_stall(inst_stall));
 
    decode decode_blk(.clk(clk), .rst(rst), .data_rs_o(data_one), .Data_two(data_two), .err(dec_err), .inst(ID_instruction), //6
                      .ALU_op(ALU_op), .RD(ID_RD), .RS(ID_RS), .RT(ID_RT), .branch_jump_op(branch_jump_op), .PC_src(PC_src), .Dst_reg(Dst_reg), .Ext_op(Ext_op), //8

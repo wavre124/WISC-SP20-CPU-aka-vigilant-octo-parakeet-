@@ -4,7 +4,7 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem, d_Stall);
+module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem, d_Stall, ins_stall);
   // TODO: Your code here
 
   input [1:0] PC_src;
@@ -24,6 +24,9 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   localparam start_PC_addr = 16'b0000_0000_0000_0000;
   localparam EPC_addr = 16'b0000_0000_0000_0010;
 
+  wire Done, CacheHit;
+  output ins_stall;
+
   cla_16b adder (.A(pc), .B(EPC_addr), .C_in(1'b0), .S(incremented_pc), .C_out(), .Overflow());
 
   //16 bit 2-1 mux for choosing 2 for exception handler or EPC after we return from the instruction
@@ -39,11 +42,18 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   wire [1:0] pc_src_help;
   assign pc_src_help = (opcode == rti) ? (2'b01) : PC_src;
 
-  mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(pc_src_help), .Out(mux_pc));
+  wire [15:0] b_j_pc_latch;
+  wire [2:0] pc_src_latch;
+  wire stall;
+
+  assign b_j_pc_latch = (stall) ? b_j_pc_latch : b_j_pc;
+  assign pc_src_latch = (stall) ? pc_src_latch : pc_src_help;
+
+  mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc_latch), .InD(exception_pc), .S(pc_src_latch), .Out(mux_pc));
 
   wire stall_decode_wire;
 
-  assign stall_decode_wire = stall_decode | d_Stall;
+  assign stall_decode_wire = stall_decode | d_Stall | stall;
 
   // this mux stalls the PC
   mux2_1_N pc_mux4(.InA(mux_pc), .InB(pc), .S(stall_decode_wire), .Out(flop_pc));
@@ -56,6 +66,10 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
 
   //memory2c instruction_memory(.data_out(instruction), .data_in(16'b0000_0000_0000_0000), .addr(pc), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
-  memory2c_align instruction_memory(.data_out(instruction), .data_in(start_PC_addr), .addr(pc), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst), .err(misalign_mem));
+  //memory2c_align instruction_memory(.data_out(instruction), .data_in(start_PC_addr), .addr(pc), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst), .err(misalign_mem));
+
+  mem_system_ins ins_mem( .DataOut(instruction), .Done(Done), .Stall(stall), .CacheHit(CacheHit), .err(misalign_mem), .Addr(pc), .DataIn(start_PC_addr), .Rd(1'b1), .Wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
+
+  assign ins_stall = ~(stall & Done);
 
 endmodule

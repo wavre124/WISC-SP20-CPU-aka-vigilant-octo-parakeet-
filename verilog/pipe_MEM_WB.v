@@ -2,7 +2,7 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, P
                    Reg_write, Mem_reg, Mem_read, Mem_write, write_sel, Mem_en, instruction_o,
                    data_read_o, address_o, RD_o, RS_o, Dst_reg_o, PC_src_o,
                    Reg_write_o, Mem_reg_o, Mem_read_o, Mem_write_o, write_sel_o, Mem_en_o, halt, halt_o, valid_rd, valid_rd_o, JAL, JAL_o,
-                   bj_write_data, bj_write_data_o, inst_misalign, mem_misalign, err, d_done, d_Stall, inst_stall);
+                   bj_write_data, bj_write_data_o, inst_misalign, mem_misalign, err, d_done, d_Stall);
 
   input clk;
   input rst;
@@ -17,7 +17,7 @@ module pipe_MEM_WB(clk, rst, instruction, data_read, address, RD, RS, Dst_reg, P
   input [2:0] write_sel;
   ////////////////////////////////////////////////////////////////////////////
 
-  input inst_misalign, mem_misalign, d_done, d_Stall, inst_stall;
+  input inst_misalign, mem_misalign, d_done, d_Stall;
 
   //inputs that are control unit signals////////////////////////////////////////
   input [1:0] Dst_reg, PC_src;

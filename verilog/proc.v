@@ -184,7 +184,7 @@ module proc (/*AUTOARG*/
                                         .Reg_write_o(WB_Reg_write), .Mem_reg_o(WB_Mem_reg), .Mem_read_o(WB_Mem_read), .Mem_write_o(WB_Mem_write), .write_sel_o(WB_write_sel),
                                         .Mem_en_o(WB_Mem_en), .halt(MEM_halt), .halt_o(WB_halt), .valid_rd(MEM_valid_rd), .valid_rd_o(WB_valid_rd), .JAL(MEM_JAL), .JAL_o(WB_JAL),
                                         .bj_write_data(MEM_bj_write_data), .bj_write_data_o(WB_bj_write_data), .inst_misalign(MEM_inst_mis_align), .mem_misalign(mem_mis_align), .err(err),
-                                        .d_done(data_done), .d_Stall(data_stall), .inst_stall(bj_stall));
+                                        .d_done(data_done), .d_Stall(data_stall));
 
    wb wb_blk(.data_read(WB_data_read), .address(WB_address), .Mem_reg(WB_Mem_reg), .data_out(wb_data));
 

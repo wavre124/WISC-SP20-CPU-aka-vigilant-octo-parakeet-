@@ -73,7 +73,7 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   mem_system_ins ins_mem( .DataOut(instruction), .Done(Done), .Stall(stall), .CacheHit(CacheHit), .err(misalign_mem), .Addr(pc), .DataIn(start_PC_addr), .Rd(1'b1), .Wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
   assign ins_stall = ~(stall & Done);
-  assign bj_stall = (PC_src == 2) & ~(stall & Done);
+  assign bj_stall = ((PC_src == 2) & ~(stall & Done) & bj_taken);
   assign read_req = ~stall;
 
 endmodule

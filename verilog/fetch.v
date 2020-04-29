@@ -4,7 +4,7 @@
    Filename        : fetch.v
    Description     : This is the module for the overall fetch stage of the processor.
 */
-module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem, d_Stall, ins_stall, bj_stall);
+module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction, incremented_pc, EX_instruction, misalign_mem, d_Stall, ins_stall, bj_stall, bj_taken);
   // TODO: Your code here
 
   input [1:0] PC_src;
@@ -12,6 +12,7 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   input [15:0] b_j_pc; //pcs being fed in from the branch address, jump address, and current pc for holds and normal instructions
   input stall_decode;
   input [15:0] EX_instruction;
+  input bj_taken;
   wire [15:0] EPC;
   wire [15:0] pc, mux_pc, flop_pc; //will be fed into our instruction memory
   wire [15:0] exception_pc;
@@ -43,20 +44,14 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   wire [1:0] pc_src_help;
   assign pc_src_help = (opcode == rti) ? (2'b01) : PC_src;
 
-  wire [15:0] real_pc;
-  wire [15:0] b_j_pc_latch;
-  wire [1:0] pc_src_latch;
   wire stall;
   wire read_req;
 
-  wire why_did_i_choose_this_major_again;
+  wire [1:0] pc_bj_taken;
 
-  assign why_did_i_choose_this_major_again = ((instruction[15:13] == 3'b011) | (instruction[15:13] == 3'b001));
+  assign pc_bj_taken = (bj_taken) ? PC_src : 2'b01;
 
-  assign b_j_pc_latch = (stall) ? b_j_pc_latch : b_j_pc;
-  assign pc_src_latch = (stall) ? pc_src_latch : pc_src_help;
-
-  mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(PC_src), .Out(mux_pc));
+  mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(pc_bj_taken), .Out(mux_pc));
 
   wire stall_decode_wire;
 

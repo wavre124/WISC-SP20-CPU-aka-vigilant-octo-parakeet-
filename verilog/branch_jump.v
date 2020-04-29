@@ -1,4 +1,4 @@
-module branch_jump(rs, PC, imm, displacement, branch_jump_op, b_j_PC, reg_data);
+module branch_jump(rs, PC, imm, displacement, branch_jump_op, b_j_PC, reg_data, bj_taken);
 
 parameter N = 16;
 
@@ -10,6 +10,7 @@ input [2:0] branch_jump_op;
 
 output reg [N-1:0] b_j_PC;
 output [N-1:0] reg_data;
+output reg bj_taken;
 
 localparam BEQZ = 3'b000;
 localparam BNEZ = 3'b001;
@@ -40,30 +41,39 @@ always @* case(branch_jump_op)
 
   BEQZ: begin
         b_j_PC = beqz_res;
+        bj_taken = (!(|rs));
         end
   BNEZ: begin
         b_j_PC = bnez_res;
+        bj_taken = (|rs);
         end
   BLTZ: begin
         b_j_PC = bltz_res;
+        bj_taken = (rs[15]);
         end
   BGEZ: begin
         b_j_PC = bgez_res;
+        bj_taken = ((~rs[15]) | !(|rs));
         end
   J_DIS: begin
         b_j_PC = added_PC_res;
+        bj_taken = 1'b1;
         end
   JR: begin
         b_j_PC = added_PC_res;
+        bj_taken = 1'b1;
       end
   JAL: begin
         b_j_PC = added_PC_res;
+        bj_taken = 1'b1;
        end
   JALR: begin
         b_j_PC = added_PC_res;
+        bj_taken = 1'b1;
         end
   default: begin
         b_j_PC = PC;
+        bj_taken = 1'b0;
         end
 
 endcase

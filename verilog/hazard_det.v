@@ -1,6 +1,6 @@
 module hazard_det(rd_ID_EX, rt, rs,
                   rd_EX_MEM, rs_ID_EX, EX_MEM_reg_write, EX_MEM_ins, rs_EX_MEM,
-                  MEM_wb_reg_write, MEM_wb_ins, PC_source, stall_decode, flush_fetch, EX_MEM_valid_rd, MEM_wb_valid_rd, curr_ins, valid_rt);
+                  MEM_wb_reg_write, MEM_wb_ins, PC_source, stall_decode, flush_fetch, EX_MEM_valid_rd, MEM_wb_valid_rd, curr_ins, valid_rt, bj_taken);
 input valid_rt;
 input [2:0] rd_ID_EX;
 input [2:0] rt;
@@ -15,6 +15,7 @@ input [2:0] rs_EX_MEM;
 input MEM_wb_reg_write;
 input [15:0] MEM_wb_ins;
 input [1:0] PC_source;
+input bj_taken;
 wire [4:0] opcode;
 wire [2:0] RD;
 // stalling the pipe_ID_EX
@@ -139,7 +140,7 @@ assign stall_decode = (((valD_regW_1 &  (equal_rs_rt) & valid_rt ) | (valD_regW_
 //new stalling with forwarding....only stall if its a branch
 //| (valD_regW_1 &  (rs_ID_EX == rs))
 //| (valD_regW_2 &  (rs_EX_MEM == rs))
-assign flush_fetch = (PC_source == 2'b10) ? 1'b1 : 1'b0;
+assign flush_fetch = ((PC_source == 2'b10) & bj_taken) ? 1'b1 : 1'b0;
 
 
 

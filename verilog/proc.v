@@ -120,9 +120,11 @@ module proc (/*AUTOARG*/
    wire inst_stall;
    wire bj_stall;
 
+   wire bj_taken;
+
    fetch fetch_blk(.clk(clk), .rst(rst), .b_j_pc(br_ju_addr),
                    .PC_src(PC_src), .Mem_en(Mem_en), .excp(Excp), .stall_decode(stall_decode), .instruction(instruction), .incremented_pc(inc_PC), .EX_instruction(EX_instruction),
-                   .misalign_mem(inst_mis_align), .d_Stall(data_stall), .ins_stall(inst_stall), .bj_stall(bj_stall));
+                   .misalign_mem(inst_mis_align), .d_Stall(data_stall), .ins_stall(inst_stall), .bj_stall(bj_stall), .bj_taken(bj_taken));
 
    pipe_IF_ID pipe_one(.clk(clk), .rst(rst), .instruction(instruction), .incremented_pc(inc_PC), .flush_fetch(flush_fetch),
                              .stall_decode(stall_decode), .ID_instruction(ID_instruction), .ID_incremented_pc(ID_incremented_pc), .halt(halt), .EX_instruction(EX_instruction),
@@ -137,7 +139,8 @@ module proc (/*AUTOARG*/
                       .EX_MEM_reg_write(EX_Reg_write), .MEM_wb_reg_write(MEM_Reg_write), .wb_reg_write(WB_Reg_write) ,.write_sel(write_sel), .write_sel_WB(WB_write_sel), //5
                       .rs_EX_MEM(MEM_RS), .EX_MEM_ins(EX_instruction), .rs_MEM_WB(WB_RS), .MEM_wb_ins(MEM_instruction), .halt(halt), .valid_rd(valid_rd), //6
                       .EX_MEM_valid_rd(EX_valid_rd), .MEM_wb_valid_rd(MEM_valid_rd), .WB_JAL(WB_JAL), .bj_write_data(bj_write_data),
-                       .WB_bj_write_data(WB_bj_write_data), .valid_rt(valid_rt), .execute_data(alu_out), .memory_read_data(mem_read_data), .mem_address(MEM_data_out)); //2
+                       .WB_bj_write_data(WB_bj_write_data), .valid_rt(valid_rt), .execute_data(alu_out), .memory_read_data(mem_read_data), .mem_address(MEM_data_out),
+                       .bj_taken(bj_taken)); //2
                        // .execute_data(MEM_data_out), .memory_read_data(WB_data_read), .mem_address(WB_address));
 
 

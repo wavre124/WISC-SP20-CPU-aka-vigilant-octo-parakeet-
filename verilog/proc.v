@@ -139,7 +139,7 @@ module proc (/*AUTOARG*/
                       .EX_MEM_reg_write(EX_Reg_write), .MEM_wb_reg_write(MEM_Reg_write), .wb_reg_write(WB_Reg_write) ,.write_sel(write_sel), .write_sel_WB(WB_write_sel), //5
                       .rs_EX_MEM(MEM_RS), .EX_MEM_ins(EX_instruction), .rs_MEM_WB(WB_RS), .MEM_wb_ins(MEM_instruction), .halt(halt), .valid_rd(valid_rd), //6
                       .EX_MEM_valid_rd(EX_valid_rd), .MEM_wb_valid_rd(MEM_valid_rd), .WB_JAL(WB_JAL), .bj_write_data(bj_write_data),
-                       .WB_bj_write_data(WB_bj_write_data), .valid_rt(valid_rt), .execute_data(alu_out), .memory_read_data(mem_read_data), .mem_address(MEM_data_out),
+                       .WB_bj_write_data(WB_bj_write_data), .valid_rt(valid_rt), .execute_data(MEM_data_out),
                        .bj_taken(bj_taken)); //2
                        // .execute_data(MEM_data_out), .memory_read_data(WB_data_read), .mem_address(WB_address));
 

@@ -9,14 +9,14 @@ module decode (clk, rst,  data_rs_o, Data_two, err, inst, ALU_op, RD, RS, RT, br
                Mem_en, Excp, ALU_src, PC, wb_data, br_ju_addr, immediate, stall_decode, flush_fetch, //9
                rd_ID_EX, rt_ID_EX, rs_ID_EX, rd_EX_MEM, EX_MEM_reg_write, MEM_wb_reg_write, wb_reg_write ,write_sel, write_sel_WB, //9
                rs_EX_MEM, EX_MEM_ins, rs_MEM_WB, MEM_wb_ins, halt, valid_rd, EX_MEM_valid_rd, MEM_wb_valid_rd, WB_JAL, bj_write_data, WB_bj_write_data, valid_rt,
-               execute_data, memory_read_data, mem_address, bj_taken); //11
+               execute_data, bj_taken); //11
 
    // TODO: Your code here
 
    parameter N = 16;
 
    input clk, rst;
-   input [N-1:0] inst,  execute_data, memory_read_data, mem_address;
+   input [N-1:0] inst, execute_data;
    input [N-1:0] PC;
    input [N-1:0] wb_data;
    wire [15:0] inst_help;
@@ -88,10 +88,9 @@ module decode (clk, rst,  data_rs_o, Data_two, err, inst, ALU_op, RD, RS, RT, br
    regFile_bypass regfile (.read1Data(Data_one), .read2Data(Data_two), .err(err), .clk(clk), .rst(rst),
                            .read1RegSel(inst[10:8]), .read2RegSel(inst[7:5]), .writeRegSel(write_sel_pipe), .writeData(write_data), .writeEn(reg_write_pipe));
 //all wired well except top row and mem_read
-  decode_forward the_kshitij_blk(.execute_data(execute_data), .memory_read_data(memory_read_data), .mem_address(mem_address), .data_rs(Data_one),
-                            .rs_d(inst[10:8]),.rd_e(rd_ID_EX), .rs_e(rs_ID_EX),
-                             .rd_m(rd_EX_MEM), .rs_m(rs_EX_MEM), .reg_write_ex(EX_MEM_reg_write), .reg_write_mem(MEM_wb_reg_write), .valid_rd_e(EX_MEM_valid_rd),
-                           .valid_rd_m(MEM_wb_valid_rd), .instruction_d(inst), .instruction_e(EX_MEM_ins), .instruction_m(MEM_wb_ins), .data_rs_o(data_rs_o));
+  decode_forward the_kshitij_blk(.execute_data(execute_data), .data_rs(Data_one),
+                            .rs_d(inst[10:8]), .rd_m(rd_EX_MEM), .rs_m(rs_EX_MEM),  .reg_write_mem(MEM_wb_reg_write),
+                           .valid_rd_m(MEM_wb_valid_rd), .instruction_d(inst),  .instruction_m(MEM_wb_ins), .data_rs_o(data_rs_o));
 
 
    extend ext_blk(.inst(inst), .ext_sign(Ext_sign), .ext_op(Ext_op), .ext_imm(immediate));

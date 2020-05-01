@@ -1,0 +1,8 @@
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/alignTest.asm SUCCESS CPI:8.1 CYCLES:57 ICOUNT:7 IHITRATE: 157.1 DHITRATE: 8.7
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/perf-test-dep-all.asm SUCCESS CPI:6.1 CYCLES:55 ICOUNT:9 IHITRATE: 127.3 DHITRATE: 0
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/perf-test-dep-ld.asm SUCCESS CPI:7.1 CYCLES:57 ICOUNT:8 IHITRATE: 153.8 DHITRATE: 25.0
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/perf-test-dep-ldst.asm SUCCESS CPI:9.4 CYCLES:103 ICOUNT:11 IHITRATE: 170.4 DHITRATE: 8.2
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/perf-test-dep-waw.asm SUCCESS CPI:6.1 CYCLES:55 ICOUNT:9 IHITRATE: 127.3 DHITRATE: 0
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/perf-test-dep-zero.asm SUCCESS CPI:19.8 CYCLES:99 ICOUNT:5 IHITRATE: 142.9 DHITRATE: 0
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/pipeTest.asm SUCCESS CPI:7.7 CYCLES:193 ICOUNT:25 IHITRATE: 152.4 DHITRATE: 14.3
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/complex_demo2/stallTest.asm SUCCESS CPI:10.0 CYCLES:769 ICOUNT:77 IHITRATE: 151.5 DHITRATE: 31.3

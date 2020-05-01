@@ -1,0 +1,4 @@
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_dcache/ldld_rand_large.asm SUCCESS CPI:6.6 CYCLES:6846 ICOUNT:1035 IHITRATE: 199.5 DHITRATE: 60.1
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_dcache/ldld_rand_small.asm SUCCESS CPI:6.6 CYCLES:6846 ICOUNT:1035 IHITRATE: 199.5 DHITRATE: 60.1
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_dcache/ldst_rand_large.asm SUCCESS CPI:15.0 CYCLES:45 ICOUNT:3 IHITRATE: 140.0 DHITRATE: 0.0
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/rand_dcache/ldst_rand_small.asm SUCCESS CPI:15.0 CYCLES:45 ICOUNT:3 IHITRATE: 140.0 DHITRATE: 0.0

@@ -126,7 +126,7 @@
 /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_7.asm SUCCESS CPI:6.5 CYCLES:26 ICOUNT:4 IHITRATE: 120.0 DHITRATE: 0
 /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_8.asm SUCCESS CPI:6.5 CYCLES:26 ICOUNT:4 IHITRATE: 120.0 DHITRATE: 0
 /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_9.asm SUCCESS CPI:6.5 CYCLES:26 ICOUNT:4 IHITRATE: 120.0 DHITRATE: 0
-/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/siic_0.asm RELAX-PASS
+/u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/siic_0.asm SUCCESS CPI:12.2 CYCLES:61 ICOUNT:5 IHITRATE: 138.5 DHITRATE: 0
 /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slbi_0.asm SUCCESS CPI:7.6 CYCLES:23 ICOUNT:3 IHITRATE: 120.0 DHITRATE: 0
 /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slbi_1.asm SUCCESS CPI:7.6 CYCLES:23 ICOUNT:3 IHITRATE: 120.0 DHITRATE: 0
 /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slbi_2.asm SUCCESS CPI:7.6 CYCLES:23 ICOUNT:3 IHITRATE: 120.0 DHITRATE: 0

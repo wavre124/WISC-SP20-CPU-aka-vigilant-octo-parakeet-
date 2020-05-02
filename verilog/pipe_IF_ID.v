@@ -19,11 +19,11 @@ wire [15:0] mux_instruction, mux2_instruction;
 wire [15:0] mux_pc;
 wire [4:0] opcode;
 wire nop_stall;
-assign opcode = EX_instruction[15:11];
+assign opcode = ID_instruction[15:11];
 assign nop_stall = flush_fetch | halt | (inst_stall & ~bj_stall);
 localparam rti = 5'b00011;
 wire nop_stall_help;
-assign nop_stall_help = (opcode == rti) ? 1'b0 : nop_stall;
+assign nop_stall_help = nop_stall | (opcode == rti);
 localparam nop  = 16'b0000_1000_0000_0000;
 
 wire stall_decode_wire;

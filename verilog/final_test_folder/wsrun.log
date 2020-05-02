@@ -1,5 +1,5 @@
 Model Technology ModelSim DE vlog 10.7c Compiler 2018.08 Aug 17 2018
-Start time: 15:53:06 on May 01,2020
+Start time: 20:44:18 on May 01,2020
 vlog "+define+RANDSEED=3" -work __work alu.v and2.v and3.v branch_jump.v btr.v cache.v cache_controller.v cla_16b.v cla_4b.v clkrst.v control.v decode.v decode_forward.v dff.v execute.v extend.v fetch.v fetch_tb.v final_memory.v forward_unit.v four_bank_mem.v fullAdder_1b.v hazard_det.v l_rotate.v l_shift_log.v mem_system.v mem_system_hier.v mem_system_ins.v mem_system_perfbench.v mem_system_randbench.v mem_system_ref.v memc.v memory.v memory2c.v memory2c_align.v memv.v mux2_1.v mux2_1_N.v mux4_1.v mux4_1_16b.v nand2.v nand3.v nor2.v nor3.v not1.v or2.v or3.v pipe_EX_MEM.v pipe_ID_EX.v pipe_IF_ID.v pipe_MEM_WB.v proc.v proc_hier.v proc_hier_pbench.v r_rotate.v r_shift_arith.v r_shift_log.v regFile.v regFile_bypass.v reg_16b.v reg_8_16b.v shifter.v stallmem.v wb.v xor2.v xor3.v 
 -- Compiling module alu
 -- Compiling module and2
@@ -79,14 +79,14 @@ Top level modules:
 	r_shift_arith
 	stallmem
 	xor2
-End time: 15:53:07 on May 01,2020, Elapsed time: 0:00:01
+End time: 20:44:18 on May 01,2020, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 Reading pref.tcl
 
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:08 on May 01,2020
+# Start time: 20:44:19 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -160,7 +160,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:09 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:19 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/add_1.asm
 Created the following files
@@ -175,7 +175,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:13 on May 01,2020
+# Start time: 20:44:21 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -249,7 +249,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:14 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:21 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/add_2.asm
 Created the following files
@@ -264,7 +264,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:18 on May 01,2020
+# Start time: 20:44:23 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -338,7 +338,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:19 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:23 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/addi_0.asm
 Created the following files
@@ -353,7 +353,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:23 on May 01,2020
+# Start time: 20:44:24 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -427,7 +427,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:24 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:25 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/addi_1.asm
 Created the following files
@@ -442,7 +442,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:29 on May 01,2020
+# Start time: 20:44:26 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -516,7 +516,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:30 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:27 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/addi_2.asm
 Created the following files
@@ -531,7 +531,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:35 on May 01,2020
+# Start time: 20:44:28 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -605,7 +605,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:36 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:28 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/addi_3.asm
 Created the following files
@@ -620,7 +620,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:40 on May 01,2020
+# Start time: 20:44:30 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -694,7 +694,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:41 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:30 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/andn_0.asm
 Created the following files
@@ -709,7 +709,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:45 on May 01,2020
+# Start time: 20:44:32 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -783,7 +783,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:46 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:32 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/andn_1.asm
 Created the following files
@@ -798,7 +798,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:50 on May 01,2020
+# Start time: 20:44:33 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -872,7 +872,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:50 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:44:34 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/andn_2.asm
 Created the following files
@@ -887,7 +887,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:54 on May 01,2020
+# Start time: 20:44:35 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -961,7 +961,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:53:55 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:36 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/andni_0.asm
 Created the following files
@@ -976,7 +976,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:53:59 on May 01,2020
+# Start time: 20:44:37 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1050,7 +1050,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:00 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:38 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/andni_1.asm
 Created the following files
@@ -1065,7 +1065,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:04 on May 01,2020
+# Start time: 20:44:39 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1139,7 +1139,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:05 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:39 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/andni_2.asm
 Created the following files
@@ -1154,7 +1154,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:09 on May 01,2020
+# Start time: 20:44:41 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1228,7 +1228,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:09 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:44:41 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/andni_3.asm
 Created the following files
@@ -1243,7 +1243,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:14 on May 01,2020
+# Start time: 20:44:43 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1317,7 +1317,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:15 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:43 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/andni_4.asm
 Created the following files
@@ -1332,7 +1332,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:19 on May 01,2020
+# Start time: 20:44:44 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1406,7 +1406,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:20 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:45 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/beqz_0.asm
 Created the following files
@@ -1421,7 +1421,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:25 on May 01,2020
+# Start time: 20:44:46 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1495,7 +1495,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 7305 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:26 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:47 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bltz_0.asm
 Created the following files
@@ -1510,7 +1510,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:30 on May 01,2020
+# Start time: 20:44:48 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1584,7 +1584,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:31 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:49 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bltz_1.asm
 Created the following files
@@ -1599,7 +1599,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:37 on May 01,2020
+# Start time: 20:44:50 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1673,7 +1673,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:38 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:50 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bltz_2.asm
 Created the following files
@@ -1688,7 +1688,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:42 on May 01,2020
+# Start time: 20:44:52 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1762,7 +1762,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:43 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:52 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bltz_3.asm
 Created the following files
@@ -1777,7 +1777,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:48 on May 01,2020
+# Start time: 20:44:54 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1851,7 +1851,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:49 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:54 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bnez_0.asm
 Created the following files
@@ -1866,7 +1866,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:53 on May 01,2020
+# Start time: 20:44:55 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -1940,7 +1940,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:54 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:56 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bnez_2.asm
 Created the following files
@@ -1955,7 +1955,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:54:58 on May 01,2020
+# Start time: 20:44:57 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2029,7 +2029,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:54:59 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:44:58 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bnez_3.asm
 Created the following files
@@ -2044,7 +2044,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:03 on May 01,2020
+# Start time: 20:44:59 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2118,7 +2118,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:04 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:00 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bnez_4.asm
 Created the following files
@@ -2133,7 +2133,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:08 on May 01,2020
+# Start time: 20:45:01 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2207,7 +2207,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:09 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:01 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bnez_5.asm
 Created the following files
@@ -2222,7 +2222,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:13 on May 01,2020
+# Start time: 20:45:03 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2296,7 +2296,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:14 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:03 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/bnez_6.asm
 Created the following files
@@ -2311,7 +2311,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:18 on May 01,2020
+# Start time: 20:45:05 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2385,7 +2385,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:19 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:05 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_0.asm
 Created the following files
@@ -2400,7 +2400,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:23 on May 01,2020
+# Start time: 20:45:06 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2474,7 +2474,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:24 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:07 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_1.asm
 Created the following files
@@ -2489,7 +2489,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:28 on May 01,2020
+# Start time: 20:45:08 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2563,7 +2563,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:29 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:09 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_2.asm
 Created the following files
@@ -2578,7 +2578,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:33 on May 01,2020
+# Start time: 20:45:10 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2652,7 +2652,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:34 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:11 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_3.asm
 Created the following files
@@ -2667,7 +2667,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:38 on May 01,2020
+# Start time: 20:45:12 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2741,7 +2741,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:39 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:12 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_4.asm
 Created the following files
@@ -2756,7 +2756,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:43 on May 01,2020
+# Start time: 20:45:14 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2830,7 +2830,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:43 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:45:14 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_5.asm
 Created the following files
@@ -2845,7 +2845,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:47 on May 01,2020
+# Start time: 20:45:16 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -2919,7 +2919,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:48 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:16 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_6.asm
 Created the following files
@@ -2934,7 +2934,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:52 on May 01,2020
+# Start time: 20:45:17 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3008,7 +3008,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:53 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:18 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_7.asm
 Created the following files
@@ -3023,7 +3023,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:55:57 on May 01,2020
+# Start time: 20:45:20 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3097,7 +3097,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:55:58 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:20 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/btr_8.asm
 Created the following files
@@ -3112,7 +3112,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:02 on May 01,2020
+# Start time: 20:45:21 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3186,7 +3186,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:03 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:22 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/j_0.asm
 Created the following files
@@ -3201,7 +3201,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:07 on May 01,2020
+# Start time: 20:45:23 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3275,7 +3275,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:08 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:24 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/j_1.asm
 Created the following files
@@ -3290,7 +3290,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:12 on May 01,2020
+# Start time: 20:45:25 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3364,7 +3364,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:13 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:25 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/j_2.asm
 Created the following files
@@ -3379,7 +3379,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:17 on May 01,2020
+# Start time: 20:45:27 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3453,7 +3453,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:18 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:27 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/j_3.asm
 Created the following files
@@ -3468,7 +3468,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:22 on May 01,2020
+# Start time: 20:45:29 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3542,7 +3542,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:23 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:29 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/j_4.asm
 Created the following files
@@ -3557,7 +3557,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:27 on May 01,2020
+# Start time: 20:45:31 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3631,7 +3631,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:28 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:31 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_0.asm
 Created the following files
@@ -3646,7 +3646,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:32 on May 01,2020
+# Start time: 20:45:32 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3720,7 +3720,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:33 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:33 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_10.asm
 Created the following files
@@ -3735,7 +3735,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:37 on May 01,2020
+# Start time: 20:45:34 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3809,7 +3809,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:38 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:35 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_11.asm
 Created the following files
@@ -3824,7 +3824,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:42 on May 01,2020
+# Start time: 20:45:36 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3898,7 +3898,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:43 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:37 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_12.asm
 Created the following files
@@ -3913,7 +3913,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:47 on May 01,2020
+# Start time: 20:45:38 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -3987,7 +3987,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:47 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:45:38 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_15.asm
 Created the following files
@@ -4002,7 +4002,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:52 on May 01,2020
+# Start time: 20:45:40 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4076,7 +4076,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:52 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:45:40 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_16.asm
 Created the following files
@@ -4091,7 +4091,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:56:57 on May 01,2020
+# Start time: 20:45:42 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4165,7 +4165,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:56:57 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:45:42 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_17.asm
 Created the following files
@@ -4180,7 +4180,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:02 on May 01,2020
+# Start time: 20:45:44 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4254,7 +4254,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:02 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:45:44 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_19.asm
 Created the following files
@@ -4269,7 +4269,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:06 on May 01,2020
+# Start time: 20:45:46 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4343,7 +4343,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:07 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:46 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_1.asm
 Created the following files
@@ -4358,7 +4358,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:11 on May 01,2020
+# Start time: 20:45:48 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4432,7 +4432,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:12 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:48 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_22.asm
 Created the following files
@@ -4447,7 +4447,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:16 on May 01,2020
+# Start time: 20:45:49 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4521,7 +4521,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:17 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:50 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_24.asm
 Created the following files
@@ -4536,7 +4536,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:21 on May 01,2020
+# Start time: 20:45:51 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4610,7 +4610,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:22 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:52 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_25.asm
 Created the following files
@@ -4625,7 +4625,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:26 on May 01,2020
+# Start time: 20:45:53 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4699,7 +4699,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:27 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:53 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_26.asm
 Created the following files
@@ -4714,7 +4714,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:31 on May 01,2020
+# Start time: 20:45:55 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4788,7 +4788,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 6605 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:32 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:45:55 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_27.asm
 Created the following files
@@ -4803,7 +4803,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:36 on May 01,2020
+# Start time: 20:45:57 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4877,7 +4877,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:36 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:45:57 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_28.asm
 Created the following files
@@ -4892,7 +4892,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:41 on May 01,2020
+# Start time: 20:45:59 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -4966,7 +4966,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:41 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:45:59 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_29.asm
 Created the following files
@@ -4981,7 +4981,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:46 on May 01,2020
+# Start time: 20:46:00 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5055,7 +5055,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:46 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:01 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_2.asm
 Created the following files
@@ -5070,7 +5070,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:50 on May 01,2020
+# Start time: 20:46:02 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5144,7 +5144,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:51 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:03 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_30.asm
 Created the following files
@@ -5159,7 +5159,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:57:55 on May 01,2020
+# Start time: 20:46:04 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5233,7 +5233,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:57:56 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:05 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_31.asm
 Created the following files
@@ -5248,7 +5248,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:00 on May 01,2020
+# Start time: 20:46:06 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5322,7 +5322,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:01 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:06 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_32.asm
 Created the following files
@@ -5337,7 +5337,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:05 on May 01,2020
+# Start time: 20:46:08 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5411,7 +5411,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:06 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:08 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_33.asm
 Created the following files
@@ -5426,7 +5426,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:10 on May 01,2020
+# Start time: 20:46:10 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5500,7 +5500,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:10 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:10 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_35.asm
 Created the following files
@@ -5515,7 +5515,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:15 on May 01,2020
+# Start time: 20:46:11 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5589,7 +5589,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:15 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:12 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_36.asm
 Created the following files
@@ -5604,7 +5604,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:20 on May 01,2020
+# Start time: 20:46:13 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5678,7 +5678,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5305 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:20 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:14 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_3.asm
 Created the following files
@@ -5693,7 +5693,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:24 on May 01,2020
+# Start time: 20:46:15 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5767,7 +5767,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:25 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:16 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_4.asm
 Created the following files
@@ -5782,7 +5782,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:29 on May 01,2020
+# Start time: 20:46:17 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5856,7 +5856,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:30 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:17 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_5.asm
 Created the following files
@@ -5871,7 +5871,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:34 on May 01,2020
+# Start time: 20:46:19 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -5945,7 +5945,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5005 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:35 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:19 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_6.asm
 Created the following files
@@ -5960,7 +5960,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:39 on May 01,2020
+# Start time: 20:46:21 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6034,7 +6034,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:40 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:21 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jal_8.asm
 Created the following files
@@ -6049,7 +6049,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:45 on May 01,2020
+# Start time: 20:46:23 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6123,7 +6123,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:45 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:23 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_0.asm
 Created the following files
@@ -6138,7 +6138,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:50 on May 01,2020
+# Start time: 20:46:24 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6212,7 +6212,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:50 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:25 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_11.asm
 Created the following files
@@ -6227,7 +6227,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:58:55 on May 01,2020
+# Start time: 20:46:26 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6301,7 +6301,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:58:55 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:27 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_12.asm
 Created the following files
@@ -6316,7 +6316,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:00 on May 01,2020
+# Start time: 20:46:28 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6390,7 +6390,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:01 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:29 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_13.asm
 Created the following files
@@ -6405,7 +6405,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:05 on May 01,2020
+# Start time: 20:46:30 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6479,7 +6479,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:05 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:31 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_14.asm
 Created the following files
@@ -6494,7 +6494,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:09 on May 01,2020
+# Start time: 20:46:32 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6568,7 +6568,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:10 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:32 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_15.asm
 Created the following files
@@ -6583,7 +6583,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:14 on May 01,2020
+# Start time: 20:46:34 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6657,7 +6657,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:15 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:34 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_16.asm
 Created the following files
@@ -6672,7 +6672,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:19 on May 01,2020
+# Start time: 20:46:36 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6746,7 +6746,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:20 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:36 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_17.asm
 Created the following files
@@ -6761,7 +6761,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:24 on May 01,2020
+# Start time: 20:46:37 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6835,7 +6835,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:25 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:38 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_18.asm
 Created the following files
@@ -6850,7 +6850,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:29 on May 01,2020
+# Start time: 20:46:39 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -6924,7 +6924,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:29 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:40 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_19.asm
 Created the following files
@@ -6939,7 +6939,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:34 on May 01,2020
+# Start time: 20:46:41 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7013,7 +7013,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:34 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:46:42 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_1.asm
 Created the following files
@@ -7028,7 +7028,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:38 on May 01,2020
+# Start time: 20:46:43 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7102,7 +7102,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:39 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:43 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_27.asm
 Created the following files
@@ -7117,7 +7117,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:43 on May 01,2020
+# Start time: 20:46:45 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7191,7 +7191,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 8905 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:44 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:45 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_28.asm
 Created the following files
@@ -7206,7 +7206,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:48 on May 01,2020
+# Start time: 20:46:47 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7280,7 +7280,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:49 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:47 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_29.asm
 Created the following files
@@ -7295,7 +7295,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:53 on May 01,2020
+# Start time: 20:46:49 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7369,7 +7369,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:54 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:50 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_2.asm
 Created the following files
@@ -7384,7 +7384,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 15:59:58 on May 01,2020
+# Start time: 20:46:51 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7458,7 +7458,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 15:59:59 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:51 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_30.asm
 Created the following files
@@ -7473,7 +7473,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:03 on May 01,2020
+# Start time: 20:46:53 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7547,7 +7547,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:04 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:53 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_31.asm
 Created the following files
@@ -7562,7 +7562,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:08 on May 01,2020
+# Start time: 20:46:55 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7636,7 +7636,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 6205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:09 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:55 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_32.asm
 Created the following files
@@ -7651,7 +7651,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:13 on May 01,2020
+# Start time: 20:46:56 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7725,7 +7725,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:14 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:57 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_33.asm
 Created the following files
@@ -7740,7 +7740,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:18 on May 01,2020
+# Start time: 20:46:58 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7814,7 +7814,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:19 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:46:59 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_34.asm
 Created the following files
@@ -7829,7 +7829,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:23 on May 01,2020
+# Start time: 20:47:00 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7903,7 +7903,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:23 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:01 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_36.asm
 Created the following files
@@ -7918,7 +7918,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:28 on May 01,2020
+# Start time: 20:47:02 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -7992,7 +7992,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:28 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:02 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_3.asm
 Created the following files
@@ -8007,7 +8007,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:32 on May 01,2020
+# Start time: 20:47:04 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8081,7 +8081,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 7105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:33 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:05 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_4.asm
 Created the following files
@@ -8096,7 +8096,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:37 on May 01,2020
+# Start time: 20:47:07 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8170,7 +8170,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 6305 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:38 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:07 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_5.asm
 Created the following files
@@ -8185,7 +8185,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:42 on May 01,2020
+# Start time: 20:47:09 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8259,7 +8259,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:43 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:09 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_6.asm
 Created the following files
@@ -8274,7 +8274,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:47 on May 01,2020
+# Start time: 20:47:11 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8348,7 +8348,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4105 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:48 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:11 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jalr_7.asm
 Created the following files
@@ -8363,7 +8363,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:52 on May 01,2020
+# Start time: 20:47:12 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8437,7 +8437,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5605 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:53 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:13 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/jr_0.asm
 Created the following files
@@ -8452,7 +8452,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:00:57 on May 01,2020
+# Start time: 20:47:14 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8526,7 +8526,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:00:58 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:15 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/lbi_0.asm
 Created the following files
@@ -8541,7 +8541,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:03 on May 01,2020
+# Start time: 20:47:16 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8615,7 +8615,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:03 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:17 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/lbi_1.asm
 Created the following files
@@ -8630,7 +8630,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:08 on May 01,2020
+# Start time: 20:47:18 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8704,7 +8704,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:08 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:18 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ld_0.asm
 Created the following files
@@ -8719,7 +8719,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:13 on May 01,2020
+# Start time: 20:47:20 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8793,7 +8793,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:13 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:20 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ld_1.asm
 Created the following files
@@ -8808,7 +8808,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:18 on May 01,2020
+# Start time: 20:47:22 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8882,7 +8882,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:18 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:22 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ld_2.asm
 Created the following files
@@ -8897,7 +8897,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:23 on May 01,2020
+# Start time: 20:47:24 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -8971,7 +8971,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:23 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:24 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ld_3.asm
 Created the following files
@@ -8986,7 +8986,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:28 on May 01,2020
+# Start time: 20:47:26 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9060,7 +9060,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 10205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:28 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:26 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/rol_0.asm
 Created the following files
@@ -9075,7 +9075,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:33 on May 01,2020
+# Start time: 20:47:27 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9149,7 +9149,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 6005 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:33 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:28 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/rol_1.asm
 Created the following files
@@ -9164,7 +9164,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:38 on May 01,2020
+# Start time: 20:47:29 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9238,7 +9238,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 17405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:39 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:30 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/roli_0.asm
 Created the following files
@@ -9253,7 +9253,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:43 on May 01,2020
+# Start time: 20:47:31 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9327,7 +9327,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:44 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:32 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/roli_1.asm
 Created the following files
@@ -9342,7 +9342,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:48 on May 01,2020
+# Start time: 20:47:33 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9416,7 +9416,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:49 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:34 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/roli_2.asm
 Created the following files
@@ -9431,7 +9431,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:53 on May 01,2020
+# Start time: 20:47:35 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9505,7 +9505,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:54 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:35 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/roli_3.asm
 Created the following files
@@ -9520,7 +9520,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:01:58 on May 01,2020
+# Start time: 20:47:37 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9594,7 +9594,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:01:59 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:37 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/roli_4.asm
 Created the following files
@@ -9609,7 +9609,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:03 on May 01,2020
+# Start time: 20:47:39 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9683,7 +9683,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:03 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:39 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ror_0.asm
 Created the following files
@@ -9698,7 +9698,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:08 on May 01,2020
+# Start time: 20:47:41 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9772,7 +9772,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:09 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:41 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ror_1.asm
 Created the following files
@@ -9787,7 +9787,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:13 on May 01,2020
+# Start time: 20:47:42 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9861,7 +9861,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:14 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:43 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ror_2.asm
 Created the following files
@@ -9876,7 +9876,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:18 on May 01,2020
+# Start time: 20:47:44 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -9950,7 +9950,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:18 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:45 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ror_3.asm
 Created the following files
@@ -9965,7 +9965,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:23 on May 01,2020
+# Start time: 20:47:46 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10039,7 +10039,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:23 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:47 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ror_4.asm
 Created the following files
@@ -10054,7 +10054,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:28 on May 01,2020
+# Start time: 20:47:48 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10128,7 +10128,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:28 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:47:48 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/ror_6.asm
 Created the following files
@@ -10143,7 +10143,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:33 on May 01,2020
+# Start time: 20:47:50 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10217,7 +10217,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:34 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:50 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/rori_0.asm
 Created the following files
@@ -10232,7 +10232,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:38 on May 01,2020
+# Start time: 20:47:52 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10306,7 +10306,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 17405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:39 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:52 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sco_0.asm
 Created the following files
@@ -10321,7 +10321,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:43 on May 01,2020
+# Start time: 20:47:54 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10395,7 +10395,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:44 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:54 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sco_1.asm
 Created the following files
@@ -10410,7 +10410,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:48 on May 01,2020
+# Start time: 20:47:56 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10484,7 +10484,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:49 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:56 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sco_2.asm
 Created the following files
@@ -10499,7 +10499,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:53 on May 01,2020
+# Start time: 20:47:58 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10573,7 +10573,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:54 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:47:58 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_0.asm
 Created the following files
@@ -10588,7 +10588,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:02:58 on May 01,2020
+# Start time: 20:48:00 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10662,7 +10662,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 38505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:02:59 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:00 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_1.asm
 Created the following files
@@ -10677,7 +10677,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:04 on May 01,2020
+# Start time: 20:48:02 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10751,7 +10751,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:04 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:02 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_2.asm
 Created the following files
@@ -10766,7 +10766,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:09 on May 01,2020
+# Start time: 20:48:04 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10840,7 +10840,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:10 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:04 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_3.asm
 Created the following files
@@ -10855,7 +10855,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:14 on May 01,2020
+# Start time: 20:48:06 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -10929,7 +10929,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:15 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:06 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_4.asm
 Created the following files
@@ -10944,7 +10944,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:19 on May 01,2020
+# Start time: 20:48:08 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11018,7 +11018,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:20 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:08 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_5.asm
 Created the following files
@@ -11033,7 +11033,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:24 on May 01,2020
+# Start time: 20:48:10 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11107,7 +11107,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:25 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:10 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_6.asm
 Created the following files
@@ -11122,7 +11122,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:29 on May 01,2020
+# Start time: 20:48:12 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11196,7 +11196,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:30 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:12 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_7.asm
 Created the following files
@@ -11211,7 +11211,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:34 on May 01,2020
+# Start time: 20:48:14 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11285,7 +11285,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:35 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:14 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_8.asm
 Created the following files
@@ -11300,7 +11300,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:39 on May 01,2020
+# Start time: 20:48:16 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11374,7 +11374,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:40 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:16 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/seq_9.asm
 Created the following files
@@ -11389,7 +11389,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:44 on May 01,2020
+# Start time: 20:48:17 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11463,7 +11463,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:45 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:18 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/siic_0.asm
 Created the following files
@@ -11478,7 +11478,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:49 on May 01,2020
+# Start time: 20:48:19 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11551,8 +11551,8 @@ VSIM 1> run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
-#    Time: 4805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:50 on May 01,2020, Elapsed time: 0:00:01
+#    Time: 6005 ns  Iteration: 0  Instance: /proc_hier_pbench
+# End time: 20:48:20 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slbi_0.asm
 Created the following files
@@ -11567,7 +11567,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:03:55 on May 01,2020
+# Start time: 20:48:21 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11641,7 +11641,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:03:55 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:22 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slbi_1.asm
 Created the following files
@@ -11656,7 +11656,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:00 on May 01,2020
+# Start time: 20:48:23 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11730,7 +11730,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:00 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:24 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slbi_2.asm
 Created the following files
@@ -11745,7 +11745,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:05 on May 01,2020
+# Start time: 20:48:25 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11819,7 +11819,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:06 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:25 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sle_0.asm
 Created the following files
@@ -11834,7 +11834,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:10 on May 01,2020
+# Start time: 20:48:27 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11908,7 +11908,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 18705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:11 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:27 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sle_1.asm
 Created the following files
@@ -11923,7 +11923,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:16 on May 01,2020
+# Start time: 20:48:29 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -11997,7 +11997,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:16 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:29 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sle_2.asm
 Created the following files
@@ -12012,7 +12012,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:21 on May 01,2020
+# Start time: 20:48:31 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12086,7 +12086,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:21 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:31 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sle_3.asm
 Created the following files
@@ -12101,7 +12101,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:26 on May 01,2020
+# Start time: 20:48:33 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12175,7 +12175,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:26 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:33 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sle_4.asm
 Created the following files
@@ -12190,7 +12190,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:30 on May 01,2020
+# Start time: 20:48:35 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12264,7 +12264,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:31 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:35 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sle_5.asm
 Created the following files
@@ -12279,7 +12279,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:35 on May 01,2020
+# Start time: 20:48:37 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12353,7 +12353,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:36 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:37 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sle_6.asm
 Created the following files
@@ -12368,7 +12368,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:41 on May 01,2020
+# Start time: 20:48:39 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12442,7 +12442,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:41 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:39 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sll_0.asm
 Created the following files
@@ -12457,7 +12457,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:45 on May 01,2020
+# Start time: 20:48:41 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12531,7 +12531,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:46 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:41 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sll_1.asm
 Created the following files
@@ -12546,7 +12546,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:50 on May 01,2020
+# Start time: 20:48:43 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12620,7 +12620,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:51 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:43 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sll_2.asm
 Created the following files
@@ -12635,7 +12635,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:04:55 on May 01,2020
+# Start time: 20:48:45 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12709,7 +12709,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:04:56 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:45 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sll_3.asm
 Created the following files
@@ -12724,7 +12724,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:00 on May 01,2020
+# Start time: 20:48:47 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12798,7 +12798,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:01 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:47 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sll_4.asm
 Created the following files
@@ -12813,7 +12813,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:05 on May 01,2020
+# Start time: 20:48:48 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12887,7 +12887,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:06 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:49 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slli_0.asm
 Created the following files
@@ -12902,7 +12902,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:10 on May 01,2020
+# Start time: 20:48:50 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -12976,7 +12976,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:11 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:51 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slli_1.asm
 Created the following files
@@ -12991,7 +12991,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:15 on May 01,2020
+# Start time: 20:48:52 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13065,7 +13065,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:16 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:53 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slli_2.asm
 Created the following files
@@ -13080,7 +13080,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:20 on May 01,2020
+# Start time: 20:48:54 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13154,7 +13154,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:21 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:48:55 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slt_0.asm
 Created the following files
@@ -13169,7 +13169,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:25 on May 01,2020
+# Start time: 20:48:56 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13243,7 +13243,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:25 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:56 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slt_1.asm
 Created the following files
@@ -13258,7 +13258,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:30 on May 01,2020
+# Start time: 20:48:58 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13332,7 +13332,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:30 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:48:58 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slt_2.asm
 Created the following files
@@ -13347,7 +13347,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:35 on May 01,2020
+# Start time: 20:49:00 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13421,7 +13421,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:36 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:00 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/slt_5.asm
 Created the following files
@@ -13436,7 +13436,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:40 on May 01,2020
+# Start time: 20:49:02 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13510,7 +13510,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 5705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:41 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:02 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/srli_0.asm
 Created the following files
@@ -13525,7 +13525,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:45 on May 01,2020
+# Start time: 20:49:04 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13599,7 +13599,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:46 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:04 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/srli_1.asm
 Created the following files
@@ -13614,7 +13614,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:50 on May 01,2020
+# Start time: 20:49:06 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13688,7 +13688,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:51 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:06 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/srli_2.asm
 Created the following files
@@ -13703,7 +13703,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:05:55 on May 01,2020
+# Start time: 20:49:08 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13777,7 +13777,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:05:56 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:08 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_0.asm
 Created the following files
@@ -13792,7 +13792,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:00 on May 01,2020
+# Start time: 20:49:10 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13866,7 +13866,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:01 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:10 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_10.asm
 Created the following files
@@ -13881,7 +13881,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:05 on May 01,2020
+# Start time: 20:49:12 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -13955,7 +13955,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:06 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:12 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_1.asm
 Created the following files
@@ -13970,7 +13970,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:10 on May 01,2020
+# Start time: 20:49:14 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14044,7 +14044,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:11 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:15 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_2.asm
 Created the following files
@@ -14059,7 +14059,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:15 on May 01,2020
+# Start time: 20:49:16 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14133,7 +14133,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4405 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:16 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:17 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_3.asm
 Created the following files
@@ -14148,7 +14148,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:20 on May 01,2020
+# Start time: 20:49:18 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14222,7 +14222,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:20 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:19 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_4.asm
 Created the following files
@@ -14237,7 +14237,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:25 on May 01,2020
+# Start time: 20:49:20 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14311,7 +14311,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:25 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:21 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_5.asm
 Created the following files
@@ -14326,7 +14326,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:30 on May 01,2020
+# Start time: 20:49:22 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14400,7 +14400,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:30 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:22 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_6.asm
 Created the following files
@@ -14415,7 +14415,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:35 on May 01,2020
+# Start time: 20:49:24 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14489,7 +14489,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:35 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:25 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_7.asm
 Created the following files
@@ -14504,7 +14504,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:40 on May 01,2020
+# Start time: 20:49:26 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14578,7 +14578,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:40 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:27 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_8.asm
 Created the following files
@@ -14593,7 +14593,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:45 on May 01,2020
+# Start time: 20:49:28 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14667,7 +14667,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:45 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:29 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/st_9.asm
 Created the following files
@@ -14682,7 +14682,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:50 on May 01,2020
+# Start time: 20:49:30 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14756,7 +14756,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:50 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:30 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/stu_0.asm
 Created the following files
@@ -14771,7 +14771,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:55 on May 01,2020
+# Start time: 20:49:32 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14845,7 +14845,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:06:55 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:32 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/stu_1.asm
 Created the following files
@@ -14860,7 +14860,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:06:59 on May 01,2020
+# Start time: 20:49:34 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -14934,7 +14934,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:00 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:34 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/stu_2.asm
 Created the following files
@@ -14949,7 +14949,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:04 on May 01,2020
+# Start time: 20:49:36 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15023,7 +15023,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 4705 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:05 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:36 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sub_0.asm
 Created the following files
@@ -15038,7 +15038,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:09 on May 01,2020
+# Start time: 20:49:38 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15112,7 +15112,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:10 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:38 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sub_1.asm
 Created the following files
@@ -15127,7 +15127,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:14 on May 01,2020
+# Start time: 20:49:40 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15201,7 +15201,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3805 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:15 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:40 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sub_2.asm
 Created the following files
@@ -15216,7 +15216,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:19 on May 01,2020
+# Start time: 20:49:42 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15290,7 +15290,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:20 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:42 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sub_3.asm
 Created the following files
@@ -15305,7 +15305,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:24 on May 01,2020
+# Start time: 20:49:44 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15379,7 +15379,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:25 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:44 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sub_4.asm
 Created the following files
@@ -15394,7 +15394,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:29 on May 01,2020
+# Start time: 20:49:46 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15468,7 +15468,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:30 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:46 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sub_5.asm
 Created the following files
@@ -15483,7 +15483,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:34 on May 01,2020
+# Start time: 20:49:47 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15557,7 +15557,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:34 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:48 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sub_6.asm
 Created the following files
@@ -15572,7 +15572,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:39 on May 01,2020
+# Start time: 20:49:49 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15646,7 +15646,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:39 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:50 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/sub_7.asm
 Created the following files
@@ -15661,7 +15661,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:44 on May 01,2020
+# Start time: 20:49:51 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15735,7 +15735,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:44 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:49:52 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/subi_0.asm
 Created the following files
@@ -15750,7 +15750,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:48 on May 01,2020
+# Start time: 20:49:53 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15824,7 +15824,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:49 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:54 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/subi_1.asm
 Created the following files
@@ -15839,7 +15839,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:53 on May 01,2020
+# Start time: 20:49:55 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -15913,7 +15913,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:54 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:56 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/subi_2.asm
 Created the following files
@@ -15928,7 +15928,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:07:58 on May 01,2020
+# Start time: 20:49:57 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16002,7 +16002,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:07:59 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:58 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xor_0.asm
 Created the following files
@@ -16017,7 +16017,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:03 on May 01,2020
+# Start time: 20:49:59 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16091,7 +16091,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:04 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:49:59 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xor_1.asm
 Created the following files
@@ -16106,7 +16106,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:08 on May 01,2020
+# Start time: 20:50:01 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16180,7 +16180,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:09 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:01 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xor_2.asm
 Created the following files
@@ -16195,7 +16195,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:13 on May 01,2020
+# Start time: 20:50:03 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16269,7 +16269,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:14 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:03 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xor_3.asm
 Created the following files
@@ -16284,7 +16284,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:18 on May 01,2020
+# Start time: 20:50:05 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16358,7 +16358,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:19 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:05 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xor_4.asm
 Created the following files
@@ -16373,7 +16373,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:23 on May 01,2020
+# Start time: 20:50:07 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16447,7 +16447,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:23 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:50:07 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xor_5.asm
 Created the following files
@@ -16462,7 +16462,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:28 on May 01,2020
+# Start time: 20:50:09 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16536,7 +16536,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:29 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:09 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xor_6.asm
 Created the following files
@@ -16551,7 +16551,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:33 on May 01,2020
+# Start time: 20:50:11 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16625,7 +16625,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 3505 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:33 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:50:11 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_0.asm
 Created the following files
@@ -16640,7 +16640,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:38 on May 01,2020
+# Start time: 20:50:12 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16714,7 +16714,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:38 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:50:13 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_10.asm
 Created the following files
@@ -16729,7 +16729,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:43 on May 01,2020
+# Start time: 20:50:14 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16803,7 +16803,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:43 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:50:15 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_11.asm
 Created the following files
@@ -16818,7 +16818,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:47 on May 01,2020
+# Start time: 20:50:16 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16892,7 +16892,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:48 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:17 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_12.asm
 Created the following files
@@ -16907,7 +16907,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:53 on May 01,2020
+# Start time: 20:50:18 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -16981,7 +16981,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:53 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:50:19 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_13.asm
 Created the following files
@@ -16996,7 +16996,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:08:57 on May 01,2020
+# Start time: 20:50:20 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17070,7 +17070,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:08:58 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:21 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_1.asm
 Created the following files
@@ -17085,7 +17085,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:02 on May 01,2020
+# Start time: 20:50:22 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17159,7 +17159,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:03 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:22 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_2.asm
 Created the following files
@@ -17174,7 +17174,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:07 on May 01,2020
+# Start time: 20:50:25 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17248,7 +17248,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:08 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:25 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_3.asm
 Created the following files
@@ -17263,7 +17263,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:12 on May 01,2020
+# Start time: 20:50:27 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17337,7 +17337,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:13 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:27 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_4.asm
 Created the following files
@@ -17352,7 +17352,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:17 on May 01,2020
+# Start time: 20:50:28 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17426,7 +17426,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:18 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:29 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_5.asm
 Created the following files
@@ -17441,7 +17441,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:22 on May 01,2020
+# Start time: 20:50:30 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17515,7 +17515,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:23 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:31 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_6.asm
 Created the following files
@@ -17530,7 +17530,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:27 on May 01,2020
+# Start time: 20:50:32 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17604,7 +17604,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:27 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:50:33 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_7.asm
 Created the following files
@@ -17619,7 +17619,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:32 on May 01,2020
+# Start time: 20:50:34 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17693,7 +17693,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:32 on May 01,2020, Elapsed time: 0:00:00
+# End time: 20:50:35 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_8.asm
 Created the following files
@@ -17708,7 +17708,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:36 on May 01,2020
+# Start time: 20:50:36 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17782,7 +17782,7 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:37 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:37 on May 01,2020, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 Full name to pass to Assemble.java: /u/s/i/sinclair/courses/cs552/spring2020/handouts/testprograms/public/inst_tests/xori_9.asm
 Created the following files
@@ -17797,7 +17797,7 @@ Reading pref.tcl
 # 10.7c
 
 # vsim -c proc_hier_pbench -lib __work 
-# Start time: 16:09:41 on May 01,2020
+# Start time: 20:50:38 on May 01,2020
 # //  ModelSim DE 10.7c Aug 17 2018Linux 4.15.0-96-generic
 # //
 # //  Copyright 1991-2018 Mentor Graphics Corporation
@@ -17871,5 +17871,5 @@ VSIM 1> run -all
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
 #    Time: 2205 ns  Iteration: 0  Instance: /proc_hier_pbench
-# End time: 16:09:42 on May 01,2020, Elapsed time: 0:00:01
+# End time: 20:50:38 on May 01,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

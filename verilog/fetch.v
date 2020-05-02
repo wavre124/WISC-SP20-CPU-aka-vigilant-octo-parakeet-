@@ -42,14 +42,14 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   wire [4:0] opcode;
   assign opcode = EX_instruction[15:11];
   wire [1:0] pc_src_help;
-  assign pc_src_help = (opcode == rti) ? (2'b01) : PC_src;
+  assign pc_src_help = PC_src;
 
   wire stall;
   wire read_req;
 
   wire [1:0] pc_bj_taken;
 
-  assign pc_bj_taken = (bj_taken) ? PC_src : 2'b01;
+  assign pc_bj_taken = (bj_taken | (PC_src == 2'b11)) ? pc_src_help : 2'b01;
 
   mux4_1_16b pc_mux2(.InA(pc), .InB(incremented_pc), .InC(b_j_pc), .InD(exception_pc), .S(pc_bj_taken), .Out(mux_pc));
 
@@ -73,7 +73,7 @@ module fetch (clk, rst, b_j_pc, PC_src, Mem_en, excp, stall_decode, instruction,
   mem_system_ins ins_mem( .DataOut(instruction), .Done(Done), .Stall(stall), .CacheHit(CacheHit), .err(misalign_mem), .Addr(pc), .DataIn(start_PC_addr), .Rd(1'b1), .Wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
   assign ins_stall = ~(stall & Done);
-  assign bj_stall = ((PC_src == 2) & ~(stall & Done) & bj_taken);
+  assign bj_stall = ((PC_src == 2) & ~(stall & Done) & bj_taken) | ((pc_bj_taken == 3) & ~(stall & Done));
   assign read_req = ~stall;
 
 endmodule

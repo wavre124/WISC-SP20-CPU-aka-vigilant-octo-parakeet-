@@ -10,16 +10,13 @@ module l_shift_log(In, Cnt, Out);
   output [N-1:0]  Out;
 
   wire wire15_1, wire14_1, wire13_1, wire12_1, wire11_1, wire10_1, wire9_1, wire8_1;
-  wire wire7_1, wire6_1, wire5_1, wire4_1, wire3_1, wire2_1, wire0_1;
+  wire wire7_1, wire6_1, wire5_1, wire4_1, wire3_1, wire2_1, wire1_1, wire0_1;
 
   wire wire15_2, wire14_2, wire13_2, wire12_2, wire11_2, wire10_2, wire9_2, wire8_2;
-  wire wire7_2, wire6_2, wire5_2, wire4_2, wire3_2, wire2_2, wire0_2;
+  wire wire7_2, wire6_2, wire5_2, wire4_2, wire3_2, wire2_2, wire1_2, wire0_2;
 
   wire wire15_3, wire14_3, wire13_3, wire12_3, wire11_3, wire10_3, wire9_3, wire8_3;
-  wire wire7_3, wire6_3, wire5_3, wire4_3, wire3_3, wire2_3, wire0_3;
-
-  wire wire15_4, wire14_4, wire13_4, wire12_4, wire11_4, wire10_4, wire9_4, wire8_4;
-  wire wire7_4, wire6_4, wire5_4, wire4_4, wire3_4, wire2_4, wire0_4;
+  wire wire7_3, wire6_3, wire5_3, wire4_3, wire3_3, wire2_3, wire1_3, wire0_3;
 
   // shift by 1
   mux2_1 mux_zero_sh0(.InA(In[0]), .InB(1'b0), .S(Cnt[0]), .Out(wire0_1));

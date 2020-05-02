@@ -18,9 +18,6 @@ module r_shift_arith(In, Cnt, Out);
   wire wire15_3, wire14_3, wire13_3, wire12_3, wire11_3, wire10_3, wire9_3, wire8_3;
   wire wire7_3, wire6_3, wire5_3, wire4_3, wire3_3, wire2_3, wire0_3;
 
-  wire wire15_4, wire14_4, wire13_4, wire12_4, wire11_4, wire10_4, wire9_4, wire8_4;
-  wire wire7_4, wire6_4, wire5_4, wire4_4, wire3_4, wire2_4, wire0_4;
-
   // shift by 1
   mux2_1 mux_zero_sh15(.InA(In[15]), .InB(In[15]), .S(Cnt[0]), .Out(wire15_1));
   mux2_1 mux_zero_sh14(.InA(In[14]), .InB(In[15]), .S(Cnt[0]), .Out(wire14_1));

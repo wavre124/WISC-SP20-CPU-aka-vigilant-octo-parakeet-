@@ -1,9 +1,8 @@
 j .programStart
-lbi r7, 221
-slbi r7, 186
+lbi r7, 186
+slbi r7, 221
 rti
 halt
-
 
 .programStart:
 lbi r2, 5

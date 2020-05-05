@@ -18,7 +18,7 @@ RPATH=/u/k/s/kshitij/private/cs552/project/extra_credit/vigilant-octo-parakeet/r
 #mv summary.log $RPATH/complex_demo2.summary.log
 #$SPATH/wsrun.pl -align -brief -pipe -list $LPATH/unaligned.list proc_hier_pbench *.v
 #mv summary.log $RPATH/unaligned.summary.log
-$SPATH/wsrun.pl -align -pipe -list $LPATH/all_complex_demo1.list proc_hier_pbench *.v
+$SPATH/wsrun.pl -align -pipe -list $LPATH/one.list proc_hier_pbench *.v
 #$SPATH/wsrun.pl -align -brief -pipe -list $LPATH/all_rand_dcache.list proc_hier_pbench *.v
 #echo "File names with FAILURES listed below: "
 #grep -l "FAILED" $RPATH/*.log
